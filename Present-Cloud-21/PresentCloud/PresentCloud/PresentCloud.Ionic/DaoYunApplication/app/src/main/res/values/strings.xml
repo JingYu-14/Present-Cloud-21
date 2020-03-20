@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">到云</string>
+    <string name="new_user">新用户</string>
+    <string name="signin">注册</string>
+    <string name="tip_account">请输入账号</string>
+    <string name="tip_password">请输入密码</string>
+    <string name="forget_pass">忘记密码</string>
+    <string name="enroll">注册</string>
+
+    <string name="main_home_text">班课</string>
+    <string name="main_mine_text">发现</string>
+    <string name="main_attention_text">我的</string>
+
+    <array name="home_video_tab">
+        <item>我创建的@dream@0</item>
+        <item>我加入的@dream@1</item>
+        <item>+@dream@2</item>
+    </array>
+
+    <array name="newpost_video_tab">
+        <item>美女@dream@0</item>
+        <item>搞笑@dream@1</item>
+        <item>视频@dream@2</item>
+        <item>段子@dream@3</item>
+        <item>城市@dream@4</item>
+        <item>农村@dream@5</item>
+        <item>青春@dream@6</item>
+    </array>
+
+    <array name="attention_video_tab">
+        <item>订阅@dream@0</item>
+        <item>关注@dream@1</item>
+    </array>
+</resources>

@@ -1,0 +1,13 @@
+{
+	"settings":
+	{
+		"xdebug":
+		{
+			"close_on_stop": true,
+			"ide_key": "sublime.xdebug",
+			"port": 9900,
+			"super_globals": true,
+			"url": "http://127.0.0.1/tp5/public/index.php/index/index/test"
+		}
+	}
+}

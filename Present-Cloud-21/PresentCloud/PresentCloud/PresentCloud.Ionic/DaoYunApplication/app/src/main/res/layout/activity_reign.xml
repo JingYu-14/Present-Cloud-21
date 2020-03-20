@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/main_bg"
+    android:layout_height="match_parent">
+    <EditText
+
+        android:id="@+id/account_input"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_account"
+        android:layout_centerVertical="true"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/password_input"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_password"
+        android:inputType="textPassword"
+        android:layout_below="@id/account_input"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btn_enroll"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/enroll"
+        android:background="@color/lightslategrey"
+        android:layout_below="@id/password_input"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        />
+</RelativeLayout>

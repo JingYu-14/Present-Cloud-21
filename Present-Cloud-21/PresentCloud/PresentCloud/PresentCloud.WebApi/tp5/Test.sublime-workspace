@@ -1,0 +1,1002 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"iss",
+				"isshow\tDefault"
+			],
+			[
+				"toLo",
+				"toLowerCase()\tString"
+			],
+			[
+				"me",
+				"message\tDefault"
+			],
+			[
+				"get",
+				"getimgs\tDefault"
+			],
+			[
+				"pa",
+				"padding-right"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"border-bo",
+				"border-box"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"fl",
+				"float"
+			],
+			[
+				"list-s",
+				"list-style"
+			],
+			[
+				"fonts",
+				"font-size"
+			],
+			[
+				"sta",
+				"status\tWindow"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"log",
+				"log()\tMath"
+			],
+			[
+				"mi",
+				"mintui\tDefault"
+			],
+			[
+				"mysql_fetch_a",
+				"mysql_fetch_assoc"
+			],
+			[
+				"mysqlfa",
+				"mysql_fetch_assoc"
+			],
+			[
+				"mysql_c",
+				"mysqli_connect"
+			],
+			[
+				"mysqlC",
+				"mysql_connect"
+			],
+			[
+				"user",
+				"username\tDefault"
+			],
+			[
+				"inn",
+				"innerHTML"
+			],
+			[
+				"rea",
+				"readyState\tDocument"
+			],
+			[
+				"pw",
+				"pwdSpan\tDefault"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"onb",
+				"onblur"
+			],
+			[
+				"on",
+				"oninput〔function〕"
+			],
+			[
+				"te",
+				"text\t.text()"
+			],
+			[
+				"sp",
+				"split()\tString"
+			],
+			[
+				"con",
+				"console.log\tDefault"
+			],
+			[
+				"app",
+				"apply()\tFunction"
+			],
+			[
+				"fun",
+				"function\tDefault"
+			],
+			[
+				"al",
+				"alert()\tWindow"
+			],
+			[
+				"add",
+				"addClass\t.addClass()"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"ar",
+				"arguments"
+			],
+			[
+				"console",
+				"console.log\tDefault"
+			],
+			[
+				"hasC",
+				"hasChangeGender\tDefault"
+			],
+			[
+				"createp",
+				"createPerson\tDefault"
+			],
+			[
+				"time",
+				"timerId\tDefault"
+			],
+			[
+				"tim",
+				"timerId\tDefault"
+			],
+			[
+				"btn",
+				"btnStop\tDefault"
+			],
+			[
+				"set",
+				"setInterval()\tWindow"
+			],
+			[
+				"clear",
+				"clearInterval()\tFrame"
+			],
+			[
+				"off",
+				"offsetLeft"
+			],
+			[
+				"onc",
+				"onclick"
+			],
+			[
+				"gett",
+				"getElementsByTagName()"
+			],
+			[
+				"sel",
+				"selCities"
+			],
+			[
+				"geti",
+				"getElementById()\tDocument"
+			],
+			[
+				"lo",
+				"log()\tMath"
+			],
+			[
+				"page",
+				"pagecount"
+			],
+			[
+				"ti",
+				"this"
+			],
+			[
+				"admin",
+				"admins"
+			],
+			[
+				"db_",
+				"db_getOne"
+			],
+			[
+				"inta",
+				"intval"
+			],
+			[
+				"_",
+				"_REQUEST"
+			],
+			[
+				"data",
+				"data"
+			],
+			[
+				"edit",
+				"edit_art"
+			],
+			[
+				"ed",
+				"edit_art"
+			],
+			[
+				"a",
+				"article"
+			],
+			[
+				"id",
+				"id"
+			],
+			[
+				"CKFinder_Conn",
+				"CKFinder_Connector_Utils_FileSystem"
+			],
+			[
+				"check",
+				"checkCategoryName"
+			],
+			[
+				"ca",
+				"category"
+			],
+			[
+				"int",
+				"integer"
+			],
+			[
+				"is_n",
+				"is_numeric"
+			],
+			[
+				"cat",
+				"categories"
+			],
+			[
+				"par",
+				"parent_id"
+			],
+			[
+				"session_set",
+				"session_set_save_handler"
+			],
+			[
+				"ex",
+				"expire"
+			],
+			[
+				"file_",
+				"file_exists"
+			],
+			[
+				"uploa",
+				"uploadImage"
+			],
+			[
+				"image_",
+				"image_dst"
+			],
+			[
+				"image",
+				"Image.class.php"
+			],
+			[
+				"up",
+				"uploadImage"
+			],
+			[
+				"thu",
+				"thumbImage"
+			],
+			[
+				"file",
+				"file"
+			],
+			[
+				"im",
+				"image_dst"
+			],
+			[
+				"ima",
+				"image_src"
+			],
+			[
+				"imagecop",
+				"imagecopyresampled"
+			],
+			[
+				"new",
+				"new_name"
+			],
+			[
+				"imaget",
+				"imagettftext"
+			],
+			[
+				"ran",
+				"range"
+			],
+			[
+				"lines",
+				"lines_c"
+			],
+			[
+				"dots",
+				"dots_c"
+			],
+			[
+				"imaged",
+				"imagedestroy"
+			],
+			[
+				"e",
+				"e"
+			],
+			[
+				"mysql",
+				"mysql_query"
+			],
+			[
+				"A",
+				"ACTION"
+			],
+			[
+				"init",
+				"initDispatch"
+			],
+			[
+				"include",
+				"include_once"
+			],
+			[
+				"C",
+				"CORE_DIR"
+			],
+			[
+				"ini",
+				"ini_set"
+			],
+			[
+				"cla",
+				"clsname"
+			],
+			[
+				"gola",
+				"globals\t$GLOBALS['…']"
+			],
+			[
+				"ERROR",
+				"error_reporting"
+			],
+			[
+				"arraym",
+				"array_merge"
+			],
+			[
+				"session",
+				"session_start"
+			],
+			[
+				"s",
+				"smarty"
+			],
+			[
+				"tpl",
+				"tpl"
+			],
+			[
+				"PDO",
+				"PDOException"
+			],
+			[
+				"func",
+				"function"
+			],
+			[
+				"goods",
+				"goods_id"
+			],
+			[
+				"goo",
+				"Goods"
+			],
+			[
+				"stu",
+				"stu_money"
+			],
+			[
+				"mfa",
+				"mssql_fetch_assoc"
+			],
+			[
+				"mysqlfr",
+				"mysql_free_result"
+			],
+			[
+				"author",
+				"author_name"
+			],
+			[
+				"spl_",
+				"spl_autoload_register"
+			],
+			[
+				"class",
+				"class_name"
+			],
+			[
+				"my_",
+				"my_query"
+			],
+			[
+				"my",
+				"my_query"
+			],
+			[
+				"mysql_",
+				"mysql_error"
+			],
+			[
+				"mysql_err",
+				"mysql_error"
+			],
+			[
+				"l",
+				"link"
+			],
+			[
+				"showIn",
+				"showIntroduce"
+			],
+			[
+				"imagel",
+				"imageline"
+			],
+			[
+				"images",
+				"imagestring"
+			],
+			[
+				"arrm",
+				"array_merge"
+			],
+			[
+				"str",
+				"strtolower"
+			],
+			[
+				"strto",
+				"strtotime"
+			],
+			[
+				"row",
+				"rowCount"
+			],
+			[
+				"old",
+				"old_name"
+			],
+			[
+				"name",
+				"old_name"
+			],
+			[
+				"rewind",
+				"rewinddir"
+			],
+			[
+				"path",
+				"path_from"
+			],
+			[
+				"mysqln",
+				"mysql_num_rows"
+			],
+			[
+				"allo",
+				"allow_size"
+			],
+			[
+				"allow",
+				"allow_ext"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 277.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"l",
+				"Package Control: List Packages"
+			],
+			[
+				"pic",
+				"Package Control: Install Package"
+			],
+			[
+				"setting",
+				"Preferences: Settings - User"
+			],
+			[
+				"pin",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"pi",
+				"Package Control: Install Package"
+			],
+			[
+				"pl",
+				"Package Control: List Packages"
+			],
+			[
+				"pli",
+				"Package Control: List Packages"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"i",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"mar",
+				"Set Syntax: Markdown"
+			],
+			[
+				"pre",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"pr",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"TAG",
+				"Tag: Lint Selection or Document"
+			],
+			[
+				"markd",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"preview in ",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"preview in",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"preview",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"sstm",
+				"Set Syntax: Markdown Light"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"mard",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"previe",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Color Picker"
+			],
+			[
+				"c",
+				"ConvertToUTF8: Reload with Encoding"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"list packages",
+				"Package Control: List Packages"
+			],
+			[
+				"h",
+				"HTMLBeautify"
+			],
+			[
+				"color",
+				"ColorSchemeSelector: Select Color Scheme"
+			],
+			[
+				"ColorSchemeSelector",
+				"ColorSchemeSelector: Random Color Scheme"
+			],
+			[
+				"ispg",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove package",
+				"Package Control: Remove Package"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			]
+		],
+		"width": 745.0
+	},
+	"console":
+	{
+		"height": 87.0,
+		"history":
+		[
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')",
+			"install"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreCart.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/article/Article.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/traits/ModelTrait.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/controller/article/ArticleCategory.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/behavior/ApiAuthBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/Api/Express.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/basic/ModelBasic.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/admin/CronBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/admin/OrderBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/traits/CurdControllerTrait.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/admin/SystemBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/order/OrderBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/product/ProductBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/routine/StoreProductBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/user/UserBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/wap/StoreProductBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/wap/WapBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/wechat/MaterialBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/wechat/MessageBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/wechat/PaymentBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/wechat/QrcodeEventBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/behavior/wechat/UserBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/service/CacheService.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/service/ExportService.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/service/FormBuilder.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/service/HookService.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/service/HttpService.php",
+		"/D/WAMP/wamp64/www/crmeb/extend/service/UploadService.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreBargain.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreCategory.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreCombination.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreCoupon.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreCouponIssue.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreCouponIssueUser.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreCouponUser.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreOrder.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreOrderCartInfo.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreOrderStatus.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StorePink.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreProduct.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreProductAttr.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreProductRelation.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreProductReply.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreSeckill.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreService.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/store/StoreServiceLog.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/user/User.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/user/UserAddress.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/user/UserExtract.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/user/UserNotice.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/user/UserRecharge.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/user/UserSign.php",
+		"/D/WAMP/wamp64/www/crmeb/application/ebapi/model/user/WechatUser.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/behavior/ApiPermissionBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/behavior/BuildResponseBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/behavior/GoodsBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/behavior/OrderBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/behavior/PaymentBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/model/user/User.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/model/user/UserBill.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/model/user/UserTaskFinish.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/behavior/RequestFilterBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/behavior/UserBehavior.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/logic/routine/oder.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/logic/routine/RoutineLogin.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/logic/Login.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/logic/Pay.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/logic/Qrcode.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/logic/Template.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/model/ApiMenus.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/traits/LogicTrait.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/util/GroupDataService.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/util/MiniProgramService.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/util/QrcodeService.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/util/ReturnCode.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/util/SystemConfigService.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/util/Template.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/util/WechatService.php",
+		"/D/WAMP/wamp64/www/crmeb/application/core/util/WechatTemplateService.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreBargain.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreCombination.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreCombinationAttr.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreCombinationAttrResult.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreCombinationAttrValue.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreCoupon.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreCouponIssue.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreCouponIssueUser.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreCouponUser.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreSeckill.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreSeckillAttr.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreSeckillAttrResult.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/ump/StoreSeckillAttrValue.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/user/User.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/user/UserAddress.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/user/UserExtract.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/user/UserLevel.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/user/UserNotice.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/user/UserNoticeSee.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/user/UserPoint.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/user/UserRecharge.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/wechat/WechatMessage.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/wechat/WechatNews.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/wechat/WechatNewsCategory.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/wechat/WechatQrcode.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/wechat/WechatReply.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/wechat/WechatTemplate.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/wechat/WechatUser.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/routine/RoutineTemplate.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/store/StoreCategory.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/store/StoreProduct.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/store/StoreProductAttr.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/store/StoreProductAttrResult.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/store/StoreProductAttrValue.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/store/StoreProductRelation.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/store/StoreProductReply.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/store/StoreVisit.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/Express.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/SystemAdmin.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/SystemAttachment.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/SystemAttachmentCategory.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/SystemAttachmentType.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/SystemConfig.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/SystemConfigTab.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/SystemFile.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/SystemGroup.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/SystemGroupData.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/SystemLog.php",
+		"/D/WAMP/wamp64/www/crmeb/application/admin/model/system/SystemMenus.php"
+	],
+	"find":
+	{
+		"height": 44.0
+	},
+	"find_in_files":
+	{
+		"height": 179.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 44.0
+	},
+	"input":
+	{
+		"height": 96.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Test.sublime-project",
+	"replace":
+	{
+		"height": 83.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"basic",
+				"application\\ebapi\\controller\\Basic.php"
+			],
+			[
+				"model",
+				"extend\\traits\\ModelTrait.php"
+			],
+			[
+				"base",
+				"application\\core\\lib\\BaseException.php"
+			],
+			[
+				"",
+				"index.php"
+			],
+			[
+				"cache",
+				"extend\\service\\CacheService.php"
+			],
+			[
+				"01.html",
+				"01.html"
+			],
+			[
+				"do",
+				"案例\\02 春夏秋冬\\dong.html"
+			],
+			[
+				"03",
+				"案例\\03 体育模块.html"
+			],
+			[
+				"新浪",
+				"新浪案例.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 316.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
