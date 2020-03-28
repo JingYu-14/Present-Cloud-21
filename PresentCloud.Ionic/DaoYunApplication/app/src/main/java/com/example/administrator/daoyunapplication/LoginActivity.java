@@ -10,8 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.administrator.daoyunapplication.Model.User;
-import com.google.gson.Gson;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
