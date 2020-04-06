@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@drawable/main_bg"
-    android:layout_height="match_parent">
-    <EditText
 
-        android:id="@+id/account_input"
-        android:gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/tip_account"
-        android:layout_centerVertical="true"
-        android:background="@drawable/rounded_edittext"
-        android:textSize="20sp"
-        />
+    android:layout_height="match_parent">
 
     <EditText
         android:layout_marginTop="20dp"
@@ -31,16 +18,114 @@
         android:layout_below="@id/account_input"
         android:textSize="20sp"/>
 
+
+    <EditText
+
+        android:id="@+id/nick_input"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_nick"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="20sp"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/password_input"
+        android:layout_alignLeft="@+id/password_input"
+        android:layout_alignStart="@+id/password_input"
+        android:layout_alignRight="@+id/name_input"
+        android:layout_alignEnd="@+id/name_input" />
+
+
     <Button
         android:id="@+id/btn_enroll"
-        android:layout_marginTop="20dp"
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/enroll"
         android:background="@color/lightslategrey"
-        android:layout_below="@id/password_input"
-        android:layout_centerHorizontal="true"
         android:textColor="@color/white"
-        />
+        android:layout_marginBottom="19dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/email_input"
+        android:gravity="center"
+        android:background="@drawable/rounded_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_email"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:layout_below="@+id/name_input"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="29dp" />
+
+    <EditText
+        android:id="@+id/telephone_input"
+        android:gravity="center"
+        android:background="@drawable/rounded_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_telephone"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:layout_below="@+id/email_input"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="29dp" />
+
+    <EditText
+
+        android:id="@+id/account_input"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_account"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/password_input"
+        android:layout_alignStart="@+id/password_input" />
+
+    <EditText
+        android:id="@+id/name_input"
+        android:gravity="center"
+        android:background="@drawable/rounded_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_name"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:layout_below="@+id/nick_input"
+        android:layout_alignLeft="@+id/password_input"
+        android:layout_alignStart="@+id/password_input"
+        android:layout_marginTop="18dp" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioButton_role"
+        android:orientation="horizontal"
+        android:layout_below="@+id/telephone_input"
+        android:layout_alignLeft="@+id/name_input"
+        android:layout_alignStart="@+id/name_input"
+        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/student"
+            android:text="学生"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teacher"
+            android:text="老师"/>
+
+    </RadioGroup>
 </RelativeLayout>
