@@ -4,6 +4,14 @@
     <string name="signin">注册</string>
     <string name="tip_account">请输入账号</string>
     <string name="tip_password">请输入密码</string>
+
+    <string name="tip_nick">请输入昵称</string>
+    <string name="tip_name">请输入姓名</string>
+    <string name="tip_email">请输入e-mail</string>
+    <string name="tip_telephone">请输入电话号码</string>
+    <string name="tip_college">请输入院系</string>
+    <string name="tip_join">请输入班课号</string>
+
     <string name="forget_pass">忘记密码</string>
     <string name="enroll">注册</string>
 
