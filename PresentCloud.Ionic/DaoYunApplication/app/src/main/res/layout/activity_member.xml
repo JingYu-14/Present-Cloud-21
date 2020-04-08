@@ -20,6 +20,7 @@
             android:layout_alignParentBottom="true"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/zy_cy"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -30,11 +31,13 @@
                 android:layout_weight="1"
                 android:src="@drawable/cy_s"/>
             <ImageView
+                android:id="@+id/hd_cy"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/hd"/>
             <ImageView
+                android:id="@+id/xq_cy"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
