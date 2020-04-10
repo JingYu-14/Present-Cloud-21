@@ -24,9 +24,9 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * Created by Administrator on 2020/3/10 0010.
+ * Created by zhangyin on 2020/3/10 0010.
  */
-
+//test
 public class LoginActivity extends AppCompatActivity {
     private Button btn_login;
     private Button btn_forget_pass;
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                 //注册开始，判断注册条件
                 case R.id.btn_enroll:
                     if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password) ) {
-                        Toast.makeText(LoginActivity.this, "各项均不能为空", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "各项均不能为空!", Toast.LENGTH_SHORT).show();
                     } else {
                             //执行登入操作
                             OkHttpClient client = new OkHttpClient();
