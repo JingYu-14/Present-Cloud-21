@@ -82,7 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="right"
-                        android:text="XX人"
+                        android:text="XXX人"
                         android:textSize="20dp"/>
                 </LinearLayout>
                 </LinearLayout>
