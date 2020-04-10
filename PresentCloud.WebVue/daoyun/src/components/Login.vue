@@ -1,68 +1,92 @@
 <template>
-  <div class="main" id="main">
-	  <div class="main0" >
-	     <div class="main_left">
-	        <img src="../assets/images/login-image-3.png" class="theimg"/>
-	        <img src="../assets/images/login-image-2.png" class="secimg"/>
-	        <img src="../assets/images/login-image-1.png" class="firimg"/>
-	     </div>
-	     <div class="main_right">
-	        <div class="main_r_up">
-	            <img src="../assets/images/user.png" />
-	            <div class="pp">登录</div>
-	        </div>
-	        <div class="sub"><p>还没有账号？<a href="/#/register"><span class="blue">立即注册</span></a></p></div>
-	        <div class="txt">
-	            <span style="letter-spacing:8px;">用户名:</span>
-	            <input name="" type="text" class="txtphone" placeholder="请输入注册手机号或用户名"/>
-	        </div>
-	        <div class="txt">
-	            <span style="letter-spacing:4px;">登录密码:</span>
-	            <input name="" type="text" class="txtphone" placeholder="请输入登录密码"/>
-	        </div>
-	        <div class="txt">
-	            <span style=" float:left;letter-spacing:8px;">验证码:</span>
-	            <input name="" type="text" class="txtyzm" placeholder="请输入页面验证码"/>
-	            <img src="../assets/images/yanzhengma.png" class="yzmimg"/>
-	        </div>
-	        <div class="xieyi">
-	            <input name="" type="checkbox" value="" checked="checked"/>
-	            记住我 <a href="/#/password"><span class="blue" style=" padding-left:130px; cursor:pointer">忘记密码?</span></a>
-	        </div>
-	        <div class="xiayibu">登录</div>
-	     </div>
-	  </div>
-	</div>
+  <div class="login-wrap">
+    <el-form
+      label-position="top"
+      :rules="rules"
+      ref="ruleForm"
+      :model="formData"
+      label-width="80px">
+      <h2>用户登录</h2>
+      <el-form-item label="用户名" prop="username">
+        <el-input v-model="formData.username"></el-input>
+      </el-form-item>
+      <el-form-item label="密码" prop="password">
+        <el-input type="password" v-model="formData.password"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button class="login-btn" type="primary" @click="login">登录</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'Login',
-  data () {
+  data() {
     return {
-     
-    }
+      formData: {
+        username: '',
+        password: ''
+      },
+      rules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 12, max: 12, message: '长度必须是12个字符', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 11, message: '长度在 6 到 11 个字符', trigger: 'blur' }
+        ]
+      }
+    };
   },
-  created(){
-  	this.$nextTick(()=>{
-  		document.getElementById('main').style.height = document.documentElement.clientHeight + 'px'
-  	})
+  methods: {
+    async login() {
+      // 表单验证
+      this.$refs.ruleForm.validate(async (valid) => {
+        if (!valid) {
+          return;
+        }
+        const res = await this.$http.post('/login', this.formData);
+        const data = res.data;
+        // console.log(res);
+        if (data.meta.status === 200) {
+          this.$message({
+            type: 'success',
+            message: '登录成功!'
+          });
+          this.$router.push({
+            name: 'Home'
+          });
+        } else {
+          // 登录失败，返回失败的原因
+          this.$message({
+            type: 'error',
+            message: data.meta.msg
+          });
+        }
+      });
+    }
   }
-}
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
-<style scoped src="../assets/css/login.css">
-.main{
-	position: relative;
-}
-.main0{
-	position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: 0;
-    margin-left: -600px;
-    margin-top: -270px;
-}
+<style scoped>
+  .login-wrap {
+    background-color: #324152;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .el-form.el-form--label-top {
+    padding: 40px;
+    width: 500px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  .el-form .login-btn {
+    width: 100%;
+  }
 </style>
