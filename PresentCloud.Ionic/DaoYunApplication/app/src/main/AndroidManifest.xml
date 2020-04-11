@@ -21,6 +21,13 @@
         <activity android:name=".ReignActivity">
         </activity>
         <activity android:name=".Home.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.ActivityHome">
 
         </activity>
         <activity android:name=".JoinActivity">
@@ -73,11 +80,11 @@
 <!--            </intent-filter>-->
         </activity>
         <activity android:name=".MemberTeacherActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
     </application>
 

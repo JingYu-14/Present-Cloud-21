@@ -1,13 +1,25 @@
 package com.example.administrator.daoyunapplication.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2020/3/12 0012.
  */
 
-public class Food {
+public class Class implements Serializable {
     public String newsIconURl;
     public String newsCourseName;
     public String newsTeacherName;
+    public String newsClassName;
+    public int newsClassId;
+
+    public int getNewsClassId() {
+        return newsClassId;
+    }
+
+    public void setNewsClassId(int newsClassId) {
+        this.newsClassId = newsClassId;
+    }
 
     public String getNewsClassName() {
         return newsClassName;
@@ -41,12 +53,13 @@ public class Food {
         this.newsIconURl = newsIconURl;
     }
 
-    public String newsClassName;
-    public Food(String newsIconURl,String newsCourseName,String newsTeacherName,String newsClassName){
+
+    public Class(int newsClassId ,String newsIconURl, String newsCourseName, String newsTeacherName, String newsClassName){
         this.newsIconURl=newsIconURl;
         this.newsCourseName=newsCourseName;
         this.newsTeacherName=newsTeacherName;
         this.newsClassName=newsClassName;
+        this.newsClassId=newsClassId;
 
     }
 //    private String mName;

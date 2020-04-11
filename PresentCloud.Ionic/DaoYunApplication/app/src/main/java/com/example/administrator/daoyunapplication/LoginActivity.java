@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
             switch (v.getId()) {
-                //注册开始，判断注册条件
+                //登录开始，判断登录条件
                 case R.id.btn_enroll:
                     if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password) ) {
                         Toast.makeText(LoginActivity.this, "各项均不能为空!", Toast.LENGTH_SHORT).show();

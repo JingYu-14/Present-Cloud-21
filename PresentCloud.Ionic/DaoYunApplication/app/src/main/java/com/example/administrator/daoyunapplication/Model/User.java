@@ -1,10 +1,12 @@
 package com.example.administrator.daoyunapplication.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by zhangyin on 2020/3/27 0027.
  */
 //新建用户类
-public class User {
+public class User implements Serializable {
 //test
     private int userId;//用户id
     private String username ;//账号名称，就是学号或工号
@@ -16,7 +18,18 @@ public class User {
     private int role;//用户身份，0学生，1老师
     private String  password;//密码
     private int empiricalValue;//经验值，注册时不用
-
+    public User() {}
+    public User( String username, String nick, String college,String name,String email,String  telephone,int role,String  password,int empiricalValue){
+        this.username=username;
+        this.nick=nick;
+        this.college=college;
+        this.name=name;
+        this.email=email;
+        this.telephone=telephone;
+        this.role=role;
+        this.password=password;
+        this.empiricalValue=empiricalValue;
+    }
     public int getUserId() {
         return userId;
     }
