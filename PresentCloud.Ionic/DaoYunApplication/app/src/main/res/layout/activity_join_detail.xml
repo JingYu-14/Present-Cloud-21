@@ -24,7 +24,7 @@
                         android:textSize="20dp"
                         android:textStyle="bold"
                         android:layout_alignParentLeft="true"
-                        android:text="返回" />
+                        android:text="返回test" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
