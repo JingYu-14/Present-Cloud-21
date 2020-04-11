@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">到云</string>
-    <string name="new_user">新用户</string>
-    <string name="signin">注册</string>
+    <string name="new_user">注册</string>
+    <string name="signin">登录</string>
     <string name="tip_account">请输入账号</string>
     <string name="tip_password">请输入密码</string>
 
