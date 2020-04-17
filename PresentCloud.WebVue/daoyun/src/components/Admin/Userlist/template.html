@@ -41,7 +41,7 @@
    </el-table> 
    <!-- 表格分页 --> 
    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[10, 20]" :page-size="pagesize" layout="total, sizes, prev, pager, next, jumper" :total="total"> 
-   </el-pagination> 
+   </el-pagination>  
    <!-- 添加用户 --> 
    <el-dialog title="添加用户" :visible.sync="addUserFormVisible"> 
     <el-form label-position="right" label-width="100px" :rules="rules" ref="addUserForm" :model="addFormData"> 

@@ -2,7 +2,7 @@
 * @Author: wujinhan
 * @Date:   2020-04-03 15:24:47
 * @Last Modified by:   wujinhan
-* @Last Modified time: 2020-04-04 11:54:04
+* @Last Modified time: 2020-04-11 16:52:00
 */
 export default {
 	name: 'Userlist',
@@ -128,6 +128,7 @@ export default {
           type: 'success',
           message: data.data.meta.msg
         });
+        this.load();
       } else {
         this.$message({
           type: 'error',

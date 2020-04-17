@@ -7,7 +7,7 @@
     height: 45px;
     border-radius: 45px;
     vertical-align: middle;
-    margin-right: 5px;" src="../assets/images/logo.png" alt=""><span style="font-size:20px;font-weight:bold;">fbiabiu</span>
+    margin-right: 5px;" :src="avatar" alt=""><span style="font-size:20px;font-weight:bold;">{{name}}</span>
         </div></el-col>
         <el-col :span="16"><div class="grid-content bg-purple">
           <div class="title">到云后台管理系统</div>
@@ -18,7 +18,7 @@
       </el-row>
     </el-header>
     <el-container>
-      <el-aside width="200px">
+      <el-aside width="288px">
         <el-menu default-active="users"
           :unique-opened="true"
           :router="true">
@@ -49,13 +49,28 @@
 
 <script>
 export default {
-	name: 'Home',
+	name: 'AdminHome',
 	data() {
 	    return {
-	      roles: []
+	      roles: [],
+        name:'',
+        avatar:''
 	    };
 	},
 	mounted() {
+    if(this.$route.params.name){
+      this.name=this.$route.params.name;
+      localStorage.setItem('name', this.name);
+    }else{
+      this.name=localStorage.getItem('name');
+    }
+
+    if(this.$route.params.avatar){
+      this.avatar="http://localhost/daoyunapi/public/static/img/"+this.$route.params.avatar;
+      localStorage.setItem('avatar', this.avatar);
+    }else{
+      this.avatar=localStorage.getItem('avatar');
+    }
 	    this.loadRoles();
 	},
 	methods: {
@@ -91,6 +106,9 @@ export default {
 </script>
 
 <style scoped>
+.el-aside{
+  width: 200px !important;
+}
   .el-header{
     background-color: #B3C0D1;
     padding: 0;

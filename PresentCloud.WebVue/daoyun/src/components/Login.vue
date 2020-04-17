@@ -32,7 +32,7 @@ export default {
       rules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 12, max: 12, message: '长度必须是12个字符', trigger: 'blur' }
+          { min: 5, max: 12, message: '长度必须是5到12个字符', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
@@ -52,12 +52,17 @@ export default {
         const data = res.data;
         // console.log(res);
         if (data.meta.status === 200) {
+          localStorage.setItem('uid', data.data['id']);
           this.$message({
             type: 'success',
             message: '登录成功!'
           });
           this.$router.push({
-            name: 'Home'
+            name: data.data['pathName'],
+            params:{
+              'name':data.data['name'],
+              'avatar':data.data['avatar']
+            }
           });
         } else {
           // 登录失败，返回失败的原因
@@ -73,6 +78,11 @@ export default {
 </script>
 
 <style scoped>
+  .login-wrap{
+    background-image: url('../assets/images/login.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
   .login-wrap {
     background-color: #324152;
     height: 100%;

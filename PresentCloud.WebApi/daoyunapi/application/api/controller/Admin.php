@@ -4,8 +4,8 @@
  * @Author: wujinhan
  * @Date:   2020-03-30 18:42:58
  * @Last Modified by:   wujinhan
- * @Last Modified time: 2020-04-10 18:31:45
- */
+ * @Last Modified time: 2020-04-17 20:39:57
+ */ 
 namespace app\api\controller;
 use app\api\controller\Base;
 use think\Db;
@@ -15,7 +15,7 @@ class Admin extends Base
     public function getMenus()
     {
     	$data = [];
-        $arr = Db::table('permission')->where('level',0)->select();
+        $arr = Db::table('permission')->where('level',0)->where('type',0)->select();
         foreach($arr as $value)
         {
             $value['children']=[];
@@ -125,7 +125,7 @@ class Admin extends Base
         $pwd=md5(input('pwd'));
         $email=input('email');
         $name=input('name');
-        $data = ['account' => $account, 'pwd' => $pwd,'email'=>$email,'name'=>$name,'state'=>1];
+        $data = ['account' => $account, 'pwd' => $pwd,'email'=>$email,'name'=>$name,'state'=>1,'type'=>1];
         if(Db::table('user')->insert($data)==1)
         {
             return $this->returnMsg([],'添加用户成功',201);
@@ -165,4 +165,153 @@ class Admin extends Base
         return $this->returnMsg([],'修改用户状态成功',200);
     }
 
+    public function getClasses()
+    {
+        $id=input('id');
+        if(!$id)
+        {
+            $arr=Db::table('class')->select();
+            foreach($arr as &$value)
+            {
+                $value['name']=Db::table('user')->where('id',$value['tno'])->value('name');
+                 if(!$value['task_id'])
+                {
+                    $value['task']='';
+                }else
+                {
+                    $taskId=explode(",",$value['task_id']);
+                    $taskId=$taskId[count($taskId)-2];
+                    $value['task']=Db::table('task')->where('id',$taskId)->value('detail');
+                }
+            }
+            return $this->returnMsg($arr,'获取班级信息成功',200);
+        }else
+        {
+             return $this->returnMsg(['name'=>Db::table('class')->where('id',$id)->value('class_name')],'获取班级信息成功',200);
+        }
+        
+    }
+
+    public function deleteClass()
+    {
+        $id=input('id');
+        if(Db::table('class')->where('id',$id)->delete()!=0)
+        {
+            return $this->returnMsg([],'删除班级成功',200);
+        }else
+        {
+            return $this->returnMsg([],'删除班级失败',404);
+        }
+    }
+
+    public function getStudents()
+    {
+        $id=input('id');
+        $pagesize=input('pagesize');
+        $pagenum=input('pagenum');
+        $temp=[];
+        $arr=Db::table('course_select')->where('class_id',$id)->column('sno');
+        for($i=0;$i<count($arr);$i++)
+        {
+            $info=Db::table('user')->where('id',$arr[$i])->field('account,name,exp,id,state')->find();
+            $info['state'] = $info['state']==0?false:true;
+            array_push($temp,$info);
+        }
+        $total=count($temp);
+        $a=[];
+        for ($i=$pagesize*($pagenum-1)+1; $i <=min($total,$pagesize*$pagenum) ; $i++) { array_push($a,$temp[$i-1]);
+        }
+        $data=['total'=>$total,'pagenum'=>$pagenum,'students'=>$a];
+        return $this->returnMsg($data,'获取学生信息成功',200);
+    }
+
+    public function getSigns()
+    {
+        $id=input('id');
+        $uid=input('uid');
+        $pagesize=input('pagesize');
+        $pagenum=input('pagenum');
+        if(!$uid)
+        {
+            $arr=Db::table('sign')->where('class_id',$id)->select();
+         }else
+         {
+             $arr=Db::table('sign')->where('class_id',$id)->where('sno',$uid)->select();
+         }
+       
+        foreach($arr as &$value)
+        {
+            $value['account']=Db::table('user')->where('id',$value['sno'])->value('account');
+            $value['state'] = $value['state']==0?false:true;
+            $value['date']=date('Y-m-d',$value['time']);
+            $value['time']=date('H-i-s',$value['time']);
+        }
+        $total=count($arr);
+        $sign=[];
+        for ($i=$pagesize*($pagenum-1)+1; $i <=min($total,$pagesize*$pagenum) ; $i++) { array_push($sign,$arr[$i-1]);
+        }
+        $data=['total'=>$total,'pagenum'=>$pagenum,'signs'=>$sign];
+        return $this->returnMsg($data,'获取签到信息成功',200);
+    }
+
+    public function changeSignState()
+    {
+        $id=input('id');
+        $state=input('state');
+        if(Db::table('sign')->where('id', $id)->update(['state' => $state])==0)
+        {
+            return $this->returnMsg([],'修改签到状态失败',400);
+        }
+        return $this->returnMsg([],'修改签到状态成功',200);
+    }
+
+    public function getTasks()
+    {
+        $id=input('id');
+        $taskId=Db::table('class')->where('id',$id)->value('task_id');
+        $taskId=explode(",",$taskId);
+        array_pop($taskId);
+        $arr=Db::table('task')->where('id','in',$taskId)->where('state',1)->select();
+        foreach($arr as &$value)
+        {
+            $value['deadline']=date('Y-m-d',$value['end_time']);
+            $value['state']=$value['end_time']>time()?'进行中':'过期';
+        }
+        return $this->returnMsg($arr,'获取签到信息成功',200);
+    }
+
+    public function changeTaskState()
+    {
+        $id=input('id');
+        if(Db::table('task')->where('id', $id)->update(['state' => 0])==0)
+        {
+            return $this->returnMsg([],'删除任务失败',400);
+        }
+        return $this->returnMsg([],'删除任务成功',200);
+    }
+
+    public function getTaskDetails()
+    {
+        $classId=input('classId');
+        $taskId=input('taskId');
+        $pagesize=input('pagesize');
+        $pagenum=input('pagenum');
+        $sno=Db::table('course_select')->where('cno',$classId)->column('sno');
+        $arr=Db::table('task_stu')->where('task_id',$taskId)->where('sno','in',$sno)->select();
+        foreach($arr as &$value)
+        {
+            $value['account']=Db::table('user')->where('id',$value['sno'])->value('account');
+            $value['name']=Db::table('user')->where('id',$value['sno'])->value('name');
+            if($value['presentation']){
+                $value['presentation']='http://localhost/daoyunapi/public/uploads/'.$value['presentation'];
+            }
+        }
+        $total=count($arr);
+        $data=[];
+        for ($i=$pagesize*($pagenum-1)+1; $i <=min($total,$pagesize*$pagenum) ; $i++) { array_push($data,$arr[$i-1]);
+        }
+        $data=['total'=>$total,'pagenum'=>$pagenum,'taskDetails'=>$data,
+        'detail'=>Db::table('task')->where('id',$taskId)->value('detail')];
+        return $this->returnMsg($data,'获取具体任务信息成功',200);
+    }
 }
