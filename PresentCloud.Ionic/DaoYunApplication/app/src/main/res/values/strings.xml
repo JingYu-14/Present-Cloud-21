@@ -49,4 +49,7 @@
         <item>进行中@dream@1</item>
         <item>已结束@dream@2</item>
     </array>
+    <array name="message_home_video_tab">
+        <item>消息@dream@0</item>
+    </array>
 </resources>
