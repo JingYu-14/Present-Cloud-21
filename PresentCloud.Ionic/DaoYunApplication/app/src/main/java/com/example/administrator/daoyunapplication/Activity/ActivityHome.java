@@ -1,5 +1,6 @@
-package com.example.administrator.daoyunapplication.Home;
+package com.example.administrator.daoyunapplication.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
@@ -10,35 +11,45 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.example.administrator.daoyunapplication.Home.HomeActivity;
+import com.example.administrator.daoyunapplication.Home.TestFragment1;
+import com.example.administrator.daoyunapplication.Home.TestFragment2;
+import com.example.administrator.daoyunapplication.Home.TestFragment3;
+import com.example.administrator.daoyunapplication.Model.Class;
 import com.example.administrator.daoyunapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2020/3/10 0010.
+ * Created by Administrator on 2020/4/11 0011.
  */
 
-public class HomeActivity extends AppCompatActivity {
-
-    private List<TabItem> mTableItemList;
-
+public class ActivityHome extends AppCompatActivity {
+    private List<ActivityHome.TabItem> mTableItemList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_activity_home);
         initTabData();
         initTabHost();
+        // 首先获取到意图对象
+        Intent intent = getIntent();
+        // 获取到传递过来的姓名,文件路径
+        Class c= (Class) intent.getSerializableExtra("classes");
+
     }
 
 
     //初始化Tab数据
     private void initTabData() {
         mTableItemList = new ArrayList<>();
-        //添加tab,三个对应三个页面，底部三个按钮
-        mTableItemList.add(new TabItem(R.drawable.main_bottom_home_normal,R.drawable.main_bottom_home_press,R.string.main_home_text, TestFragment1.class));
-        mTableItemList.add(new TabItem(R.drawable.main_bottom_mine_normal,R.drawable.main_bottom_mine_press,R.string.main_mine_text, TestFragment2.class));
-        mTableItemList.add(new TabItem(R.drawable.main_bottom_attention_normal,R.drawable.main_bottom_attention_press,R.string.main_attention_text, TestFragment3.class));
+        //添加tab,5个对于5个页面，底部5个按钮
+        mTableItemList.add(new ActivityHome.TabItem(R.drawable.zy_normal,R.drawable.zy_press,R.string.main_home_activity_resource, ActivityFragmentResource.class));
+        mTableItemList.add(new ActivityHome.TabItem(R.drawable.cy_normal,R.drawable.cy_press,R.string.main_home_activity_member, ActivityFragmentMember.class));
+        mTableItemList.add(new ActivityHome.TabItem(R.drawable.hd_normal,R.drawable.hd_press,R.string.main_home_activity_activity, ActivityFragmentActivity.class));
+        mTableItemList.add(new ActivityHome.TabItem(R.drawable.xx_normal,R.drawable.xx_press,R.string.main_home_activity_message, ActivityFragmentMessage.class));
+        mTableItemList.add(new ActivityHome.TabItem(R.drawable.xq_normal,R.drawable.xq_press,R.string.main_home_activity_detail, ActivityFragmentDetail.class));
 
     }
 
@@ -52,15 +63,15 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTabHost.getTabWidget().setDividerDrawable(null);
 
         for (int i = 0; i<mTableItemList.size(); i++) {
-            TabItem tabItem = mTableItemList.get(i);
+           ActivityHome.TabItem tabItem = mTableItemList.get(i);
             //实例化一个TabSpec,设置tab的名称和视图
             TabHost.TabSpec tabSpec = fragmentTabHost.newTabSpec(tabItem.getTitleString()).setIndicator(tabItem.getView());
             fragmentTabHost.addTab(tabSpec,tabItem.getFragmentClass(),null);
 
             //给Tab按钮设置背景
-            fragmentTabHost.getTabWidget().getChildAt(i).setBackgroundColor(getResources().getColor(R.color.main_bottom_bg));
+            fragmentTabHost.getTabWidget().getChildAt(i).setBackgroundColor(getResources().getColor(R.color.activity_main_bottom_bg));
 
-            //默认选中第一个tab
+            //默认选中第1个tab
             if(i == 0) {
                 tabItem.setChecked(true);
             }
@@ -71,7 +82,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onTabChanged(String tabId) {
                 //重置Tab样式
                 for (int i = 0; i< mTableItemList.size(); i++) {
-                    TabItem tabitem = mTableItemList.get(i);
+                    ActivityHome.TabItem tabitem = mTableItemList.get(i);
                     if (tabId.equals(tabitem.getTitleString())) {
                         tabitem.setChecked(true);
                     }else {
@@ -82,7 +93,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-////////Tab 选项卡 底部当成为一个页面////////////
+    ////////Tab 选项卡 底部当成为一个页面////////////
     class TabItem {
         //正常情况下显示的图片
         private int imageNormal;
@@ -93,20 +104,21 @@ public class HomeActivity extends AppCompatActivity {
         private String titleString;
 
         //tab对应的fragment
-        public Class<? extends Fragment> fragmentClass;
+        public java.lang.Class<? extends Fragment> fragmentClass;
 
         public View view;
         public ImageView imageView;
         public TextView textView;
 
-        public TabItem(int imageNormal, int imagePress, int title,Class<? extends Fragment> fragmentClass) {
+        public TabItem(int imageNormal, int imagePress, int title, java.lang.Class<? extends Fragment> fragmentClass) {
             this.imageNormal = imageNormal;
             this.imagePress = imagePress;
             this.title = title;
             this.fragmentClass =fragmentClass;
+
         }
 
-        public Class<? extends  Fragment> getFragmentClass() {
+        public java.lang.Class<? extends  Fragment> getFragmentClass() {
             return fragmentClass;
         }
         public int getImageNormal() {

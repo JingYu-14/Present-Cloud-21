@@ -1,4 +1,4 @@
-package com.example.administrator.daoyunapplication.Home;
+package com.example.administrator.daoyunapplication.Activity;
 
 
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.administrator.daoyunapplication.Adapter.Test3FragmentAdapter;
-import com.example.administrator.daoyunapplication.Adapter.TestFragmentAdapter;
+import com.example.administrator.daoyunapplication.Adapter.ActivityFragmentActivityAdapter;
+import com.example.administrator.daoyunapplication.Adapter.ActivityFragmentMessageAdapter;
 import com.example.administrator.daoyunapplication.R;
 
 import java.util.Arrays;
@@ -19,16 +19,15 @@ import java.util.Arrays;
  * Created by yinzhang on 2020/3/10.
  */
 
-public class TestFragment3 extends android.support.v4.app.Fragment{
+public class ActivityFragmentMessage extends android.support.v4.app.Fragment{
     private View viewContent;
     private TabLayout tab_essence;//上导航栏
     private ViewPager vp_essence;//上内容
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         if (viewContent == null) {
-            viewContent = inflater.inflate(R.layout.fragment_test_3, container, false);
+            viewContent = inflater.inflate(R.layout.fragment_activity_message, container, false);
             initConentView(viewContent);
             initData();
 
@@ -39,22 +38,21 @@ public class TestFragment3 extends android.support.v4.app.Fragment{
         if (parent != null) {
             parent.removeView(viewContent);
         }
-        //   viewContent = inflater.inflate(R.layout.fragment_test_1,container,false);
-
-
         return viewContent;
+
     }
+
     public void initConentView(View viewContent) {
-        this.tab_essence = (TabLayout) viewContent.findViewById(R.id.tab_essence_own);
-        this.vp_essence = (ViewPager) viewContent.findViewById(R.id.vp_essence_own);
+        this.tab_essence = (TabLayout) viewContent.findViewById(R.id.tab_essence_message);
+        this.vp_essence = (ViewPager) viewContent.findViewById(R.id.vp_essence_message);
     }
 
     public void initData() {
         //获取标签数据
-        String[] titles = getResources().getStringArray(R.array.own_video_tab);
+        String[] titles = getResources().getStringArray(R.array.message_home_video_tab);
 
         //创建一个viewpager的adapter
-        Test3FragmentAdapter adapter = new Test3FragmentAdapter(getFragmentManager(), Arrays.asList(titles));
+        ActivityFragmentMessageAdapter adapter = new ActivityFragmentMessageAdapter(getFragmentManager(), Arrays.asList(titles));
         this.vp_essence.setAdapter(adapter);
 
         //将TabLayout和ViewPager关联起来

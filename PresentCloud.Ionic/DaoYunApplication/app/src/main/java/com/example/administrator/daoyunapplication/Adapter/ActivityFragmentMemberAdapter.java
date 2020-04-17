@@ -4,7 +4,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
-import com.example.administrator.daoyunapplication.Home.ContentFragment;
+import com.example.administrator.daoyunapplication.Activity.ActivityContentFragment;
+import com.example.administrator.daoyunapplication.Activity.MemberContentFragment;
 
 import java.util.List;
 
@@ -12,12 +13,12 @@ import java.util.List;
  * Created by Administrator on 2020/3/11 0011.
  */
 //继承FragmentStatePagerAdapter，应该是Fragment的适配器
-public class TestFragmentAdapter extends FragmentStatePagerAdapter {
+public class ActivityFragmentMemberAdapter extends FragmentStatePagerAdapter {
     public static final String TAB_TAG = "@dream@";
 
     private List<String> mTitles;
 
-    public TestFragmentAdapter(FragmentManager fm, List<String> titles) {
+    public ActivityFragmentMemberAdapter(FragmentManager fm, List<String> titles) {
         super(fm);
         mTitles = titles;
     }
@@ -25,10 +26,10 @@ public class TestFragmentAdapter extends FragmentStatePagerAdapter {
     @Override
     public android.support.v4.app.Fragment getItem(int position) {
         //初始化Fragment数据
-        Log.e("position:",position+" ,");
+       // Log.e("position:",position+" ,");
         //在FragmentAdapter中将ContentFragment中间内容嵌入到Tab页面中
         //将FragmentAdapter整个放入ContentFragment中
-        ContentFragment fragment = new ContentFragment();
+       MemberContentFragment fragment = new MemberContentFragment();
         String[] title = mTitles.get(position).split(TAB_TAG);
         Log.e("title:",title[0]+" ,"+title[1]);
         fragment.setType(Integer.parseInt(title[1]));
