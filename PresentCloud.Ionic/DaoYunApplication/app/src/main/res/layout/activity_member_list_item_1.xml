@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:text="当前获得经验值：30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/member_detail"
+        android:gravity="center"
+        android:textSize="28sp"
+        android:textColor="@color/black"
+        />
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <Button
+            android:text="参与签到"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sign_bt"
+            android:background="@color/homework_tab_item_text_color"/>
+        <Button
+            android:text="心意卡片"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/hope_bt"
+            android:background="@color/colorAccent"/>
+        <Button
+            android:text="小组方案"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/plan_bt"
+            android:background="@color/lightslategrey"/>
+    </LinearLayout>
+</LinearLayout>

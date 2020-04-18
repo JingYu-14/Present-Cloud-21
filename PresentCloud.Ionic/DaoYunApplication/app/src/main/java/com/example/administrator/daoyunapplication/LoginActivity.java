@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                                             msg=jsonObjectMeta.get("msg").getAsString();
                                             if (200==code)//如果code等于200，则说明存在该用户，而且服务器还返回了该用户的信息
                                             {
+                                                //这边要注意，获取的是用户对象getAsString();不行.getAsJsonObject();用这个
                                                 String result = jsonObject.get("data").getAsString();//取出用户信息
                                                 Toast.makeText(LoginActivity.this,msg,Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
