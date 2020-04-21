@@ -24,8 +24,8 @@
             android:layout_marginStart="15dp" />
 
         <LinearLayout
-            android:id="@+id/linearLayout1"
             android:layout_toRightOf="@+id/imageView_headpic"
+            android:id="@+id/linearLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -34,18 +34,16 @@
 
             <TextView
                 android:id="@+id/textView_message_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#367EAA" />
 
             <TextView
-                android:id="@+id/textView_message_content"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#818095" />
+                android:id="@+id/textView_message_content"/>
+
 
         </LinearLayout>
 
