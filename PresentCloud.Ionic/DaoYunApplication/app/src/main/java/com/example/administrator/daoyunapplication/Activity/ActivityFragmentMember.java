@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.administrator.daoyunapplication.Adapter.ActivityFragmentActivityAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ActivityFragmentMemberAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ActivityListMemberAdapter;
+import com.example.administrator.daoyunapplication.Model.Class;
 import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
 
@@ -91,6 +92,9 @@ public class ActivityFragmentMember extends ListFragment//android.support.v4.app
 //        Intent intent = new Intent(getActivity(), ActivityHome.class);
 //        intent.putExtra("classes", c);
 //        startActivity(intent);
+        Intent intent = new Intent(getActivity(), ActivityMemberDetail.class);
+        intent.putExtra("classes", c);
+        startActivity(intent);
     }
 
 }
