@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.daoyunapplication.R;
-import com.example.administrator.daoyunapplication.Model.Class;
+import com.example.administrator.daoyunapplication.Model.Classes;
 
 import java.util.List;
 
@@ -20,12 +20,12 @@ import java.util.List;
  * Created by Administrator on 2020/3/12 0012.
  */
 
-public class ListClassAdapter extends ArrayAdapter<Class> {
+public class ListClassAdapter extends ArrayAdapter<Classes> {
 
     private int resourceId;
     private Context context;
 
-    public ListClassAdapter(@NonNull Context context, int resource, @NonNull List<Class> objects) {
+    public ListClassAdapter(@NonNull Context context, int resource, @NonNull List<Classes> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resourceId = resource;
@@ -37,7 +37,7 @@ public class ListClassAdapter extends ArrayAdapter<Class> {
         Log.e("Listposition:",position +" ");
 
         //获取对应的Class班级对象
-        Class aClass = getItem(position);
+        Classes aClass = getItem(position);
         View view = LayoutInflater.from(context).inflate(resourceId,null);
         ImageView imageView_headpic=(ImageView)view.findViewById(R.id.imageView_headpic);
         TextView textView_course_name = (TextView)view.findViewById(R.id.textView_course_name);

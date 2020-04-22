@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.example.administrator.daoyunapplication.Adapter.ActivityListActivityAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ActivityListMemberAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ListClassAdapter;
-import com.example.administrator.daoyunapplication.Model.Class;
+import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.Disscuss;
 import com.example.administrator.daoyunapplication.R;
 

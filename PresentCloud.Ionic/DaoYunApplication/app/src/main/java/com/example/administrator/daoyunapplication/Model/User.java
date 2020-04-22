@@ -9,16 +9,31 @@ import java.io.Serializable;
 public class User implements Serializable {
 //test
     private int userId;//用户id
-    private String username ;//账号名称，就是学号或工号
-    private String nick;//昵称
-    private String college;//院系
-    private String name;//姓名
-    private String email;//邮箱
-    private String  telephone;//电话号码
+    private String username="" ;//账号名称，就是学号或工号
+    private String nick="";//昵称
+    private String college="";//院系
+    private String name="";//姓名
+    private String email="";//邮箱
+    private String  telephone="";//电话号码
     private int role;//用户身份，0学生，1老师
-    private String  password;//密码
-    private int empiricalValue;//经验值，注册时不用
+    private String  password="";//密码
+    private int empiricalValue=0;//经验值，注册时不用
+    private String  avatar="";//图片
+    boolean state=false;
     public User() {}
+    public User( int userId,String username, String name,int empiricalValue,boolean state){
+        this.userId=userId;
+        this.username=username;
+//        this.nick=nick;
+//        this.college=college;
+        this.name=name;
+//        this.email=email;
+//        this.telephone=telephone;
+//        this.role=role;
+//        this.password=password;
+        this.empiricalValue=empiricalValue;
+        this.state=state;
+    }
     public User( String username, String nick, String college,String name,String email,String  telephone,int role,String  password,int empiricalValue){
         this.username=username;
         this.nick=nick;
@@ -30,6 +45,15 @@ public class User implements Serializable {
         this.password=password;
         this.empiricalValue=empiricalValue;
     }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     public int getUserId() {
         return userId;
     }

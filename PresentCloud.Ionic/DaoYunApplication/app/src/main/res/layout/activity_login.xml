@@ -28,7 +28,30 @@
              android:inputType="textPassword"
              android:layout_below="@id/account_input"
              android:textSize="20sp"/>
+    <!--<RadioGroup-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/radioButton_role"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_below="@+id/password_input"-->
+        <!--android:layout_alignLeft="@+id/password_input"-->
+        <!--android:layout_alignStart="@+id/password_input"-->
+        <!--android:layout_marginLeft="100dp"-->
+        <!--android:layout_marginStart="100dp"-->
+        <!--android:layout_marginTop="20dp">-->
 
+        <!--<RadioButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/login_student"-->
+            <!--android:text="学生"/>-->
+        <!--<RadioButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/login_teacher"-->
+            <!--android:text="老师"/>-->
+
+    <!--</RadioGroup>-->
          <Button
              android:id="@+id/btn_login"
              android:layout_marginTop="20dp"

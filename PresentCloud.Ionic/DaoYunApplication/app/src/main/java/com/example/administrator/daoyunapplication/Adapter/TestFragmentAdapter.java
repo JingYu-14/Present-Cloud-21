@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import com.example.administrator.daoyunapplication.Home.ContentFragment;
+import com.example.administrator.daoyunapplication.Model.User;
 
 import java.util.List;
 
@@ -16,10 +17,11 @@ public class TestFragmentAdapter extends FragmentStatePagerAdapter {
     public static final String TAB_TAG = "@dream@";
 
     private List<String> mTitles;
-
-    public TestFragmentAdapter(FragmentManager fm, List<String> titles) {
+    private static User user;
+    public TestFragmentAdapter(FragmentManager fm, List<String> titles,User user) {
         super(fm);
         mTitles = titles;
+        this.user=user;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class TestFragmentAdapter extends FragmentStatePagerAdapter {
         Log.e("position:",position+" ,");
         //在FragmentAdapter中将ContentFragment中间内容嵌入到Tab页面中
         //将FragmentAdapter整个放入ContentFragment中
-        ContentFragment fragment = new ContentFragment();
+        ContentFragment fragment = new ContentFragment(user);
         String[] title = mTitles.get(position).split(TAB_TAG);
         Log.e("title:",title[0]+" ,"+title[1]);
         fragment.setType(Integer.parseInt(title[1]));
