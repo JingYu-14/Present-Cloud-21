@@ -1,13 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+<!--     <TextView-->
+<!--          android:id="@+id/tv_content"-->
+<!--          android:layout_width="match_parent"-->
+<!--          android:layout_height="match_parent"-->
+<!--          android:textSize="30sp"-->
+<!--          android:gravity="center"-->
+<!--          android:textColor="@color/essence_tab_text_color_press"/>-->
+    <!-- ListFragment对应的android:id值固定为"@id/android:list" -->
+    <ListView
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="detail"
-        />
+        android:drawSelectorOnTop="false"/>
+<!--    <Button-->
+<!--        android:id="@+id/out"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/colorPrimary"-->
+<!--        android:text="退出班课"-->
+<!--        android:textColor="@color/white"/>-->
 
-</LinearLayout>
+</FrameLayout>

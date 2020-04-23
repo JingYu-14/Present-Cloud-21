@@ -15,7 +15,9 @@ import android.widget.Toast;
 
 import com.example.administrator.daoyunapplication.Adapter.ActivityFragmentActivityAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ActivityFragmentMemberAdapter;
+import com.example.administrator.daoyunapplication.Adapter.ActivityListDetailAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ActivityListMemberAdapter;
+import com.example.administrator.daoyunapplication.Model.Detail;
 import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
 
@@ -29,7 +31,7 @@ import java.util.List;
 
 public class ActivityFragmentDetail extends ListFragment//android.support.v4.app.Fragment{
 {
-    List<User> mUserList;
+    List<Detail> mDetailList;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,16 +40,10 @@ public class ActivityFragmentDetail extends ListFragment//android.support.v4.app
     //这边做数据的初始化，从服务器获取数据
     private void initClass(){
         //注意，第一个数据不显示，后面自己补一个初始数据，后台获取的接到初始数据中
-        mUserList.add(new User("N190327124","zhangyin","福州大学数学与计算机学院","zhangyin","1143047418@qq.com","18250153365",0,"zhangyin",60));
-        mUserList.add(new User("N190327124","zhangyin","福州大学数学与计算机学院","zhangyin","1143047418@qq.com","18250153365",0,"zhangyin",60));
-        mUserList.add(new User("N190327124","zhangyin","福州大学数学与计算机学院","zhangyin","1143047418@qq.com","18250153365",0,"zhangyin",60));
-        mUserList.add(new User("N190327124","zhangyin","福州大学数学与计算机学院","zhangyin","1143047418@qq.com","18250153365",0,"zhangyin",60));
-        mUserList.add(new User("N190327124","zhangyin","福州大学数学与计算机学院","zhangyin","1143047418@qq.com","18250153365",0,"zhangyin",60));
-        mUserList.add(new User("N190327124","zhangyin","福州大学数学与计算机学院","zhangyin","1143047418@qq.com","18250153365",0,"zhangyin",60));
-        mUserList.add(new User("N190327124","zhangyin","福州大学数学与计算机学院","zhangyin","1143047418@qq.com","18250153365",0,"zhangyin",60));
-        mUserList.add(new User("N190327124","zhangyin","福州大学数学与计算机学院","zhangyin","1143047418@qq.com","18250153365",0,"zhangyin",60));
-        mUserList.add(new User("N190327124","zhangyin","福州大学数学与计算机学院","zhangyin","1143047418@qq.com","18250153365",0,"zhangyin",60));
-
+        mDetailList.add(new Detail("教材","计算机原理与应用"));
+        mDetailList.add(new Detail("教材","计算机原理与应用"));
+        mDetailList.add(new Detail("学校院系","福州大学数学与计算机科学学院"));
+        mDetailList.add(new Detail("",""));
     }
 
     private View viewContent;
@@ -70,13 +66,13 @@ public class ActivityFragmentDetail extends ListFragment//android.support.v4.app
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (viewContent == null) {
-            viewContent=inflater.inflate(R.layout.fragment_activity_member, null);
+            viewContent=inflater.inflate(R.layout.fragment_activity_detail, null);
 
         }
-        mUserList = new ArrayList<>();
+        mDetailList = new ArrayList<>();
         initClass();
 
-        ActivityListMemberAdapter adapter = new ActivityListMemberAdapter(getContext(), R.layout.activity_member_list_item, mUserList);
+        ActivityListDetailAdapter adapter = new ActivityListDetailAdapter(getContext(), R.layout.activity_detail_list_item, mDetailList);
         this.setListAdapter(adapter);
 
         return viewContent;
@@ -85,7 +81,7 @@ public class ActivityFragmentDetail extends ListFragment//android.support.v4.app
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
-        User c= (User)l.getItemAtPosition(position);
+        Detail c= (Detail) l.getItemAtPosition(position);
         Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
         //这边写跳转到任务的详细页面，提交任务页面
 //        Intent intent = new Intent(getActivity(), ActivityHome.class);
