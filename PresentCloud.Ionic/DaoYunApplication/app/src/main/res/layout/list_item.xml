@@ -35,11 +35,12 @@
             android:layout_marginEnd="17dp">
 
             <TextView
-                android:id="@+id/textView_class_name"
+                android:id="@+id/textView_course_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#818095" />
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#367EAA" />
 
             <TextView
                 android:id="@+id/textView_teacher_name"
@@ -49,13 +50,11 @@
                 android:textColor="#818095" />
 
             <TextView
-                android:id="@+id/textView_course_name"
+                android:id="@+id/textView_class_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#367EAA" />
-
+                android:text="TextView"
+                android:textColor="#818095" />
         </LinearLayout>
 
 
