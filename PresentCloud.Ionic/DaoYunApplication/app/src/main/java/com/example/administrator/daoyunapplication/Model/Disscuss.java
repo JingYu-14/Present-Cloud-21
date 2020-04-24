@@ -15,10 +15,8 @@ public class Disscuss implements Serializable {
     private String dstartTime ;//任务开始时间
     private String dendTime ;//任务开始时间
     public Disscuss() {}
-    public Disscuss( int questionId, int userId, int gradeId,String  disscussName,String  questionName,String dstartTime,String  dendTime){
+    public Disscuss( int questionId,String  disscussName,String  questionName,String dstartTime,String  dendTime){
         this.questionId=questionId;
-        this.userId=userId;
-        this.gradeId=gradeId;
         this.disscussName=disscussName;
         this.questionName=questionName;
         this.dstartTime=dstartTime;

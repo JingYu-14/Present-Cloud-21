@@ -1,19 +1,35 @@
 package com.example.administrator.daoyunapplication.Home;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2020/3/10 0010.
@@ -22,13 +38,20 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     private List<TabItem> mTableItemList;
-
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        // 首先获取到意图对象
+        Intent intent = getIntent();
+        user=(User)intent.getSerializableExtra("user");
         initTabData();
         initTabHost();
+
+        ArrayList<Fragment>   fragments = new ArrayList<>();
+        fragments.add(new TestFragment1(user));
+
     }
 
 
@@ -39,6 +62,7 @@ public class HomeActivity extends AppCompatActivity {
         mTableItemList.add(new TabItem(R.drawable.main_bottom_home_normal,R.drawable.main_bottom_home_press,R.string.main_home_text, TestFragment1.class));
         mTableItemList.add(new TabItem(R.drawable.main_bottom_mine_normal,R.drawable.main_bottom_mine_press,R.string.main_mine_text, TestFragment2.class));
         mTableItemList.add(new TabItem(R.drawable.main_bottom_attention_normal,R.drawable.main_bottom_attention_press,R.string.main_attention_text, TestFragment3.class));
+
 
     }
 
@@ -76,6 +100,27 @@ public class HomeActivity extends AppCompatActivity {
                         tabitem.setChecked(true);
                     }else {
                         tabitem.setChecked(false);
+                    }
+                    if(i==0){
+                        ArrayList<Fragment>   fragments = new ArrayList<>();
+                        fragments.add(new TestFragment1(user));
+                    }
+                    if(i==2){//点击第三个页面时，传参数
+                        if(user.getAvatar()==""){
+                            ArrayList<Fragment>   fragments = new ArrayList<>();
+                            fragments.add(new TestFragment3(user));
+                        }else{
+                            //seachImage();
+                            ArrayList<Fragment>   fragments = new ArrayList<>();
+                            fragments.add(new TestFragment3(user));
+
+
+
+                        }
+
+                        //应该在点第三个Tab时，初始化fragment
+//                        ArrayList<ContentFragment3>   fragments = new ArrayList<>();
+//                        fragments.add(new ContentFragment3(user));
                     }
                 }
             }

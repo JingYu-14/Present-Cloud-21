@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+    <EditText
+
+        android:id="@+id/update_account_input"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_account"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/update_password_input"
+        android:layout_alignStart="@+id/update_password_input" />
+
+    <EditText
+
+        android:id="@+id/update_nick_input"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_nick"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="20sp"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/update_password_input"
+        android:layout_alignLeft="@+id/update_password_input"
+        android:layout_alignStart="@+id/update_password_input"
+        android:layout_alignRight="@+id/update_name_input"
+        android:layout_alignEnd="@+id/update_name_input" />
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/update_password_input"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_password"
+        android:inputType="textPassword"
+        android:layout_below="@id/update_account_input"
+        android:textSize="20sp"/>
+
+
+    <EditText
+        android:id="@+id/update_name_input"
+        android:gravity="center"
+        android:background="@drawable/rounded_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_name"
+        android:textSize="20sp"
+        android:layout_below="@+id/update_nick_input"
+        android:layout_alignLeft="@+id/update_password_input"
+        android:layout_alignStart="@+id/update_password_input"
+        android:layout_marginTop="18dp" />
+
+    <EditText
+        android:id="@+id/update_email_input"
+        android:gravity="center"
+        android:background="@drawable/rounded_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_email"
+        android:inputType="textEmailAddress"
+        android:textSize="20sp"
+        android:layout_below="@+id/update_name_input"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="29dp" />
+
+    <EditText
+        android:id="@+id/update_telephone_input"
+        android:gravity="center"
+        android:background="@drawable/rounded_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tip_telephone"
+        android:inputType="number"
+        android:textSize="20sp"
+        android:layout_below="@+id/update_email_input"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="29dp" />
+
+    <!--<RadioGroup-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/update_radioButton_role"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_below="@+id/update_telephone_input"-->
+        <!--android:layout_alignLeft="@+id/update_name_input"-->
+        <!--android:layout_alignStart="@+id/update_name_input"-->
+        <!--android:layout_marginLeft="100dp"-->
+        <!--android:layout_marginStart="100dp"-->
+        <!--android:layout_marginTop="20dp">-->
+
+        <!--<RadioButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/update_student"-->
+            <!--android:text="学生"/>-->
+        <!--<RadioButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/update_teacher"-->
+            <!--android:text="老师"/>-->
+
+    <!--</RadioGroup>-->
+</RelativeLayout>

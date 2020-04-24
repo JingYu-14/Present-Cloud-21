@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,7 +16,7 @@ import com.example.administrator.daoyunapplication.Home.HomeActivity;
 import com.example.administrator.daoyunapplication.Home.TestFragment1;
 import com.example.administrator.daoyunapplication.Home.TestFragment2;
 import com.example.administrator.daoyunapplication.Home.TestFragment3;
-import com.example.administrator.daoyunapplication.Model.Class;
+import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.R;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import java.util.List;
 
 public class ActivityHome extends AppCompatActivity {
     private List<ActivityHome.TabItem> mTableItemList;
+    private Classes c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +38,11 @@ public class ActivityHome extends AppCompatActivity {
         // 首先获取到意图对象
         Intent intent = getIntent();
         // 获取到传递过来的姓名,文件路径
-        Class c= (Class) intent.getSerializableExtra("classes");
-
+        c= (Classes) intent.getSerializableExtra("classes");
+        //将信息传给listFragment
+        ArrayList<ListFragment>   fragments = new ArrayList<>();
+        fragments.add(new ActivityFragmentMember(c));
+        fragments.add(new ActivityContentFragment(c));
     }
 
 
@@ -88,7 +93,15 @@ public class ActivityHome extends AppCompatActivity {
                     }else {
                         tabitem.setChecked(false);
                     }
+                    if(i==2){
+                        //将信息传给listFragment
+                        ArrayList<ListFragment>   fragments = new ArrayList<>();
+                        fragments.add(new ActivityFragmentMember(c));
+                    }
+
                 }
+
+
             }
         });
     }

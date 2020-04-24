@@ -1,6 +1,7 @@
 package com.example.administrator.daoyunapplication.Home;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.daoyunapplication.Adapter.TestFragmentAdapter;
+import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
 
 import java.util.Arrays;
@@ -23,7 +25,13 @@ public class TestFragment1 extends android.support.v4.app.Fragment{
     private View viewContent;
     private TabLayout tab_essence;//上导航栏
     private ViewPager vp_essence;//上内容
+    private static User user;
 
+    public TestFragment1(){}
+    @SuppressLint("ValidFragment")
+    public TestFragment1(User user){
+        this.user=user;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,7 +63,7 @@ public class TestFragment1 extends android.support.v4.app.Fragment{
         String[] titles = getResources().getStringArray(R.array.home_video_tab);
 
         //创建一个viewpager的adapter
-        TestFragmentAdapter adapter = new TestFragmentAdapter(getFragmentManager(), Arrays.asList(titles));
+        TestFragmentAdapter adapter = new TestFragmentAdapter(getFragmentManager(), Arrays.asList(titles),user);
         this.vp_essence.setAdapter(adapter);
 
         //将TabLayout和ViewPager关联起来

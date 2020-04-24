@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.administrator.daoyunapplication.Model.Class;
+import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.Disscuss;
 import com.example.administrator.daoyunapplication.R;
 
@@ -31,7 +31,9 @@ public class ActivityListActivityAdapter extends ArrayAdapter<Disscuss> {
         this.context = context;
         this.resourceId = resource;
     }
-
+    public void setResourceId(int resource){
+        this.resourceId = resource;
+    }
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

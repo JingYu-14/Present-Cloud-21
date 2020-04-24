@@ -79,7 +79,7 @@ public class ActivityListMemberAdapter extends ArrayAdapter<User> {
             TextView textView_member_name = (TextView) view.findViewById(R.id.textView_member_name);
 
             imageView_headpic.setImageResource(R.drawable.ic_launcher);
-            textView_member_name.setText(aUser.getUsername());
+            textView_member_name.setText(aUser.getName());
             return view;
         }
 

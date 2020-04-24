@@ -1,5 +1,6 @@
 package com.example.administrator.daoyunapplication.Activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.administrator.daoyunapplication.Adapter.ActivityListActivityAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ActivityListMemberAdapter;
+import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.Disscuss;
 import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
@@ -26,6 +28,12 @@ import java.util.List;
 public class MemberContentFragment extends ListFragment//extends Fragment
 {
     List<User> mUserList;
+    private static Classes c;
+    public  MemberContentFragment(){}
+    @SuppressLint("ValidFragment")
+    public  MemberContentFragment(Classes c){
+        this.c=c;
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +73,7 @@ public class MemberContentFragment extends ListFragment//extends Fragment
 
         mUserList = new ArrayList<>();
         initClass();
-
+        Log.e("dafasf",c.toString());
         ActivityListMemberAdapter adapter = new ActivityListMemberAdapter(getContext(), R.layout.activity_member_list_item, mUserList);
         this.setListAdapter(adapter);
         return viewContent;
