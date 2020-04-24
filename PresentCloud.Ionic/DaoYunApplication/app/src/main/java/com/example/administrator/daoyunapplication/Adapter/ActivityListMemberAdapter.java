@@ -20,6 +20,7 @@ import com.example.administrator.daoyunapplication.Activity.ActivityFragmentMemb
 import com.example.administrator.daoyunapplication.Activity.ActivityHome;
 import com.example.administrator.daoyunapplication.LoginActivity;
 import com.example.administrator.daoyunapplication.MainActivity;
+import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.Disscuss;
 import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
@@ -46,12 +47,22 @@ public class ActivityListMemberAdapter extends ArrayAdapter<User> {
 
     private int resourceId;
     private Context context;
-
+    private  Classes c;
+    private  User user;
     public ActivityListMemberAdapter(@NonNull Context context, int resource, @NonNull List<User> objects) {
         super(context, resource, objects);
         this.context = context;
         //这边要变resourceId，布局对应的item的格式
         this.resourceId = resource;
+
+    }
+    public ActivityListMemberAdapter(@NonNull Context context, int resource, @NonNull List<User> objects,User user,Classes c) {
+        super(context, resource, objects);
+        this.context = context;
+        //这边要变resourceId，布局对应的item的格式
+        this.resourceId = resource;
+        this.user=user;
+        this.c=c;
     }
     public void setResourceId(int resource){
         this.resourceId = resource;
@@ -68,7 +79,7 @@ public class ActivityListMemberAdapter extends ArrayAdapter<User> {
             TextView member_detail = (TextView) view.findViewById(R.id.member_detail);
             Button design_bt = (Button) view.findViewById(R.id.sign_bt);
             design_bt.setOnClickListener(new ActivityListMemberAdapter.RegisterButton(position));
-            member_detail.setText("当前获得经验值：30");
+            member_detail.setText("当前获得经验值：0");
             return view;
         }else {
             setResourceId( R.layout.activity_member_list_item);
@@ -113,6 +124,8 @@ public class ActivityListMemberAdapter extends ArrayAdapter<User> {
                     Context currentActivity=v.getContext();
                     //跳到签到页面
                     Intent intent = new Intent(currentActivity, SignActivity.class);
+                    intent.putExtra("user",user);
+                    intent.putExtra("classes",c);
                     currentActivity.startActivity(intent);
                    // Toast.makeText(v.getContext(), mPosition+"dfd", Toast.LENGTH_SHORT).show();
 

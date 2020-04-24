@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+    <!--<EditText-->
+
+        <!--android:id="@+id/uid"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="用户id"-->
+        <!--android:background="@drawable/rounded_edittext"-->
+        <!--android:textSize="20sp"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignLeft="@+id/update_password_input"-->
+        <!--android:layout_alignStart="@+id/update_password_input" />-->
+
+    <EditText
+
+        android:id="@+id/code"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="班级码"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="20sp"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/uid"
+        android:layout_alignLeft="@+id/uid"
+        android:layout_alignStart="@+id/uid"
+        android:layout_alignRight="@+id/uid"
+        android:layout_alignEnd="@+id/uid" />
+
+    <EditText
+    android:layout_marginTop="20dp"
+    android:id="@+id/class_name"
+    android:gravity="center"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/rounded_edittext"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="班级名字"
+    android:layout_below="@id/code"
+    android:textSize="20sp"/>
+
+
+
+
+
+
+
+</RelativeLayout>

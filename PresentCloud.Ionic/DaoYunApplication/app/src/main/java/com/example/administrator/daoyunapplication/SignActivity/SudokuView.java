@@ -4,13 +4,29 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Looper;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.daoyunapplication.Adapter.ActivityListMemberAdapter;
+import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2020/4/18 0018.
@@ -40,6 +56,7 @@ public class SudokuView extends View {
     private StringBuffer mSbSelected = new StringBuffer(20);
 //    private Button reSet_bt;
 //    private Button start_bt;
+       private TextView test;
     /**
      * 下边是三个构造方法：每一个构造方法中有一个初始化操作
      */
@@ -50,6 +67,10 @@ public class SudokuView extends View {
 //        reSet_bt.setOnClickListener(new SignButton());
 //        start_bt.setOnClickListener(new SignButton());
         init();
+        test = (TextView) findViewById(R.id.test);
+        String i=test.getText().toString();
+        Log.e("bjjb",i);
+
     }
 
     public SudokuView(Context context, AttributeSet attrs) {
@@ -59,6 +80,11 @@ public class SudokuView extends View {
 //        reSet_bt.setOnClickListener(new SignButton());
 //        start_bt.setOnClickListener(new SignButton());
         init();
+
+        test = (TextView) findViewById(R.id.test);
+        String i=test.getText().toString();
+        Log.e("bjjb",i);
+
     }
 
     public SudokuView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -68,6 +94,10 @@ public class SudokuView extends View {
 //        reSet_bt.setOnClickListener(new SignButton());
 //        start_bt.setOnClickListener(new SignButton());
         init();
+        test = (TextView) findViewById(R.id.test);
+        String i=test.getText().toString();
+        Log.e("bjjb",i);
+
     }
 
     /**
@@ -189,6 +219,8 @@ public class SudokuView extends View {
                 Toast.makeText(getContext(), mSbSelected.toString(),
                         Toast.LENGTH_SHORT).show();
                 //这边要写一个把编码传给服务器
+                //老师发起签到
+                setSignCode(mSbSelected.toString());
                 break;
             case MotionEvent.ACTION_MOVE:
                 handleMoveEvent(event);
@@ -197,7 +229,19 @@ public class SudokuView extends View {
 
         return true;
     }
+    private void setSignCode(String coed){
+        final OkHttpClient client = new OkHttpClient();
+        String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
 
+        path = path + "teacherSigns";
+        int id;//班级id
+        String signtime;//签到时间
+        String format = String.format(path);
+
+
+
+
+    }
     private void handleMoveEvent(MotionEvent event) {
         int index = findCellIndex(event.getX(), event.getY());
         if (index != -1) {

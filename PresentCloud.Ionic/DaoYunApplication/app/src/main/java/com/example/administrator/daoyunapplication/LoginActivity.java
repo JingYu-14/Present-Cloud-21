@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     role=1;
                                                 }
                                                 user.setRole(role);
-                                                user.setAvatar(result.get("avatar").getAsString());
+                                                user.setAvatar(result.get("avatar").isJsonNull()?"":result.get("avatar").getAsString());
                                                 user.setUsername(username);
                                                 user.setPassword(password);
 

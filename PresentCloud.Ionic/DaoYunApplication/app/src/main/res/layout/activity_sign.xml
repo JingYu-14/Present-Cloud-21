@@ -6,19 +6,23 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
-    <com.example.administrator.daoyunapplication.SignActivity.SudokuView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="hello_world"
-        android:layout_gravity="center"/>
-
-    <!--<LinearLayout-->
-        <!--android:id="@+id/linearLayout1"-->
+    <view
+        class="com.example.administrator.daoyunapplication.SignActivity.SignActivity$SudokuViewT"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"/>
+    <!--<com.example.administrator.daoyunapplication.SignActivity.SignActivity.SudokuViewT-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_gravity="center"-->
-       <!--&gt;-->
+        <!--android:layout_gravity="center"/>-->
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+       >
 
         <!--<Button-->
             <!--android:text="开始"-->
@@ -27,5 +31,9 @@
             <!--android:layout_gravity="center"-->
             <!--android:id="@+id/start_bt"-->
             <!--android:layout_margin="60dp"/>-->
-<!--</LinearLayout>-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/test"/>
+</LinearLayout>
 </LinearLayout>

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.administrator.daoyunapplication.Activity.ActivityHome;
 import com.example.administrator.daoyunapplication.Adapter.ListClassAdapter;
+import com.example.administrator.daoyunapplication.Adapter.createClassAdapter;
 import com.example.administrator.daoyunapplication.LoginActivity;
 import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.User;
@@ -91,14 +92,24 @@ public class ContentFragment extends ListFragment//extends Fragment
 
 
         if (mType == 0) {
-            initClass();
+            if(user.getRole()==2) {//老师就是有我创建的，学生没有
+                initClass();
+            }
         } else if (mType == 1) {
            // mClassList.add(new Classes(5,"2222","工程实践","池老标4","2019级专硕"));
-            initClass();
+
+                initClass();
+
 //            ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
 //            setListAdapter(adapter);
         } else if (mType == 2) {
-                    //  mClassList.add(new Classes(6,"333333","工程实践","池老标5","2019级专硕"));
+            mClassList = new ArrayList<>();
+            mClassList.add(new Classes(6,"333333","工程实践",1,"池老标5","2019级专硕","hv"));
+            createClassAdapter adapter = new createClassAdapter(getContext(), R.layout.creater_class_button, mClassList,user);
+            this.setListAdapter(adapter);
+//            ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
+//            this.setListAdapter(adapter);
+
         }
       //  Log.e("ada",mClassList.toString());
 //        ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
@@ -117,6 +128,13 @@ public class ContentFragment extends ListFragment//extends Fragment
         if( mType==0) {
             Intent intent = new Intent(getActivity(), ActivityHome.class);
             intent.putExtra("classes", c);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        }
+        else if( mType==1) {
+            Intent intent = new Intent(getActivity(), ActivityHome.class);
+            intent.putExtra("classes", c);
+            intent.putExtra("user", user);
             startActivity(intent);
         }
     }
@@ -173,7 +191,7 @@ public class ContentFragment extends ListFragment//extends Fragment
                                 re.get("class_name").getAsString(),
                                 re.get("tno").getAsInt(),
                                 re.get("invitation_code").getAsString(),
-                                re.get("task_id").getAsString(),
+                                re.get("task_id").isJsonNull()?"":re.get("task_id").getAsString(),
                                 re.get("task").getAsString());
                                 mClassList.add(c);
                             }

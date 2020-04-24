@@ -18,6 +18,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -43,7 +45,7 @@ public class ReignActivity extends AppCompatActivity {
     private RadioGroup radioGroup_role;
     private RadioButton student;
     private RadioButton teacher;
-    private int role =0;
+    private int role =1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +55,13 @@ public class ReignActivity extends AppCompatActivity {
         account_input = (EditText)findViewById(R.id.account_input);
         password_input = (EditText)findViewById(R.id.password_input);
         name_input = (EditText)findViewById(R.id.name_input);
-        nick_input = (EditText)findViewById(R.id.nick_input);
+//        nick_input = (EditText)findViewById(R.id.nick_input);
         email_input = (EditText)findViewById(R.id.email_input);
-        telephone_input = (EditText)findViewById(R.id.telephone_input);
+//        telephone_input = (EditText)findViewById(R.id.telephone_input);
 
         radioGroup_role = (RadioGroup) this.findViewById(R.id.radioButton_role);
-        student=(RadioButton)findViewById(R.id.student);
-        teacher=(RadioButton)findViewById(R.id.teacher);
+        student=(RadioButton)findViewById(R.id.student);//1
+        teacher=(RadioButton)findViewById(R.id.teacher);//2
         btn_enroll.setOnClickListener(new RegisterButton());
         student.setOnClickListener(new RegisterButton());
         teacher.setOnClickListener(new RegisterButton());
@@ -72,40 +74,50 @@ public class ReignActivity extends AppCompatActivity {
             String username = account_input.getText().toString().trim();
             String password = password_input.getText().toString().trim();
             String name = name_input.getText().toString().trim();
-            String nick = nick_input.getText().toString().trim();
+//            String nick = nick_input.getText().toString().trim();
             String email = email_input.getText().toString().trim();
-            String telephone = telephone_input.getText().toString().trim();
+//            String telephone = telephone_input.getText().toString().trim();
 
             switch (v.getId()) {
                 //注册开始，判断注册条件
                 case R.id.btn_enroll:
-                    if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(email) || TextUtils.isEmpty(telephone)) {
+                    if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(email) || TextUtils.isEmpty(name)) {
                         Toast.makeText(ReignActivity.this, "各项均不能为空", Toast.LENGTH_SHORT).show();
                     } else {
-                        if(isMobileNO(telephone)){
+//                        if(isMobileNO(telephone)){
                             //手机号验证成功
                         //    if (TextUtils.equals(password, password2)) {
 
                                 //执行注册操作
                                     OkHttpClient client = new OkHttpClient();
-                                    User user=new User();
-                                    user.setUsername(username);
-                                    user.setPassword(password);
-                                    user.setNick(nick);
-                                    user.setName(name);
-                                    user.setEmail(email);
-                                    user.setTelephone(telephone);
-                                    user.setRole(role);
-                                    //使用Gson 添加 依赖 compile 'com.google.code.gson:gson:2.8.1'
-                                    Gson gson = new Gson();
-                                    //使用Gson将对象转换为json字符串
-                                    String json = gson.toJson(user);
-                            //MediaType  设置Content-Type 标头中包含的媒体类型值
-                            RequestBody requestBody = FormBody.create(MediaType.parse("application/json; charset=utf-8")
-                                    , json);
+                        Gson gson = new Gson();
+                        Map<Object,Object> map = new HashMap<>();
+                        map.put("account",username);
+                        map.put("pwd",password);
+                        map.put("email",email);
+                        map.put("name",name);
+                        map.put("type",role);
+                        String params = gson.toJson(map);
+                        MediaType JSON= MediaType.parse("application/json; charset=utf-8");
+                        RequestBody requestBody = RequestBody.create(JSON,params);
+//                                    User user=new User();
+//                                    user.setUsername(username);
+//                                    user.setPassword(password);
+////                                    user.setNick(nick);
+//                                    user.setName(name);
+//                                    user.setEmail(email);
+////                                    user.setTelephone(telephone);
+//                                    user.setRole(role);
+//                                    //使用Gson 添加 依赖 compile 'com.google.code.gson:gson:2.8.1'
+//                                    Gson gson = new Gson();
+//                                    //使用Gson将对象转换为json字符串
+//                                    String json = gson.toJson(user);
+//                            //MediaType  设置Content-Type 标头中包含的媒体类型值
+//                            RequestBody requestBody = FormBody.create(MediaType.parse("application/json; charset=utf-8")
+//                                    , json);
 
                             Request request = new Request.Builder()
-                                    .url("http://172.20.192.168:8080/register")//请求的url
+                                    .url("http://3r1005r723.wicp.vip/daoyunapi/public/index.php/users")//请求的url
                                     .post(requestBody)
                                     .build();
                             client.newCall(request).enqueue(new Callback() {
@@ -133,9 +145,9 @@ public class ReignActivity extends AppCompatActivity {
                                                     JsonObject jsonObjectMeta =jsonObject.get("meta").getAsJsonObject();
                                                     int code = jsonObjectMeta.get("status").getAsInt();
                                                     String msg="";
-                                                    if (200==code)//如果code等于200，则说明存在该用户，而且服务器还返回了该用户的信息
+                                                    if (201==code)//如果code等于200，则说明存在该用户，而且服务器还返回了该用户的信息
                                                     {
-                                                        String result = jsonObject.get("data").getAsString();//取出用户信息
+                                                      //  String result = jsonObject.get("data").getAsString();//取出用户信息
                                                         msg=jsonObjectMeta.get("msg").getAsString();
 
                                                     }
@@ -152,19 +164,19 @@ public class ReignActivity extends AppCompatActivity {
 //                            } else {
 //                                Toast.makeText(RegisterActivity.this, "两次输入的密码不一样", Toast.LENGTH_SHORT).show();
 //                            }
-                        }else{
-                            Toast.makeText(ReignActivity.this, "手机号码错误", Toast.LENGTH_SHORT).show();
-                        }
+//                        }else{
+//                            Toast.makeText(ReignActivity.this, "手机号码错误", Toast.LENGTH_SHORT).show();
+//                        }
 
                     }
                     break;
 
 
                 case R.id.student:
-                    role = 0;
+                    role = 1;
                     break;
                 case R.id.teacher:
-                    role = 1;
+                    role = 2;
                     break;
 
 
