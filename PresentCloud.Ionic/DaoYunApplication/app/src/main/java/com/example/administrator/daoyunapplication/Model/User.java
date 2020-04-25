@@ -15,7 +15,7 @@ public class User implements Serializable {
     private String name="";//姓名
     private String email="";//邮箱
     private String  telephone="";//电话号码
-    private int role;//用户身份，0学生，1老师
+    private int role;//用户身份，0:管理员1学生，2老师
     private String  password="";//密码
     private int empiricalValue=0;//经验值，注册时不用
     private String  avatar="";//图片

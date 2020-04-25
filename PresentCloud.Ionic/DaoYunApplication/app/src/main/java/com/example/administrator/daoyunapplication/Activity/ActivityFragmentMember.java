@@ -46,10 +46,12 @@ public class ActivityFragmentMember extends ListFragment//android.support.v4.app
 {
     List<User> mUserList;
     private static Classes c;
+    private static User user;
     public ActivityFragmentMember(){}
     @SuppressLint("ValidFragment")
-    public ActivityFragmentMember(Classes c){
+    public ActivityFragmentMember(Classes c,User user){
         this.c=c;
+        this.user=user;
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -106,18 +108,27 @@ public class ActivityFragmentMember extends ListFragment//android.support.v4.app
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
-        User c= (User)l.getItemAtPosition(position);
-        Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
+        User cc= (User)l.getItemAtPosition(position);
+//        Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
         //这边写跳转到任务的详细页面，提交任务页面
-//        Intent intent = new Intent(getActivity(), ActivityHome.class);
-//        intent.putExtra("classes", c);
-//        startActivity(intent);
+        if(user.getRole()==2){
+            Intent intent = new Intent(getActivity(), ActivityMemberDetail.class);
+            intent.putExtra("user", cc);
+            intent.putExtra("classes",c);
+            startActivity(intent);
+        }else{
+            //没有权限
+             Toast.makeText(getActivity(), "您没有权限查看 " , Toast.LENGTH_SHORT).show();
+        }
+
     }
     private void getStudentesData(){
         final OkHttpClient client = new OkHttpClient();
         String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
 
-        path=path+"students";
+        path = path + "students";
+
+
         int pagenum=1;
         int pagesize=100;
         String format = String.format(path+"?id="+c.getNewsClassId()+"&pagenum="+pagenum+"&pagesize="+pagesize);
@@ -170,7 +181,7 @@ public class ActivityFragmentMember extends ListFragment//android.support.v4.app
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ActivityListMemberAdapter adapter = new ActivityListMemberAdapter(getContext(), R.layout.activity_member_list_item, mUserList);
+                            ActivityListMemberAdapter adapter = new ActivityListMemberAdapter(getContext(), R.layout.activity_member_list_item, mUserList,user,c);
                             setListAdapter(adapter);
                         }});
                     Looper.prepare();

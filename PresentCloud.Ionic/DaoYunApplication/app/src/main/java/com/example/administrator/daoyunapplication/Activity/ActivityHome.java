@@ -17,6 +17,7 @@ import com.example.administrator.daoyunapplication.Home.TestFragment1;
 import com.example.administrator.daoyunapplication.Home.TestFragment2;
 import com.example.administrator.daoyunapplication.Home.TestFragment3;
 import com.example.administrator.daoyunapplication.Model.Classes;
+import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ import java.util.List;
 public class ActivityHome extends AppCompatActivity {
     private List<ActivityHome.TabItem> mTableItemList;
     private Classes c;
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +41,10 @@ public class ActivityHome extends AppCompatActivity {
         Intent intent = getIntent();
         // 获取到传递过来的姓名,文件路径
         c= (Classes) intent.getSerializableExtra("classes");
+        user= (User) intent.getSerializableExtra("user");
         //将信息传给listFragment
         ArrayList<ListFragment>   fragments = new ArrayList<>();
-        fragments.add(new ActivityFragmentMember(c));
+        fragments.add(new ActivityFragmentMember(c,user));
         fragments.add(new ActivityContentFragment(c));
     }
 
@@ -96,7 +99,7 @@ public class ActivityHome extends AppCompatActivity {
                     if(i==2){
                         //将信息传给listFragment
                         ArrayList<ListFragment>   fragments = new ArrayList<>();
-                        fragments.add(new ActivityFragmentMember(c));
+                        fragments.add(new ActivityFragmentMember(c,user));
                     }
 
                 }

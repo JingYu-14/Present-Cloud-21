@@ -56,51 +56,22 @@
                         android:layout_height="match_parent"
                         android:src="@drawable/avatar"/>
                     <TextView
+                        android:id="@+id/student"
                         android:layout_width="0dp"
                         android:layout_weight="7"
-                        android:textSize="15dp"
+                        android:textSize="20dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#367EAA"
                         android:gravity="center_vertical"
                         android:layout_height="match_parent"
                         android:text="Test"/>
                 </LinearLayout>
-                    <ImageView
-                        android:id="@+id/ImageView_detail"
-                        android:layout_below="@+id/LL5"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:background="#E8E8E8"
-                        />
 
-                <LinearLayout
-                    android:id="@+id/LL9"
-                    android:layout_below="@+id/ImageView_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="match_parent"
-                       android:textSize="15dp"
-                       android:textStyle="bold"
-                       android:text="姓名"/>
-                    <LinearLayout
-                        android:gravity="right"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="15dp"
-                            android:layout_height="match_parent"
-                            android:text="Teddy     "
-                            />
-                    </LinearLayout>
-
-                </LinearLayout>
                 <ImageView
                     android:id="@+id/ImageView_school"
-                    android:layout_below="@+id/LL9"
+                    android:layout_below="@+id/LL5"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="30dp"
                     android:background="#E8E8E8"
                     />
                 <LinearLayout
@@ -112,59 +83,31 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textSize="15dp"
+                        android:textSize="20dp"
                         android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#367EAA"
                         android:text="学校"/>
                     <LinearLayout
                         android:gravity="right"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <TextView
+                            android:id="@+id/text_school"
                             android:layout_width="wrap_content"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#367EAA"
                             android:layout_height="match_parent"
-                            android:text="福州大学     "
+                            android:text="无信息"
                             />
                     </LinearLayout>
 
                 </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/ImageView_department"
-                    android:layout_below="@+id/LL_school"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E8E8E8"
-                    />
-                <LinearLayout
-                    android:id="@+id/LL_department"
-                    android:layout_below="@+id/ImageView_department"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:text="院系"/>
-                    <LinearLayout
-                        android:gravity="right"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="15dp"
-                            android:layout_height="match_parent"
-                            android:text="数学与计算机科学学院     "
-                            />
-                    </LinearLayout>
-                </LinearLayout>
-
 
                 <ImageView
                     android:id="@+id/ImageView_major"
-                    android:layout_below="@+id/LL_department"
+                    android:layout_below="@+id/LL_school"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#E8E8E8"
@@ -178,7 +121,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textSize="15dp"
+                        android:textSize="20dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#367EAA"
                         android:textStyle="bold"
                         android:text="专业班级"/>
                     <LinearLayout
@@ -186,68 +131,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <TextView
+                           android:id="@+id/text_class_name"
                             android:layout_width="wrap_content"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#367EAA"
                             android:layout_height="match_parent"
-                            android:text="计算机2班     "
                             />
                     </LinearLayout>
-                </LinearLayout>
-                <ImageView
-                    android:id="@+id/ImageView_sno"
-                    android:layout_below="@+id/LL_major"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E8E8E8"
-                    />
-                <LinearLayout
-                    android:id="@+id/LL_sno"
-                    android:layout_below="@+id/ImageView_sno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:text="学号"/>
-                    <LinearLayout
-                        android:gravity="right"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="15dp"
-                            android:layout_height="match_parent"
-                            android:text="190327110     "
-                            />
-                    </LinearLayout>
-                </LinearLayout>
-                <ImageView
-                    android:id="@+id/ImageView_end"
-                    android:layout_below="@+id/LL_sno"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:background="#E8E8E8"
-                    />
-                <LinearLayout
-                    android:id="@+id/sign_title"
-                    android:layout_below="@+id/ImageView_end"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="签到统计信息"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:gravity="center"
-                        android:textColor="#367EAA"
-                        />
                 </LinearLayout>
                 <ImageView
                     android:id="@+id/ImageView_total"
-                    android:layout_below="@+id/sign_title"
+                    android:layout_below="@+id/LL_major"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#E8E8E8"
@@ -261,16 +156,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textSize="15dp"
+                        android:textSize="20dp"
                         android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#367EAA"
                         android:text="总经验值"/>
                     <LinearLayout
                         android:gravity="right"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <TextView
+                            android:id="@+id/experience"
                             android:layout_width="wrap_content"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:layout_height="match_parent"
                             android:text="52     "
                             android:textColor="#367EAA"
@@ -279,72 +178,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/ImageView_actual"
                     android:layout_below="@+id/LL_total"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E8E8E8"
-                    />
-                <LinearLayout
-                    android:id="@+id/LL_actual"
-                    android:layout_below="@+id/ImageView_actual"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:text="实际经验值"/>
-                    <LinearLayout
-                        android:gravity="right"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="15dp"
-                            android:layout_height="match_parent"
-                            android:text="42     "
-                            android:textColor="#367EAA"
-                            />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/ImageView_grade"
-                    android:layout_below="@+id/LL_actual"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E8E8E8"
-                    />
-                <LinearLayout
-                    android:id="@+id/LL_grade"
-                    android:layout_below="@+id/ImageView_grade"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:text="出勤等级"/>
-                    <LinearLayout
-                        android:gravity="right"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="15dp"
-                            android:layout_height="match_parent"
-                            android:text="良好     "
-                            android:textColor="#367EAA"
-                            />
-                    </LinearLayout>
-                </LinearLayout>
-                <ImageView
-                    android:layout_below="@+id/LL_grade"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#E8E8E8"

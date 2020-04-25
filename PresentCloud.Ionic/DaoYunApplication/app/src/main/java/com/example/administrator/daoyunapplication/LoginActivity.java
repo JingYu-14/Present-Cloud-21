@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-//                                            Log.e("TAG", "onResponse: "+info );
+                                            Log.e("TAG", "onResponse: "+info );
                                             JsonObject jsonObject = new JsonParser().parse(info).getAsJsonObject();
                                             JsonObject jsonObjectMeta =jsonObject.get("meta").getAsJsonObject();
                                             int code = jsonObjectMeta.get("status").getAsInt();
@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     role=1;
                                                 }
                                                 user.setRole(role);
-                                                user.setAvatar(result.get("avatar").getAsString());
+                                                user.setAvatar(result.get("avatar").isJsonNull()?"":result.get("avatar").getAsString());
                                                 user.setUsername(username);
                                                 user.setPassword(password);
 
