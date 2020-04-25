@@ -45,6 +45,7 @@ public class ActivityHome extends AppCompatActivity {
         //将信息传给listFragment
         ArrayList<ListFragment>   fragments = new ArrayList<>();
         fragments.add(new ActivityFragmentMember(c,user));
+        fragments.add(new ActivityContentFragment(c));
     }
 
 
