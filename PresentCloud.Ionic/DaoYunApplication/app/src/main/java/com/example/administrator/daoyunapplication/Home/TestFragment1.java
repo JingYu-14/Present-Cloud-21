@@ -63,11 +63,13 @@ public class TestFragment1 extends android.support.v4.app.Fragment{
         String[] titles = getResources().getStringArray(R.array.home_video_tab);
 
         //创建一个viewpager的adapter
-        TestFragmentAdapter adapter = new TestFragmentAdapter(getFragmentManager(), Arrays.asList(titles),user);
+        TestFragmentAdapter adapter = new TestFragmentAdapter(getChildFragmentManager(), Arrays.asList(titles),user);
+     //   this.vp_essence.setOffscreenPageLimit(3);
         this.vp_essence.setAdapter(adapter);
 
         //将TabLayout和ViewPager关联起来
         this.tab_essence.setupWithViewPager(this.vp_essence);
+
     }
 
 }
