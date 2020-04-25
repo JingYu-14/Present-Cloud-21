@@ -108,12 +108,19 @@ public class ActivityFragmentMember extends ListFragment//android.support.v4.app
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
-        User c= (User)l.getItemAtPosition(position);
-        Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
+        User cc= (User)l.getItemAtPosition(position);
+//        Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
         //这边写跳转到任务的详细页面，提交任务页面
-//        Intent intent = new Intent(getActivity(), ActivityHome.class);
-//        intent.putExtra("classes", c);
-//        startActivity(intent);
+        if(user.getRole()==2){
+            Intent intent = new Intent(getActivity(), ActivityMemberDetail.class);
+            intent.putExtra("user", cc);
+            intent.putExtra("classes",c);
+            startActivity(intent);
+        }else{
+            //没有权限
+             Toast.makeText(getActivity(), "您没有权限查看 " , Toast.LENGTH_SHORT).show();
+        }
+
     }
     private void getStudentesData(){
         final OkHttpClient client = new OkHttpClient();
