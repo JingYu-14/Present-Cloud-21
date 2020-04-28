@@ -22,6 +22,7 @@ import com.example.administrator.daoyunapplication.Activity.ActivityFragmentMemb
 import com.example.administrator.daoyunapplication.Activity.ActivityHome;
 import com.example.administrator.daoyunapplication.LoginActivity;
 import com.example.administrator.daoyunapplication.MainActivity;
+import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.Detail;
 import com.example.administrator.daoyunapplication.Model.Disscuss;
 import com.example.administrator.daoyunapplication.Model.User;
@@ -49,12 +50,13 @@ public class ActivityListDetailAdapter extends ArrayAdapter<Detail> {
 
     private int resourceId;
     private Context context;
-
-    public ActivityListDetailAdapter(@NonNull Context context, int resource, @NonNull List<Detail> objects) {
+    private Classes c;
+    public ActivityListDetailAdapter(@NonNull Context context, int resource, @NonNull List<Detail> objects, Classes c) {
         super(context, resource, objects);
         this.context = context;
         //这边要变resourceId，布局对应的item的格式
         this.resourceId = resource;
+        this.c = c;
     }
     public void setResourceId(int resource){
         this.resourceId = resource;
@@ -71,14 +73,10 @@ public class ActivityListDetailAdapter extends ArrayAdapter<Detail> {
             View view = LayoutInflater.from(context).inflate(resourceId, null);
             ImageView detail_image = (ImageView)view.findViewById(R.id.detail_image);
             TextView major = (TextView) view.findViewById(R.id.major);
-            TextView className = (TextView) view.findViewById(R.id.class_name);
             TextView teacherName = (TextView) view.findViewById(R.id.teacher_name);
-            TextView semester = (TextView) view.findViewById(R.id.semester);
             detail_image.setImageResource(R.drawable.class_icon);
-            major.setText("2019级软件工程专业");
-            className.setText("工程实践");
-            teacherName.setText("池芝标");
-            semester.setText("2019-2020-2");
+            major.setText(c.getNewsClassName());
+            teacherName.setText(c.getNewsTeacherName());
             return view;
         }else {
             setResourceId( R.layout.activity_detail_list_item);
