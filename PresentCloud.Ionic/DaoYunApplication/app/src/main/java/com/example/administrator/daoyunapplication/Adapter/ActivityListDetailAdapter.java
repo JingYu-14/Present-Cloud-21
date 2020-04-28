@@ -66,7 +66,7 @@ public class ActivityListDetailAdapter extends ArrayAdapter<Detail> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Log.e("Listposition:",position +" ");
+        Log.e("DetailListposition:",position +" ");
         int itemViewType=getItemViewType(position);
         if(itemViewType==0){
             setResourceId( R.layout.activity_detail_list_item_1);

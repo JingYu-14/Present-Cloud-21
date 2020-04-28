@@ -34,11 +34,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
                     android:id="@+id/major"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:id="@+id/class_name"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,11 +51,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:id="@+id/teacher_name"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:id="@+id/semester"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
