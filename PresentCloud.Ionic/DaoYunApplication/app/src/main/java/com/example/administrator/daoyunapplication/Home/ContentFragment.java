@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -46,11 +47,21 @@ import okhttp3.Response;
 //底部选项卡对应的Fragment
 public class ContentFragment extends ListFragment//extends Fragment
 {   private  User user;
-     List<Classes>  mClassList;
+    private static String type;
+    List<Classes>  mClassList;
+    private boolean isFirst=false;
+    private boolean isOne=false;
+    private boolean isSecond=false;
+    private boolean isThress=false;
     public ContentFragment(){}
     @SuppressLint("ValidFragment")
     public ContentFragment(User user){
         this.user = user;
+    }
+    @SuppressLint("ValidFragment")
+    public ContentFragment(User user,String type){
+        this.user = user;
+        this.type=type;
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +79,9 @@ public class ContentFragment extends ListFragment//extends Fragment
     private int mType = 0;//上选项卡的名称 编号
     private String mTitle;//上选项卡的名称
 
-
+    public int getmType(){
+        return this.mType;
+    }
     public void setType(int mType) {
         this.mType = mType;
     }
@@ -81,28 +94,36 @@ public class ContentFragment extends ListFragment//extends Fragment
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        if(null==viewContent){
+//            viewContent = inflater.inflate(R.layout.fragment_content,container,false);
+//        }
+//        else{
+//            ViewGroup parent =(ViewGroup)viewContent.getParent();
+//            if(null!=parent){
+//                parent.removeView(viewContent);
+//            }
+//        }
         //布局文件中只有一个居中的ListView
         viewContent = inflater.inflate(R.layout.fragment_content,container,false);
 
 //        TextView textView = (TextView) viewContent.findViewById(R.id.tv_content);
 //        textView.setText(this.mTitle);
-
+        isFirst=true;
         Log.e("mType:",mType+" ,");
 //        mClassList = new ArrayList<>();
-
-
         if (mType == 0) {
+            mClassList = new ArrayList<>();
+            ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
+            setListAdapter(adapter);
             if(user.getRole()==2) {//老师就是有我创建的，学生没有
                 initClass();
             }
-        } else if (mType == 1) {
+        }  else if (mType == 1) {
            // mClassList.add(new Classes(5,"2222","工程实践","池老标4","2019级专硕"));
+            initClass();//重点是没有进来
 
-                initClass();
+        }else  if (mType == 2) {
 
-//            ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
-//            setListAdapter(adapter);
-        } else if (mType == 2) {
             mClassList = new ArrayList<>();
             mClassList.add(new Classes(6,"333333","工程实践",1,"池老标5","2019级专硕","hv"));
             createClassAdapter adapter = new createClassAdapter(getContext(), R.layout.creater_class_button, mClassList,user);
@@ -115,8 +136,6 @@ public class ContentFragment extends ListFragment//extends Fragment
 //        ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
 //        this.setListAdapter(adapter);
 
-
-
         return viewContent;
     }
     @Override
@@ -124,7 +143,7 @@ public class ContentFragment extends ListFragment//extends Fragment
        // Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
 
         Classes c= (Classes)l.getItemAtPosition(position);
-        Toast.makeText(getActivity(), "You have selected " +c.getNewsTeacherName(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getActivity(), "You have selected " +c.getNewsTeacherName(), Toast.LENGTH_SHORT).show();
         if( mType==0) {
             Intent intent = new Intent(getActivity(), ActivityHome.class);
             intent.putExtra("classes", c);
@@ -187,9 +206,9 @@ public class ContentFragment extends ListFragment//extends Fragment
                                 JsonObject re=result.get(i).getAsJsonObject();
                                 Classes c = new Classes(
                                 re.get("id").getAsInt(),
-                                re.get("name").getAsString(),
+                                re.get("name").isJsonNull()?"":re.get("name").getAsString(),
                                 re.get("class_name").getAsString(),
-                                re.get("tno").getAsInt(),
+                                re.get("tno").isJsonNull()?-1:re.get("tno").getAsInt(),
                                 re.get("invitation_code").getAsString(),
                                 re.get("task_id").isJsonNull()?"":re.get("task_id").getAsString(),
                                 re.get("task").getAsString());
@@ -217,6 +236,84 @@ public class ContentFragment extends ListFragment//extends Fragment
         });
 
 
+    }
+
+//    @Override
+//    public void onResume() {
+//        Log.e("mType:",mType+" ,");
+//        Log.e("type:",type+" ,");
+//        isFirst=true;
+//        if (type.equals("0")) {
+//            if(user.getRole()==2) {//老师就是有我创建的，学生没有
+//                initClass();
+//            }
+//        }  else if (type .equals("1")) {
+//            // mClassList.add(new Classes(5,"2222","工程实践","池老标4","2019级专硕"));
+//            initClass();//重点是没有进来
+//
+//        }else  if (type.equals("2")) {
+//
+//            mClassList = new ArrayList<>();
+//            mClassList.add(new Classes(6,"333333","工程实践",1,"池老标5","2019级专硕","hv"));
+//            createClassAdapter adapter = new createClassAdapter(getContext(), R.layout.creater_class_button, mClassList,user);
+//            this.setListAdapter(adapter);
+//        }
+//        // TODO Auto-generated method stub
+//        super.onResume();
+//
+//    }
+    @Override
+    public void onPause() {
+        Log.e("type:",type+" ,");
+        super.onPause();
+        isFirst = false;
+        if (type.equals("0")) {
+            mClassList = new ArrayList<>();
+            ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
+            setListAdapter(adapter);
+            if(user.getRole()==2) {//老师就是有我创建的，学生没有
+                initClass();
+            }
+        }  else if (type .equals("1")) {
+            // mClassList.add(new Classes(5,"2222","工程实践","池老标4","2019级专硕"));
+            initClass();//重点是没有进来
+
+        }else  if (type.equals("2")) {
+
+            mClassList = new ArrayList<>();
+            mClassList.add(new Classes(6,"333333","工程实践",1,"池老标5","2019级专硕","hv"));
+            createClassAdapter adapter = new createClassAdapter(getContext(), R.layout.creater_class_button, mClassList,user);
+            this.setListAdapter(adapter);
+        }
+    }
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        //   进入当前Fragment
+        Log.e("type:",type+" ,");
+        if (enter && !isFirst) {
+            isFirst = true;
+            //   这里可以做网络请求或者需要的数据刷新操作
+            if (type.equals("0")) {
+                mClassList = new ArrayList<>();
+                ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
+                setListAdapter(adapter);
+                if(user.getRole()==2) {//老师就是有我创建的，学生没有
+                    initClass();
+                }
+            }  else if (type .equals("1")) {
+                // mClassList.add(new Classes(5,"2222","工程实践","池老标4","2019级专硕"));
+                initClass();//重点是没有进来
+
+            }else  if (type.equals("2")) {
+                mClassList = new ArrayList<>();
+                mClassList.add(new Classes(6,"333333","工程实践",1,"池老标5","2019级专硕","hv"));
+                createClassAdapter adapter = new createClassAdapter(getContext(), R.layout.creater_class_button, mClassList,user);
+                this.setListAdapter(adapter);
+            }
+        } else {
+            isFirst = false;
+        }
+        return super.onCreateAnimation(transit, enter, nextAnim);
     }
 
 }

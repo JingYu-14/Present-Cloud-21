@@ -54,11 +54,11 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
         this.c=c;
     }
     //这边做数据的初始化，从服务器获取数据
-    private void initClass(){
+    private void initClass(int mt){
 //        mDisscussList.add(new Disscuss(1,"第六周任务","需求文档","2020-02-01","2020-02-02"));
 //        mDisscussList.add(new Disscuss(1,1,1,"第六周任务","需求文档","2020-02-01","2020-02-02"));
 //        mDisscussList.add(new Disscuss(1,1,1,"第六周任务","需求文档","2020-02-01","2020-02-02"));
-        getTaskData();
+        getTaskData(mt);
     }
 
     private View viewContent;
@@ -87,10 +87,12 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
         Log.e("mType:",mType+" ,");
         mDisscussList = new ArrayList<>();
         if( mType==0) {
-            initClass();
+            initClass(mType);
         } else if(mType==1){
+            initClass(mType);
 //            mDisscussList.add(new Disscuss(1,"第六周任务","需求文档","2020-02-01","2020-02-02"));
         }else if(mType==2){
+            initClass(mType);
 //            mDisscussList.add(new Disscuss(1,"第六周任务","需求文档","2020-02-01","2020-02-02"));
         }
 
@@ -106,7 +108,7 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
         //这边写跳转到任务的详细页面，提交任务页面
     }
 
-    private void getTaskData(){
+    private void getTaskData(final int mt){
         final OkHttpClient client = new OkHttpClient();
         String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
 
@@ -151,8 +153,22 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
                                 re.get("name").getAsString(),
                                 re.get("detail").getAsString(),
                                 re.get("start_time").getAsString(),
+                                re.get("state").getAsString(),
                                 re.get("end_time").getAsString());
-                        mDisscussList.add(d);
+                        //mt=0，显示全部，mt=1，正在进行中，显示截至日期还未过的
+                        //mt=2显示已经结束的
+                        if(mt==0){
+                            mDisscussList.add(d);
+                        }else if(mt==1){
+                            if(d.getState().equals("进行中")){
+                                mDisscussList.add(d);
+                            }
+                        }else if(mt==2){
+                            if(d.getState().equals("过期")){
+                                mDisscussList.add(d);
+                            }
+                        }
+
                     }
 //                            Log.e("ada",mClassList.toString());
                     //ui更新必须用这个
