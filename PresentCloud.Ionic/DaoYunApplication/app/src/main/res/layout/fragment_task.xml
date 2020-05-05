@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <!-- <TextView
+          android:id="@+id/tv_content"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:textSize="30sp"
+          android:gravity="center"
+          android:textColor="@color/essence_tab_text_color_press"/>
+  -->
+    <!-- ListFragment对应的android:id值固定为"@id/android:list" -->
+    <Button
+        android:id="@+id/create_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"/>
+    <ListView
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="false"/>
+
+
+</LinearLayout>
