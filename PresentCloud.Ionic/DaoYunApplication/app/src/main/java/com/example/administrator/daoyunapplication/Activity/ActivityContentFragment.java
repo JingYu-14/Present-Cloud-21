@@ -10,12 +10,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.administrator.daoyunapplication.Adapter.ActivityListActivityAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ActivityListMemberAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ListClassAdapter;
+import com.example.administrator.daoyunapplication.Home.HomeActivity;
 import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.Disscuss;
 import com.example.administrator.daoyunapplication.Model.User;
@@ -42,6 +44,7 @@ import okhttp3.Response;
 public class ActivityContentFragment extends ListFragment//extends Fragment
 {
     private static Classes c;
+    private static User u;
     List<Disscuss> mDisscussList;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,8 +53,9 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
     }
     public ActivityContentFragment(){}
     @SuppressLint("ValidFragment")
-    public ActivityContentFragment(Classes c){
+    public ActivityContentFragment(Classes c,User u){
         this.c=c;
+        this.u=u;
     }
     //这边做数据的初始化，从服务器获取数据
     private void initClass(int mt){
@@ -79,8 +83,30 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //布局文件中只有一个居中的ListView
-        viewContent = inflater.inflate(R.layout.fragment_content,container,false);
-
+        viewContent = inflater.inflate(R.layout.fragment_task,container,false);
+        if(u.getRole()==2){
+            //老师，可以创建班课
+            Button buttonTask = (Button)viewContent.findViewById(R.id.create_task);
+            buttonTask.setText("创建任务");
+            buttonTask.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), ActivityCreateTask.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("classes", c);
+                    bundle.putSerializable("user",u);
+                    bundle.putString("title","");
+                    bundle.putString("content","");
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+//                    startActivityForResult(intent,2);
+                }
+            });
+        }else if(u.getRole()==1){
+            //学生，隐藏创建任务按钮
+            Button buttonTask = (Button)viewContent.findViewById(R.id.create_task);
+            buttonTask.setVisibility(buttonTask.INVISIBLE);
+        }
 //        TextView textView = (TextView) viewContent.findViewById(R.id.tv_content);
 //        textView.setText(this.mTitle);
 
