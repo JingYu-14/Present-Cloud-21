@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+
+
+    <!--<EditText-->
+
+        <!--android:id="@+id/code"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="班级码"-->
+        <!--android:background="@drawable/rounded_edittext"-->
+        <!--android:textSize="20sp"-->
+        <!--android:layout_marginTop="32dp"-->
+        <!--android:layout_below="@+id/uid"-->
+        <!--android:layout_alignLeft="@+id/uid"-->
+        <!--android:layout_alignStart="@+id/uid"-->
+        <!--android:layout_alignRight="@+id/uid"-->
+        <!--android:layout_alignEnd="@+id/uid" />-->
+
+    <ImageView
+        android:id="@+id/QR_code_imageView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:srcCompat="@android:color/background_light" />
+
+    <EditText
+    android:layout_marginTop="20dp"
+    android:id="@+id/QR_code_class_name"
+    android:gravity="center"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/rounded_edittext"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="班级名字"
+    android:layout_below="@id/QR_code_imageView"
+    android:textSize="20sp"/>
+
+
+
+
+
+
+
+</RelativeLayout>

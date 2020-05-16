@@ -62,15 +62,6 @@ public class SignActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user=(User)intent.getSerializableExtra("user");
         c=(Classes)intent.getSerializableExtra("classes");
-//        Log.e("bjjb",c.toString());
-//        Log.e("uhui",user.toString());
-//        reSet_bt = (Button)findViewById(R.id.reSet_bt);
-//        start_bt = (Button)findViewById(R.id.start_bt);
-//        reSet_bt.setOnClickListener(new SignButton());
-//        start_bt.setOnClickListener(new SignButton());
-
-//        test = (TextView) findViewById(R.id.test);
-//        test.setText("test");
     }
 
     @Override
@@ -345,6 +336,12 @@ public class SignActivity extends AppCompatActivity {
                                // JsonObject result = jsonObject.get("data").getAsJsonObject();//取出用户信息
                                 Looper.prepare();
                                 Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                                //跳转回去
+                                user.setEmpiricalValue(user.getEmpiricalValue()+2);
+                                Intent intent = new Intent(getContext(), HomeActivity.class);
+                                intent.putExtra("user",user);
+                                getContext().startActivity(intent);
+
                                 Looper.loop();
                             }else{
                                 Looper.prepare();

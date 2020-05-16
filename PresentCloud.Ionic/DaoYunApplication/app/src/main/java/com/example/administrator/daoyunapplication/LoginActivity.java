@@ -124,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 user.setAvatar(result.get("avatar").isJsonNull()?"":result.get("avatar").getAsString());
                                                 user.setUsername(username);
                                                 user.setPassword(password);
-
+                                                user.setEmpiricalValue(0);
 
                                                 Toast.makeText(LoginActivity.this,msg,Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);

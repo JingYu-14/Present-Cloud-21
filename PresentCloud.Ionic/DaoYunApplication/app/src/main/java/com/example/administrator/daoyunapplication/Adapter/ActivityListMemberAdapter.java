@@ -79,7 +79,14 @@ public class ActivityListMemberAdapter extends ArrayAdapter<User> {
             TextView member_detail = (TextView) view.findViewById(R.id.member_detail);
             Button design_bt = (Button) view.findViewById(R.id.sign_bt);
             design_bt.setOnClickListener(new ActivityListMemberAdapter.RegisterButton(position));
-            member_detail.setText("当前获得经验值：0");
+            if(user.getRole()==2)//教师
+            {
+                member_detail.setText("");
+            }else if (user.getRole()==1)//学生
+            {
+                member_detail.setText("当前获得经验值："+user.getEmpiricalValue());
+            }
+
             return view;
         }else {
             setResourceId( R.layout.activity_member_list_item);
@@ -115,6 +122,7 @@ public class ActivityListMemberAdapter extends ArrayAdapter<User> {
         public RegisterButton(int inPosition){
             mPosition= inPosition;
         }
+
         @Override
         public void onClick(View v) {
 
@@ -127,7 +135,8 @@ public class ActivityListMemberAdapter extends ArrayAdapter<User> {
                     intent.putExtra("user",user);
                     intent.putExtra("classes",c);
                     currentActivity.startActivity(intent);
-                   // Toast.makeText(v.getContext(), mPosition+"dfd", Toast.LENGTH_SHORT).show();
+                    // currentActivity.startActivityForResult(intent, 0);
+                    // Toast.makeText(v.getContext(), mPosition+"dfd", Toast.LENGTH_SHORT).show();
 
                     break;
 
