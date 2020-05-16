@@ -14,15 +14,18 @@ public class Disscuss implements Serializable {
     private String  questionName;//题目名称，即题目
     private String dstartTime ;//任务开始时间
     private String dendTime ;//任务开始时间
+    private String state;//显示过期或者正在进行中
     public Disscuss() {}
-    public Disscuss( int questionId,String  disscussName,String  questionName,String dstartTime,String  dendTime){
+    public Disscuss( int questionId,String  disscussName,String  questionName,String dstartTime,String state,String  dendTime){
         this.questionId=questionId;
         this.disscussName=disscussName;
         this.questionName=questionName;
         this.dstartTime=dstartTime;
         this.dendTime=dendTime;
+        this.state=state;
     }
 
+    public String getState(){return state;}
     public String getDisscussName() {
         return disscussName;
     }

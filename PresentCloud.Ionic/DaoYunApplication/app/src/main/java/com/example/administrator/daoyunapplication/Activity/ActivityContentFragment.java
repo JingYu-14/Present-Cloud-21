@@ -10,12 +10,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.administrator.daoyunapplication.Adapter.ActivityListActivityAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ActivityListMemberAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ListClassAdapter;
+import com.example.administrator.daoyunapplication.Home.HomeActivity;
 import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.Disscuss;
 import com.example.administrator.daoyunapplication.Model.User;
@@ -42,6 +44,7 @@ import okhttp3.Response;
 public class ActivityContentFragment extends ListFragment//extends Fragment
 {
     private static Classes c;
+    private static User u;
     List<Disscuss> mDisscussList;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,15 +53,16 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
     }
     public ActivityContentFragment(){}
     @SuppressLint("ValidFragment")
-    public ActivityContentFragment(Classes c){
+    public ActivityContentFragment(Classes c,User u){
         this.c=c;
+        this.u=u;
     }
     //这边做数据的初始化，从服务器获取数据
-    private void initClass(){
+    private void initClass(int mt){
 //        mDisscussList.add(new Disscuss(1,"第六周任务","需求文档","2020-02-01","2020-02-02"));
 //        mDisscussList.add(new Disscuss(1,1,1,"第六周任务","需求文档","2020-02-01","2020-02-02"));
 //        mDisscussList.add(new Disscuss(1,1,1,"第六周任务","需求文档","2020-02-01","2020-02-02"));
-        getTaskData();
+        getTaskData(mt);
     }
 
     private View viewContent;
@@ -79,18 +83,42 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //布局文件中只有一个居中的ListView
-        viewContent = inflater.inflate(R.layout.fragment_content,container,false);
-
+        viewContent = inflater.inflate(R.layout.fragment_task,container,false);
+        if(u.getRole()==2){
+            //老师，可以创建班课
+            Button buttonTask = (Button)viewContent.findViewById(R.id.create_task);
+            buttonTask.setText("创建任务");
+            buttonTask.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), ActivityCreateTask.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("classes", c);
+                    bundle.putSerializable("user",u);
+                    bundle.putString("title","");
+                    bundle.putString("content","");
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+//                    startActivityForResult(intent,2);
+                }
+            });
+        }else if(u.getRole()==1){
+            //学生，隐藏创建任务按钮
+            Button buttonTask = (Button)viewContent.findViewById(R.id.create_task);
+            buttonTask.setVisibility(buttonTask.INVISIBLE);
+        }
 //        TextView textView = (TextView) viewContent.findViewById(R.id.tv_content);
 //        textView.setText(this.mTitle);
 
         Log.e("mType:",mType+" ,");
         mDisscussList = new ArrayList<>();
         if( mType==0) {
-            initClass();
+            initClass(mType);
         } else if(mType==1){
+            initClass(mType);
 //            mDisscussList.add(new Disscuss(1,"第六周任务","需求文档","2020-02-01","2020-02-02"));
         }else if(mType==2){
+            initClass(mType);
 //            mDisscussList.add(new Disscuss(1,"第六周任务","需求文档","2020-02-01","2020-02-02"));
         }
 
@@ -106,7 +134,7 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
         //这边写跳转到任务的详细页面，提交任务页面
     }
 
-    private void getTaskData(){
+    private void getTaskData(final int mt){
         final OkHttpClient client = new OkHttpClient();
         String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
 
@@ -151,8 +179,22 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
                                 re.get("name").getAsString(),
                                 re.get("detail").getAsString(),
                                 re.get("start_time").getAsString(),
+                                re.get("state").getAsString(),
                                 re.get("end_time").getAsString());
-                        mDisscussList.add(d);
+                        //mt=0，显示全部，mt=1，正在进行中，显示截至日期还未过的
+                        //mt=2显示已经结束的
+                        if(mt==0){
+                            mDisscussList.add(d);
+                        }else if(mt==1){
+                            if(d.getState().equals("进行中")){
+                                mDisscussList.add(d);
+                            }
+                        }else if(mt==2){
+                            if(d.getState().equals("过期")){
+                                mDisscussList.add(d);
+                            }
+                        }
+
                     }
 //                            Log.e("ada",mClassList.toString());
                     //ui更新必须用这个
