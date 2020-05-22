@@ -129,9 +129,17 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
        // Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
-        Disscuss c= (Disscuss)l.getItemAtPosition(position);
+        Disscuss cc= (Disscuss)l.getItemAtPosition(position);
         Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
         //这边写跳转到任务的详细页面，提交任务页面
+        if(u.getRole()==1){//学生
+            Intent intent = new Intent(getActivity(),UploadTaskActivity.class);
+            intent.putExtra("disscuss",cc);
+            intent.putExtra("classes",c);
+            intent.putExtra("user",u);
+            startActivity(intent);
+        }
+
     }
 
     private void getTaskData(final int mt){
