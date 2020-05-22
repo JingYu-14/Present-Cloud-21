@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,27 +15,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
-import com.example.administrator.daoyunapplication.zxing.activity.CaptureActivity;
+import com.example.administrator.daoyunapplication.SignActivity.SignActivity;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -72,16 +67,10 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
         if(itemViewType==0) {
             setResourceId(R.layout.creater_class_button);
             view = LayoutInflater.from(context).inflate(resourceId, null);
-            //手动的创建班级和加入班级
             Button bt_create_class = (Button) view.findViewById(R.id.bt_create_class);
             bt_create_class.setOnClickListener(new CreateClassButton(position));
             Button bt_add_class = (Button) view.findViewById(R.id.bt_add_class);
             bt_add_class.setOnClickListener(new CreateClassButton(position));
-            //二维码的创建班级和加入班级
-            Button bt_QR_code_create_class = (Button) view.findViewById(R.id.bt_QR_code_create_class);
-            bt_QR_code_create_class.setOnClickListener(new CreateClassButton(position));
-            Button bt_QR_code_add_class = (Button) view.findViewById(R.id.bt_QR_code_add_class);
-            bt_QR_code_add_class.setOnClickListener(new CreateClassButton(position));
 
 
         }
@@ -100,59 +89,6 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
 
 
     }
-
-    //////二维码////////
-    private ImageView im1;  //imageview图片
-    private int w,h;        //图片宽度w,高度h
-    EditText QR_code_class_name;
-    String classCode="";
-    public void createQRcodeClass(View view,String url){
-        im1=(ImageView)view.findViewById(R.id.QR_code_imageView);
-        w=300;
-        h=300;
-        QR_code_class_name=(EditText)view.findViewById(R.id.QR_code_class_name);
-        try
-        {
-            //判断URL合法性
-            if (url == null || "".equals(url) || url.length() < 1)
-            {
-                return;
-            }
-            Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
-            hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-            //图像数据转换，使用了矩阵转换
-            BitMatrix bitMatrix = new QRCodeWriter().encode(url, BarcodeFormat.QR_CODE, w, h, hints);
-            int[] pixels = new int[w * h];
-            //下面这里按照二维码的算法，逐个生成二维码的图片，
-            //两个for循环是图片横列扫描的结果
-            for (int y = 0; y < h; y++)
-            {
-                for (int x = 0; x < w; x++)
-                {
-                    if (bitMatrix.get(x, y))
-                    {
-                        pixels[y * w + x] = 0xff000000;
-                    }
-                    else
-                    {
-                        pixels[y * w + x] = 0xffffffff;
-                    }
-                }
-            }
-            //生成二维码图片的格式，使用ARGB_8888
-            Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-            bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
-            //显示到我们的ImageView上面
-            im1.setImageBitmap(bitmap);
-        }
-        catch (WriterException e)
-        {
-            e.printStackTrace();
-        }
-
-
-    }
-    /////////////
 //    EditText uid;
     EditText code;
     EditText class_name;
@@ -214,56 +150,10 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
         });
 
 
+
+        ////////////////
+
     }
-    ///////////////////////////
-    /*二维码形式加入班级,即扫一扫*/
-    public void addQRcordClassDialog(){
-        Intent intent = new Intent(getContext(), CaptureActivity.class);
-        intent.putExtra("userId",user.getUserId());
-        intent.putExtra("user",user);
-        getContext().startActivity(intent);
-    }
-    /*获取一条随机字符串*/
-    public static String getRandomString(int length) { //length表示生成字符串的长度  
-        String base = "abcdefghijklmnopqrstuvwxyz0123456789";
-        Random random = new Random();
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < length; i++) {
-            int number = random.nextInt(base.length());
-            sb.append(base.charAt(number));
-        }
-        return sb.toString();
-    }
-    //二维码创建班级
-    public void createQRcordClassDialog(){
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-        dialog.setTitle("创建班级:(请保存二维码)");
-        View view=  LayoutInflater.from(getContext()).inflate(R.layout.create_qr_code_class,null);
-        classCode=getRandomString(6);
-        createQRcodeClass(view,classCode);
-        dialog.setView(view);
-
-        //  dialog.setView(textView);
-        dialog.setCancelable(false);
-
-        dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                yescreateClass(true);
-            }
-        });
-        dialog.setNegativeButton("关闭", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-        dialog.show();
-    }
-
-//////////////////////////////
-
     public void createClassDialog(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
         dialog.setTitle("创建班级:");
@@ -277,7 +167,7 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
         dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                yescreateClass(false);
+                yescreateClass();
             }
         });
         dialog.setNegativeButton("关闭", new DialogInterface.OnClickListener() {
@@ -289,7 +179,7 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
 
         dialog.show();
     }
-    public void yescreateClass(boolean isQRcode){
+    public void yescreateClass(){
         final OkHttpClient client = new OkHttpClient();
         String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
         path = path + "teacherClasses";
@@ -298,15 +188,8 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
         Gson gson = new Gson();
         Map<Object,Object> map = new HashMap<>();
         map.put("uid",id);
-        if(isQRcode){
-            map.put("code", classCode);
-            map.put("name",QR_code_class_name.getText().toString());
-        }else{
-            map.put("code", code.getText().toString());
-            map.put("name",class_name.getText().toString());
-        }
-
-
+        map.put("code", code.getText().toString());
+        map.put("name",class_name.getText().toString());
         String params = gson.toJson(map);
         MediaType JSON= MediaType.parse("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(JSON,params);
@@ -356,7 +239,7 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
     }
     public void addClassDialog(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-        dialog.setTitle("加入班级:");
+        dialog.setTitle("创建班级:");
         View view=  LayoutInflater.from(getContext()).inflate(R.layout.add_class,null);
         createClass(view);
         dialog.setView(view);
@@ -396,20 +279,12 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
 //                    intent.putExtra("user",user);
 //                    intent.putExtra("classes",c);
 //                    currentActivity.startActivity(intent);
-                    Toast.makeText(v.getContext(), mPosition+"dfd", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(v.getContext(), mPosition+"dfd", Toast.LENGTH_SHORT).show();
                     createClassDialog();
                     break;
                 case R.id.bt_add_class:
                     Toast.makeText(v.getContext(), mPosition+"dfd", Toast.LENGTH_SHORT).show();
                     addClassDialog();//学生加入班级
-                    break;
-                case R.id.bt_QR_code_create_class:
-                    Toast.makeText(v.getContext(), mPosition+"dfd", Toast.LENGTH_SHORT).show();
-                    createQRcordClassDialog();//老师二维码生成班级
-                    break;
-                case R.id.bt_QR_code_add_class:
-                    Toast.makeText(v.getContext(), mPosition+"dfd", Toast.LENGTH_SHORT).show();
-                    addQRcordClassDialog();//二维码加入班级
                     break;
 
             }
