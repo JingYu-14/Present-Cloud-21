@@ -4,7 +4,7 @@
  * @Author: wujinhan
  * @Date:   2020-04-12 17:08:23
  * @Last Modified by:   wujinhan
- * @Last Modified time: 2020-04-17 15:26:17
+ * @Last Modified time: 2020-05-23 08:07:14
  */
 namespace app\api\controller;
 use app\api\controller\Base;
@@ -12,6 +12,10 @@ use think\Db;
 
 class Student extends Base
 {
+    // protected $beforeActionList = [
+    //     'checkToken'
+    // ];
+    
     public function getMenus()
     {
     	$data = [];
@@ -108,6 +112,21 @@ class Student extends Base
             return $this->returnMsg([],'上传成功',200);
         }else{
             return $this->returnMsg([],'上传失败',404);
+        }
+    }
+
+    public function sign()
+    {
+        $uid=input('uid');
+        $code=input('code');
+        $res=Db::table('sign')->where('code',$code)->find();
+        if(!$res)
+        {
+            return $this->returnMsg([],'签到失败，签到码不存在',404);
+        }else
+        {
+            Db::table('sign')->where('sno',$uid)->where('code',$code)->update(['state'=>1]);
+            return $this->returnMsg([],'签到成功',200);
         }
     }
 }
