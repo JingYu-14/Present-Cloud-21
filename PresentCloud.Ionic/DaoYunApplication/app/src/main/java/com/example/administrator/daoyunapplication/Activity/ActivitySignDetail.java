@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.daoyunapplication.Adapter.ActivityListResourceAdapter;
 import com.example.administrator.daoyunapplication.Model.Sign;
 import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
@@ -18,6 +19,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,18 +31,28 @@ import okhttp3.Response;
 
 public class ActivitySignDetail extends AppCompatActivity {
     private int totalnum=0;
+    List<Sign> mSignList;
+    private LinearLayout lv ;
+    TextView t;
+    TextView tt;
+    private LinearLayout ll;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_detail);
-        LinearLayout lv = (LinearLayout) findViewById(R.id.lv);
-        LinearLayout have=(LinearLayout)findViewById(R.id.have_sign);
+//        LinearLayout have=(LinearLayout)findViewById(R.id.have_sign);
         Intent intent =getIntent();
+        mSignList = new ArrayList<>();
+        lv= (LinearLayout) findViewById(R.id.lv);
+        ll=(LinearLayout)findViewById(R.id.have_sign);
+//        t=new TextView(this);
+//        tt=new TextView(this);
         String searchtime=intent.getStringExtra("searchtime");
         int classid=intent.getIntExtra("classid",0);
         int studentsNum=intent.getIntExtra("studentsnum",0);
         Sign ss[]=new Sign[studentsNum];
         getSignDetail(searchtime,ss,classid);
 //        ss= Arrays.copyOfRange(ss,0,totalnum);
+//        Log.e("totalnum", String.valueOf(totalnum));
 //        Log.e("searchtime",searchtime);
 //        Log.e("ss",ss[0].getSname());
 //        int num= (int) intent.getIntExtra("number",0);
@@ -72,7 +84,6 @@ public class ActivitySignDetail extends AppCompatActivity {
 
 
 //        Sign u[] = (Sign) intent.getSerializableExtra("user");
-//        t.setText("ceshiceshi");
 //        lv.addView(t);
     }
 
@@ -117,6 +128,8 @@ public class ActivitySignDetail extends AppCompatActivity {
                     //这边要注意，获取的是用户对象getAsString();不行.getAsJsonObject();用这个
                     JsonObject result = jsonObject.get("data").getAsJsonObject();
                     JsonArray signsArray = result.get("signs").getAsJsonArray();//取出用户信息
+                   totalnum=result.get("total").getAsInt();
+                    Log.e("totalnum1", String.valueOf(totalnum));
                     for(int i=0;i<signsArray.size();i++){
                         JsonObject re=signsArray.get(i).getAsJsonObject();
                         ss[i]=new Sign(
@@ -129,8 +142,30 @@ public class ActivitySignDetail extends AppCompatActivity {
                                 re.get("account").getAsString(),
                                 re.get("date").getAsString()
                         );
-                        totalnum++;
+                        mSignList.add(ss[i]);
+//                        Log.e("sname",ss[i].getSname());
                     }
+                    ActivitySignDetail.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+//                            ActivityListResourceAdapter adapter = new ActivityListResourceAdapter(getContext(), R.layout.activity_resource_list_item, mSignList,studentsNum);
+//                            setListAdapter(adapter);
+                            for(int i=0;i<totalnum;i++){
+                                t=new TextView(ActivitySignDetail.this);
+                                tt=new TextView(ActivitySignDetail.this);
+                                t.setText(ss[i].getSname());
+                                tt.setText(String.valueOf(ss[i].getSno()));
+                                if(ss[i].getState()){
+                                    ll.addView(t);
+                                    ll.addView(tt);
+                                }else{
+                                    lv.addView(t);
+                                    lv.addView(tt);
+                                }
+
+                            }
+
+                        }});
                     Looper.prepare();
                     Toast.makeText(ActivitySignDetail.this,msg,Toast.LENGTH_SHORT).show();
                     Looper.loop();
