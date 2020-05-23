@@ -4,7 +4,7 @@
  * @Author: wujinhan
  * @Date:   2020-03-30 18:42:58
  * @Last Modified by:   wujinhan
- * @Last Modified time: 2020-04-17 20:39:57
+ * @Last Modified time: 2020-05-23 08:07:10
  */ 
 namespace app\api\controller;
 use app\api\controller\Base;
@@ -12,6 +12,10 @@ use think\Db;
 
 class Admin extends Base
 {
+    // protected $beforeActionList = [
+    //     'checkToken'
+    // ];
+    
     public function getMenus()
     {
     	$data = [];
@@ -114,9 +118,9 @@ class Admin extends Base
         $pwd=md5(input('pwd'));
         if(Db::table('user')->where('id', $id)->update(['name' => $name,'pwd'=>$pwd])==0)
         {
-            return $this->returnMsg([],'修改用户状态失败',400);
+            return $this->returnMsg([],'修改用户信息失败',400);
         }
-        return $this->returnMsg([],'修改用户状态成功',200);
+        return $this->returnMsg([],'修改用户信息成功',200);
     }
 
     public function addUsers()
@@ -125,7 +129,15 @@ class Admin extends Base
         $pwd=md5(input('pwd'));
         $email=input('email');
         $name=input('name');
-        $data = ['account' => $account, 'pwd' => $pwd,'email'=>$email,'name'=>$name,'state'=>1,'type'=>1];
+        if(input('type'))
+        {
+        	$type=input('type');
+        }else
+        {
+        	$type=1;
+        }
+        
+        $data = ['account' => $account, 'pwd' => $pwd,'email'=>$email,'name'=>$name,'state'=>1,'type'=>$type];
         if(Db::table('user')->insert($data)==1)
         {
             return $this->returnMsg([],'添加用户成功',201);
@@ -160,9 +172,9 @@ class Admin extends Base
         }
         if(Db::table('user')->where('id', $id)->update(['type' => $type])==0)
         {
-            return $this->returnMsg([],'修改用户状态失败',400);
+            return $this->returnMsg([],'修改用户角色失败',400);
         }
-        return $this->returnMsg([],'修改用户状态成功',200);
+        return $this->returnMsg([],'修改用户角色成功',200);
     }
 
     public function getClasses()
@@ -313,5 +325,122 @@ class Admin extends Base
         $data=['total'=>$total,'pagenum'=>$pagenum,'taskDetails'=>$data,
         'detail'=>Db::table('task')->where('id',$taskId)->value('detail')];
         return $this->returnMsg($data,'获取具体任务信息成功',200);
+    }
+
+    public function getSchools()
+    {
+        $pagesize=input('pagesize');
+        $pagenum=input('pagenum');
+        $searchValue=input('query');
+        if(!$searchValue)
+        {
+            $arr = Db::table('school')->field('id,school,college,profession')->where('state',1)->select();
+        }else
+        {
+            $arr = Db::table('school')->field('id,school,college,profession')->where('school|college|profession','like','%'.$searchValue.'%')->where('state',1)->select();
+        }
+
+        $data = [];
+        $info=[];
+        $total=count($arr);
+        for ($i=$pagesize*($pagenum-1)+1; $i <=min($total,$pagesize*$pagenum) ; $i++) { array_push($info,$arr[$i-1]);
+        }
+        $data=['total'=>$total,'pagenum'=>$pagenum,'schools'=>$info];
+        return $this->returnMsg($data,'获取校园信息成功',200);
+    }
+
+    public function addSchools()
+    {
+        $school=input('school');
+        $college=input('college');
+        $profession=input('profession');
+        
+        $data = ['school' => $school, 'college' => $college,'profession'=>$profession,'state'=>1];
+        if(Db::table('school')->insert($data)==1)
+        {
+            return $this->returnMsg([],'添加组织成功',201);
+        }
+        return $this->returnMsg([],'添加组织失败',404);
+    }
+
+    public function deleteSchools($id)
+    {
+        if(Db::table('school')->where('id',$id)->update(['state'=>0])==0)
+        {
+            return $this->returnMsg([],'删除失败',404);
+        }
+        return $this->returnMsg([],'删除成功',200);
+    }
+
+    public function getSchool($id)
+    {
+        $arr = Db::table('school')->where('id',$id)->field('id,school,college,profession')->select();
+         return $this->returnMsg($arr[0],'获取单条组织信息成功',200);
+    }
+
+    public function changeSchoolInfo($id)
+    {
+        $college=input('college');
+        $profession=input('profession');
+        if(Db::table('school')->where('id', $id)->update(['college' => $college,'profession'=>$profession])==0)
+        {
+            return $this->returnMsg([],'修改组织信息失败',400);
+        }
+        return $this->returnMsg([],'修改组织信息成功',200);
+    }
+
+    public function getSystems()
+    {
+        $pagesize=input('pagesize');
+        $pagenum=input('pagenum');
+        $searchValue=input('query');
+        $arr = Db::table('system')->field('id,sign_exp,sign_dist,task_exp')->where('state',1)->select();
+        $data = [];
+        $info=[];
+        $total=count($arr);
+        for ($i=$pagesize*($pagenum-1)+1; $i <=min($total,$pagesize*$pagenum) ; $i++) { array_push($info,$arr[$i-1]);
+        }
+        $data=['total'=>$total,'pagenum'=>$pagenum,'systems'=>$info];
+        return $this->returnMsg($data,'获取系统参数成功',200);
+    }
+
+    public function addSystems()
+    {
+        $sign_exp=input('sign_exp');
+        $sign_dist=input('sign_dist');
+        $task_exp=input('task_exp');
+        
+        $data = ['sign_exp' => $sign_exp, 'sign_dist' => $sign_dist,'task_exp'=>$task_exp,'state'=>1];
+        if(Db::table('system')->insert($data)==1)
+        {
+            return $this->returnMsg([],'添加参数成功',201);
+        }
+        return $this->returnMsg([],'添加参数失败',404);
+    }
+
+    public function deleteSystems($id)
+    {
+        if(Db::table('system')->where('id',$id)->update(['state'=>0])==0)
+        {
+            return $this->returnMsg([],'删除失败',404);
+        }
+        return $this->returnMsg([],'删除成功',200);
+    }
+
+    public function getSystem($id)
+    {
+        $arr = Db::table('system')->where('id',$id)->field('id,sign_exp,sign_dist,task_exp')->select();
+         return $this->returnMsg($arr[0],'获取参数成功',200);
+    }
+
+    public function changeSystemInfo($id)
+    {
+        $sign_dist=input('sign_dist');
+        $task_exp=input('task_exp');
+        if(Db::table('system')->where('id', $id)->update(['task_exp' => $task_exp,'sign_dist'=>$sign_dist])==0)
+        {
+            return $this->returnMsg([],'修改参数失败',400);
+        }
+        return $this->returnMsg([],'修改参数成功',200);
     }
 }
