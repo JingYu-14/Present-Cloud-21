@@ -316,7 +316,8 @@ public class SignActivity extends AppCompatActivity {
         final OkHttpClient client = new OkHttpClient();
         String path = "http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
         path = path + "sign";
-        int id = c.getNewsClassId();//班级id
+        //int id = c.getNewsClassId();//班级id
+        int id = user.getUserId();//用户id
         code = code.replaceAll(",", "");
         Gson gson = new Gson();
         Map<Object, Object> map = new HashMap<>();

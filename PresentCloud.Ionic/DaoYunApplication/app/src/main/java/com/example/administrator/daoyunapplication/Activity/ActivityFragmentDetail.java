@@ -212,6 +212,7 @@ public class ActivityFragmentDetail extends ListFragment//android.support.v4.app
         final OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)//请求的url
+                .header("Authorization",u.getToken())
                 .addHeader("content-type", "application/json;charset:utf-8")
                 .delete()
                 .build();
