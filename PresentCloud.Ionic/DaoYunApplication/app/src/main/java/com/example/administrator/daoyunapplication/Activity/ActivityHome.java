@@ -47,6 +47,7 @@ public class ActivityHome extends AppCompatActivity {
         fragments.add(new ActivityFragmentMember(c,user));
         fragments.add(new ActivityContentFragment(c,user));
         fragments.add(new ActivityFragmentDetail(c,user));
+        fragments.add(new ActivityFragmentResource(c,user));
     }
 
 

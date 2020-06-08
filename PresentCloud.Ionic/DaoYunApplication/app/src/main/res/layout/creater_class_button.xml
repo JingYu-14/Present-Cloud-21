@@ -4,26 +4,14 @@
     android:layout_height="match_parent">
 
     <Button
-        android:text="手动创建班级"
+        android:text="创建班级"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bt_create_class" />
 
     <Button
-        android:text="手动加入班级"
+        android:text="加入班级"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bt_add_class" />
-
-    <Button
-        android:text="二维码创建班级"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_QR_code_create_class" />
-
-    <Button
-        android:text="扫一扫加入班级"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_QR_code_add_class" />
 </LinearLayout>
