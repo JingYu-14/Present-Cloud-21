@@ -122,7 +122,7 @@ public class ContentFragment extends ListFragment//extends Fragment
            // mClassList.add(new Classes(5,"2222","工程实践","池老标4","2019级专硕"));
             initClass();//重点是没有进来
 
-        }else  if (mType == 2) {
+        }else  if (mType == 2) {//+号
 
             mClassList = new ArrayList<>();
             mClassList.add(new Classes(6,"333333","工程实践",1,"池老标5","2019级专硕","hv"));
@@ -171,7 +171,7 @@ public class ContentFragment extends ListFragment//extends Fragment
         String format = String.format(path+"?uid="+user.getUserId());
         Log.e("path:",format);
         //类似  KeyPath.Path.head + KeyPath.Path.smsalarm, username, userPass, type, lat, lon, finalOptions, text10            KeyPath.Path.head + KeyPath.Path.smsalarm是封装好的ip地址    后面是参数
-        final Request build1 = new Request.Builder().url(format).build();
+        final Request build1 = new Request.Builder().url(format).header("Authorization",user.getToken()).build();
 
         client.newCall(build1).enqueue(new Callback() {
             @Override
@@ -222,9 +222,9 @@ public class ContentFragment extends ListFragment//extends Fragment
                                     ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
                                     setListAdapter(adapter);
                                 }});
-                            Looper.prepare();
-                            Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
-                            Looper.loop();
+//                            Looper.prepare();
+//                            Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+//                            Looper.loop();
                         }else{
                             Looper.prepare();
                             Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();

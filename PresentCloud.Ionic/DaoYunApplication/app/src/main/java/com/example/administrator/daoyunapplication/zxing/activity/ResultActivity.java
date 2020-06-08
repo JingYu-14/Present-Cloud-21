@@ -98,6 +98,7 @@ public class ResultActivity extends Activity {
 		///////////////////////////
 		Request request = new Request.Builder()
 				.url(path)//请求的url
+				.header("Authorization",user.getToken())
 				.post(body)
 				.build();
 		client.newCall(request).enqueue(new Callback() {

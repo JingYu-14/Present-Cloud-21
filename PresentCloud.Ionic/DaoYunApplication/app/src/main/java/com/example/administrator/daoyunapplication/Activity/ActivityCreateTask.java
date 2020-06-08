@@ -112,6 +112,7 @@ public class ActivityCreateTask extends AppCompatActivity {
         ///////////////////////////
         Request request = new Request.Builder()
                 .url(path)//请求的url
+                .header("Authorization",u.getToken())
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {

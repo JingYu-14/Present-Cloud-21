@@ -1,9 +1,13 @@
 package com.example.administrator.daoyunapplication;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,13 +16,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.example.administrator.daoyunapplication.Home.HomeActivity;
 import com.example.administrator.daoyunapplication.Model.User;
+import com.example.administrator.daoyunapplication.SignActivity.SignActivity;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -39,6 +53,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password_input;
     private String username;
     private String password;
+    public LocationClient mLocationClient;
+    private static double latitude=0.0;//纬度
+    private static double longitude=0.0;//经度
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +67,79 @@ public class LoginActivity extends AppCompatActivity {
 
         btn_login.setOnClickListener(new RegisterButton());
         btn_forget_pass.setOnClickListener(new RegisterButton());
+        //GPS定位
+        mLocationClient = new LocationClient(getApplicationContext());
+        mLocationClient.registerLocationListener(new MyLocationListener());
+        //获取经纬度
+        init();
 
     }
+    public void init() {
+        List<String> permissionList = new ArrayList<>();
+        if (ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.
+                permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+        if (ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.
+                permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.READ_PHONE_STATE);
+        }
+        if (ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.
+                permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (!permissionList.isEmpty()) {
+            String[] permissions = permissionList.toArray(new String[permissionList.
+                    size()]);
+            ActivityCompat.requestPermissions(LoginActivity.this, permissions, 1);
+        } else {
+            //获取经纬度
+            requestLocation();
+        }
+    }
+    private void requestLocation() {
+        initLocation();
+        mLocationClient.start();
+    }
+
+    private void initLocation() {
+        LocationClientOption option = new LocationClientOption();
+        option.setScanSpan(5000);
+        option.setIsNeedAddress(true);
+        option.setLocationMode(LocationClientOption.LocationMode.Device_Sensors);
+        mLocationClient.setLocOption(option);//mLocationClient是null
+    }
+
+    protected void onDestory() {
+        super.onDestroy();
+        mLocationClient.stop();
+    }
+    public class MyLocationListener implements BDLocationListener {
+
+        @Override
+        public void onReceiveLocation(final BDLocation location) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    StringBuilder currentPosition = new StringBuilder();
+                    latitude=location.getLatitude();
+                    longitude=location.getLongitude();
+
+                //现在只能wifi可以获取到经纬度，网络可以了
+                    Log.e("adfaf:","经度:"+longitude+"纬度:"+latitude);
+//                    Toast.makeText(LoginActivity.this, ("经度:"), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+        }
+
+        public void onConnectHotSpotMessage(String s, int i) {
+
+        }
+    }
+
+
     public class RegisterButton implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -125,14 +213,15 @@ public class LoginActivity extends AppCompatActivity {
                                                 user.setUsername(username);
                                                 user.setPassword(password);
                                                 user.setEmpiricalValue(0);
-
+                                                user.setToken(result.get("token").getAsString());//令牌
+                                                user.setLongitude(longitude);//经度
+                                                user.setLatitude(latitude);//纬度
                                                 Toast.makeText(LoginActivity.this,msg,Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                                 intent.putExtra("user",user);
                                                 startActivity(intent);
                                             }else{
                                                 Toast.makeText(LoginActivity.this,msg,Toast.LENGTH_SHORT).show();
-
 
                                             }
 

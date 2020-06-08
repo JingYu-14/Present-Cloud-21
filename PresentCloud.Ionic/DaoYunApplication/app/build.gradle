@@ -1,15 +1,27 @@
 apply plugin: 'com.android.application'
-
+//tasks.withType(JavaCompile) {
+//    options.encoding = "UTF-8"
+//}
 android {
     compileSdkVersion 23
-    buildToolsVersion '29.0.0'
+    buildToolsVersion '26.0.0'
+
     defaultConfig {
         applicationId "com.example.administrator.daoyunapplication"
-        minSdkVersion 15
-        targetSdkVersion 22
+        minSdkVersion 23
+//        multiDexEnabled true
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        jackOptions{
+            enabled true
+        }
+
+      }
+    compileOptions{
+        sourceCompatibility org.gradle.api.JavaVersion.VERSION_1_8
+        targetCompatibility org.gradle.api.JavaVersion.VERSION_1_8
     }
     buildTypes {
         release {
@@ -17,6 +29,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//    android{compileOptions.encoding="GBK"}
 }
 
 dependencies {
@@ -34,4 +47,6 @@ dependencies {
     androidTestCompile 'com.android.support:support-annotations:23.4.0'
     compile 'com.android.support:design:23.3.0'
     compile files('libs/zxing.jar')
+    compile files('libs/BaiduLBS_Android.jar')
+//    compile 'com.android.support:multidex:1.0.1'
 }

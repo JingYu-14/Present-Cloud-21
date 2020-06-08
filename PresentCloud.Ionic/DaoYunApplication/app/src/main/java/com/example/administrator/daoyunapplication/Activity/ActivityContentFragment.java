@@ -142,7 +142,7 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
         String format = String.format(path+"?id="+c.getNewsClassId());
         Log.e("path:",format);
         //类似  KeyPath.Path.head + KeyPath.Path.smsalarm, username, userPass, type, lat, lon, finalOptions, text10            KeyPath.Path.head + KeyPath.Path.smsalarm是封装好的ip地址    后面是参数
-        final Request build1 = new Request.Builder().url(format).build();
+        final Request build1 = new Request.Builder().url(format).header("Authorization",u.getToken()).build();
 
         client.newCall(build1).enqueue(new Callback() {
             @Override

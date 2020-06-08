@@ -20,6 +20,10 @@ public class User implements Serializable {
     private int empiricalValue=0;//经验值，注册时不用
     private String  avatar="";//图片
     boolean state=false;
+    private String  token="";//token
+
+    private  double latitude=0.0;//纬度
+    private  double longitude=0.0;//经度
     public User() {}
     public User( int userId,String username, String name,int empiricalValue,boolean state){
         this.userId=userId;
@@ -44,6 +48,30 @@ public class User implements Serializable {
         this.role=role;
         this.password=password;
         this.empiricalValue=empiricalValue;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getAvatar() {

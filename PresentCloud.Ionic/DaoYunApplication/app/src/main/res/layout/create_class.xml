@@ -33,21 +33,30 @@
         android:layout_alignRight="@+id/uid"
         android:layout_alignEnd="@+id/uid" />
 
-    <EditText
-    android:layout_marginTop="20dp"
-    android:id="@+id/class_name"
-    android:gravity="center"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
-    android:background="@drawable/rounded_edittext"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="班级名字"
-    android:layout_below="@id/code"
-    android:textSize="20sp"/>
+
+    <!--<EditText-->
+    <!--android:layout_marginTop="20dp"-->
+    <!--android:id="@+id/class_name"-->
+    <!--android:gravity="center"-->
+    <!--android:layout_marginLeft="15dp"-->
+    <!--android:layout_marginRight="15dp"-->
+    <!--android:background="@drawable/rounded_edittext"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:hint="班级名字"-->
+    <!--android:layout_below="@id/code"-->
+    <!--android:textSize="20sp"/>-->
 
 
-
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_class_name"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textSize="20sp"
+        android:layout_below="@id/code"/>
 
 
 

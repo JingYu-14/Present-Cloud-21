@@ -84,7 +84,10 @@ public class ActivityListMemberAdapter extends ArrayAdapter<User> {
                 member_detail.setText("");
             }else if (user.getRole()==1)//学生
             {
-                member_detail.setText("当前获得经验值："+user.getEmpiricalValue());
+                //字符串需要拼接
+                int v=user.getEmpiricalValue();
+                String a=getContext().getResources().getString(R.string.exp);
+                member_detail.setText(a +v);
             }
 
             return view;

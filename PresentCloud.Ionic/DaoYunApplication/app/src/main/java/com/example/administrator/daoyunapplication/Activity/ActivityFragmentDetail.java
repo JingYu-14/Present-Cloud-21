@@ -165,6 +165,7 @@ public class ActivityFragmentDetail extends ListFragment//android.support.v4.app
         Request request = new Request.Builder()
                 .url(url)//请求的url
                 .addHeader("content-type", "application/json;charset:utf-8")
+                .header("Authorization",u.getToken())
                 .delete()
                 .build();
 

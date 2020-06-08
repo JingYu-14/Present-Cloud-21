@@ -135,7 +135,7 @@ public class ActivityFragmentMember extends ListFragment//android.support.v4.app
         String format = String.format(path+"?id="+c.getNewsClassId()+"&pagenum="+pagenum+"&pagesize="+pagesize);
         Log.e("path:",format);
         //类似  KeyPath.Path.head + KeyPath.Path.smsalarm, username, userPass, type, lat, lon, finalOptions, text10            KeyPath.Path.head + KeyPath.Path.smsalarm是封装好的ip地址    后面是参数
-        final Request build1 = new Request.Builder().url(format).build();
+        final Request build1 = new Request.Builder().url(format).header("Authorization",user.getToken()).build();
 
         client.newCall(build1).enqueue(new Callback() {
             @Override

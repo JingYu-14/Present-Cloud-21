@@ -61,7 +61,11 @@ public class ListUserAdapter extends ArrayAdapter<User> {
             imageView_headpic.setImageBitmap(bitmap);
         }
         textView_user_name.setText(aUser.getName());
-        textView_empirical_value.setText("经验值："+aUser.getEmpiricalValue());
+        //字符串需要拼接
+        int v=aUser.getEmpiricalValue();
+        String a=getContext().getResources().getString(R.string.exp);
+        textView_empirical_value.setText(a +v);
+//        textView_empirical_value.setText("经验值："+aUser.getEmpiricalValue());
         return view;
     }
 
