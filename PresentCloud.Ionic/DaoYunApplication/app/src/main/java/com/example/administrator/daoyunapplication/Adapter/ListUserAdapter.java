@@ -72,7 +72,7 @@ public class ListUserAdapter extends ArrayAdapter<User> {
     public void seachImage(){
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://3r1005r723.wicp.vip/daoyunapi/public/static/img/avatar.jpg")//请求的url
+                .url("http://129.211.87.192/daoyunapi/public/static/img/avatar.jpg")//请求的url
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override

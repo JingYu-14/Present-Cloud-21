@@ -117,7 +117,7 @@ public class ReignActivity extends AppCompatActivity {
 //                                    , json);
 
                             Request request = new Request.Builder()
-                                    .url("http://3r1005r723.wicp.vip/daoyunapi/public/index.php/users")//请求的url
+                                    .url("http://129.211.87.192/daoyunapi/public/index.php/users")//请求的url
                                     .post(requestBody)
                                     .build();
                             client.newCall(request).enqueue(new Callback() {

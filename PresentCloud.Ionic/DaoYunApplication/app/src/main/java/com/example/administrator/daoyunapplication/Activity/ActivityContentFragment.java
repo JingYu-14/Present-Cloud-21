@@ -100,12 +100,13 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
                     intent.putExtras(bundle);
                     startActivity(intent);
 //                    startActivityForResult(intent,2);
+                    startActivity(intent);
                 }
             });
         }else if(u.getRole()==1){
             //学生，隐藏创建任务按钮
             Button buttonTask = (Button)viewContent.findViewById(R.id.create_task);
-            buttonTask.setVisibility(buttonTask.INVISIBLE);
+            buttonTask.setVisibility(buttonTask.GONE);
         }
 //        TextView textView = (TextView) viewContent.findViewById(R.id.tv_content);
 //        textView.setText(this.mTitle);
@@ -129,14 +130,22 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
        // Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
-        Disscuss c= (Disscuss)l.getItemAtPosition(position);
+        Disscuss cc= (Disscuss)l.getItemAtPosition(position);
         Toast.makeText(getActivity(), "You have selected " +position, Toast.LENGTH_SHORT).show();
         //这边写跳转到任务的详细页面，提交任务页面
+        if(u.getRole()==1){//学生
+            Intent intent = new Intent(getActivity(),UploadTaskActivity.class);
+            intent.putExtra("disscuss",cc);
+            intent.putExtra("classes",c);
+            intent.putExtra("user",u);
+            startActivity(intent);
+        }
+
     }
 
     private void getTaskData(final int mt){
         final OkHttpClient client = new OkHttpClient();
-        String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+        String path="http://129.211.87.192/daoyunapi/public/index.php/";
 
         path=path+"tasks";
         String format = String.format(path+"?id="+c.getNewsClassId());

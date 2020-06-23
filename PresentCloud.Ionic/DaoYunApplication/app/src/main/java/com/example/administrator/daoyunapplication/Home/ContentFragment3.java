@@ -207,7 +207,7 @@ public class ContentFragment3 extends ListFragment//extends Fragment
         MediaType JSON =MediaType.parse("application/json;charset=utf-8");
         RequestBody requestBody=RequestBody.create(JSON,str);
         Request request = new Request.Builder()
-                .url("http://3r1005r723.wicp.vip/daoyunapi/public/index.php/users/"+user.getUserId())//请求的url
+                .url("http://129.211.87.192/daoyunapi/public/index.php/users/"+user.getUserId())//请求的url
                 .addHeader("content-type", "application/json;charset:utf-8")
                 .header("Authorization",user.getToken())
                 .put(requestBody)

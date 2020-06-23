@@ -125,7 +125,7 @@ public class ActivityFragmentMember extends ListFragment//android.support.v4.app
     //获取成员信息
     private void getStudentesData(){
         final OkHttpClient client = new OkHttpClient();
-        String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+        String path="http://129.211.87.192/daoyunapi/public/index.php/";
 
         path = path + "students";
 

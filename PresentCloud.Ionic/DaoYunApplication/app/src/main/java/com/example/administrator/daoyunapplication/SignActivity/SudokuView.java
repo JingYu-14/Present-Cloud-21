@@ -231,7 +231,7 @@ public class SudokuView extends View {
     }
     private void setSignCode(String coed){
         final OkHttpClient client = new OkHttpClient();
-        String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+        String path="http://129.211.87.192/daoyunapi/public/index.php/";
 
         path = path + "teacherSigns";
         int id;//班级id

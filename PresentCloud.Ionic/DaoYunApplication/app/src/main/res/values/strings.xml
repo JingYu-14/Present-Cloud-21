@@ -39,7 +39,7 @@
     <array name="own_video_tab">
         <item>我的@dream@0</item>
     </array>
-    <string name="main_home_activity_resource">资源</string>
+    <string name="main_home_activity_resource">签到</string>
     <string name="main_home_activity_member">成员</string>
     <string name="main_home_activity_activity">活动</string>
     <string name="main_home_activity_message">消息</string>

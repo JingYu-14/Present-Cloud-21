@@ -16,9 +16,11 @@ import android.widget.Toast;
 
 import com.example.administrator.daoyunapplication.Adapter.ActivityListMemberAdapter;
 import com.example.administrator.daoyunapplication.Adapter.ActivityListResourceAdapter;
+import com.example.administrator.daoyunapplication.Adapter.ActivityListSignAdapter;
 import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.Sign;
 import com.example.administrator.daoyunapplication.Model.SignResult;
+import com.example.administrator.daoyunapplication.Model.StudentSign;
 import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
 import com.google.gson.JsonArray;
@@ -48,6 +50,7 @@ import okhttp3.Response;
 
 public class ActivityFragmentResource extends ListFragment{
     List<SignResult> mSignList;
+    List<StudentSign> studentList;
     private static Classes c;
     private static User user;
     private static int studentsNum=0;
@@ -72,6 +75,8 @@ public class ActivityFragmentResource extends ListFragment{
         if(user.getRole()==2){//如果是老师
             getStudentesNum();
             getSign();
+        }else if (user.getRole()==1){//如果是学生
+            getStudentSign();
         }
 
     }
@@ -105,6 +110,7 @@ public class ActivityFragmentResource extends ListFragment{
 
         }
         mSignList = new ArrayList<>();
+        studentList=new ArrayList<>();
         initClass();
         Log.e("dafasf",c.toString());
 //        ActivityListMemberAdapter adapter = new ActivityListMemberAdapter(getContext(), R.layout.activity_member_list_item, mUserList);
@@ -121,23 +127,12 @@ public class ActivityFragmentResource extends ListFragment{
         //这边写跳转到任务的详细页面，提交任务页面
         if(user.getRole()==2){
             List<Sign> list = new ArrayList<>();
-//            Sign ss[]=new Sign[studentsNum];
             String searchTime=cc.getDate()+" "+cc.getTime().replaceAll("-",":");
-//            getSignDetail(searchTime,ss);
-//            ss= Arrays.copyOfRange(ss,0,signNum);
-//            for(int i=0;i<signNum;i++){
-//                list.add(ss[i]);
-//            }
-//            Toast.makeText(getContext(), String.valueOf(signNum), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), ActivitySignDetail.class);
-//            intent.putExtra("number",signNum);
-//            Log.e("number", String.valueOf(signNum));
-
-//            intent.putExtra("classes",c);
-//            intent.putExtra("signs", (Serializable) list);
             intent.putExtra("searchtime",searchTime);
             intent.putExtra("classid",c.getNewsClassId());
             intent.putExtra("studentsnum",studentsNum);
+            intent.putExtra("user",user);
             startActivity(intent);
         }
 //        else{
@@ -149,7 +144,7 @@ public class ActivityFragmentResource extends ListFragment{
 
     private void getStudentesNum(){
         final OkHttpClient client = new OkHttpClient();
-        String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+        String path="http://129.211.87.192/daoyunapi/public/index.php/";
 
         path = path + "students";
 
@@ -204,7 +199,7 @@ public class ActivityFragmentResource extends ListFragment{
     }
     private void getSign(){//教师获取签到记录
         final OkHttpClient client = new OkHttpClient();
-        String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+        String path="http://129.211.87.192/daoyunapi/public/index.php/";
 
         path = path + "signs";
 
@@ -280,6 +275,90 @@ public class ActivityFragmentResource extends ListFragment{
                         @Override
                         public void run() {
                             ActivityListResourceAdapter adapter = new ActivityListResourceAdapter(getContext(), R.layout.activity_resource_list_item, mSignList,studentsNum);
+                            setListAdapter(adapter);
+                        }});
+                    Looper.prepare();
+                    Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                    Looper.loop();
+                }else{
+                    Looper.prepare();
+                    Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                    Looper.loop();
+                }
+
+
+            }
+        });
+
+
+    }
+
+
+    private void getStudentSign(){//教师获取签到记录
+        final OkHttpClient client = new OkHttpClient();
+        String path="http://129.211.87.192/daoyunapi/public/index.php/";
+        path = path + "signs";
+        int pagenum=1;
+        int pagesize=100;
+        String format = String.format(path+"?id="+c.getNewsClassId()+"&uid="+user.getUserId()+"&pagenum="+pagenum+"&pagesize="+pagesize);
+        Log.e("path:",format);
+        //类似  KeyPath.Path.head + KeyPath.Path.smsalarm, username, userPass, type, lat, lon, finalOptions, text10            KeyPath.Path.head + KeyPath.Path.smsalarm是封装好的ip地址    后面是参数
+        final Request build1 = new Request.Builder().url(format).header("Authorization",user.getToken()).build();
+
+        client.newCall(build1).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Looper.prepare();
+                        Toast.makeText(getContext(), "网络连接失败！", Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                final String info = response.body().string();//获取服务器返回的json格式数据
+
+                Log.e("TAG", "onResponse: "+info );
+                JsonObject jsonObject = new JsonParser().parse(info).getAsJsonObject();
+                JsonObject jsonObjectMeta =jsonObject.get("meta").getAsJsonObject();
+                int code = jsonObjectMeta.get("status").getAsInt();
+                String msg="";
+                msg=jsonObjectMeta.get("msg").getAsString();
+
+                if (200==code)//如果code等于200，则说明存在该用户，而且服务器还返回了该用户的信息
+                {
+                    //这边要注意，获取的是用户对象getAsString();不行.getAsJsonObject();用这个
+                    JsonObject result = jsonObject.get("data").getAsJsonObject();
+                    JsonArray signsArray = result.get("signs").getAsJsonArray();//取出用户信息
+                    for(int i=0;i<signsArray.size();i++){
+                        JsonObject re=signsArray.get(i).getAsJsonObject();
+                        if(re.get("class_id").getAsInt()==c.getNewsClassId()){//是当前班级的信息
+                            StudentSign s=new StudentSign(
+                                    re.get("id").getAsInt(),
+                                    re.get("code").getAsString(),
+                                    re.get("sname").getAsString(),
+                                    re.get("class_id").getAsInt(),
+                                    re.get("time").getAsString(),
+                                    re.get("sno").getAsInt(),
+                                    re.get("state").getAsBoolean(),
+                                    re.get("account").getAsString(),
+                                    re.get("date").getAsString()
+                            );
+                            studentList.add(s);
+//                            Log.e("sign",String.valueOf(s[i].getClassId()));
+                        }
+                    }
+
+//                            Log.e("ada",mClassList.toString());
+                    //ui更新必须用这个
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ActivityListSignAdapter adapter = new ActivityListSignAdapter(getContext(), R.layout.activity_resource_list_item, studentList);
                             setListAdapter(adapter);
                         }});
                     Looper.prepare();

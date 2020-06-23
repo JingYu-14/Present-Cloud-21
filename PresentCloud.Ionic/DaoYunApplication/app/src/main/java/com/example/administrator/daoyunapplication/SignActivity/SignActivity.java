@@ -314,7 +314,7 @@ public class SignActivity extends AppCompatActivity {
 
     private void setSignCodeStudent(String code) {
         final OkHttpClient client = new OkHttpClient();
-        String path = "http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+        String path = "http://129.211.87.192/daoyunapi/public/index.php/";
         path = path + "sign";
         //int id = c.getNewsClassId();//班级id
         int id = user.getUserId();//用户id
@@ -382,7 +382,7 @@ public class SignActivity extends AppCompatActivity {
 
     private void setSignCode(String code) {
         final OkHttpClient client = new OkHttpClient();
-        String path = "http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+        String path = "http://129.211.87.192/daoyunapi/public/index.php/";
         path = path + "teacherSigns";
         int id = c.getNewsClassId();//班级id
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式

@@ -71,7 +71,7 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
     //初始化获取课程名
     public void getCourses(){
         final OkHttpClient client = new OkHttpClient();
-        String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+        String path="http://129.211.87.192/daoyunapi/public/index.php/";
         String format = String.format(path+"courses");
         Log.e("path:",format);
         //类似  KeyPath.Path.head + KeyPath.Path.smsalarm, username, userPass, type, lat, lon, finalOptions, text10            KeyPath.Path.head + KeyPath.Path.smsalarm是封装好的ip地址    后面是参数

@@ -160,7 +160,7 @@ public class ActivityFragmentDetail extends ListFragment//android.support.v4.app
 //        startActivity(intent);
     }
     public void dropout(){
-        String url = "http://3r1005r723.wicp.vip/daoyunapi/public/index.php//teacherStudents?id="+c.getNewsClassId()+"&uid="+u.getUserId();
+        String url = "http://129.211.87.192/daoyunapi/public/index.php//teacherStudents?id="+c.getNewsClassId()+"&uid="+u.getUserId();
         final OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)//请求的url
@@ -208,7 +208,7 @@ public class ActivityFragmentDetail extends ListFragment//android.support.v4.app
     }
 
     public void stopClass(){
-        String url = "http://3r1005r723.wicp.vip/daoyunapi/public/index.php//teacherClasses?id="+c.getNewsClassId();
+        String url = "http://129.211.87.192/daoyunapi/public/index.php//teacherClasses?id="+c.getNewsClassId();
         final OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)//请求的url

@@ -84,7 +84,7 @@ public class ResultActivity extends Activity {
 	//加入班级
 	public void yesaddClass(){
 		final OkHttpClient client = new OkHttpClient();
-		String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+		String path="http://129.211.87.192/daoyunapi/public/index.php/";
 		path = path + "studentClasses";
 //		int id=user.getUserId();//用户id
 //		Log.e("uid",id+"");

@@ -46,8 +46,8 @@ public class SetDeadlineActivity extends AppCompatActivity {
         u=(User)getIntent().getSerializableExtra("user");
         title=getIntent().getStringExtra("title");
         content=getIntent().getStringExtra("content");
-        AlarmManager mAlarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);//设置时区
-        mAlarmManager.setTimeZone("Asia/Shanghai");// Asia/Taipei//GMT+08:00
+//        AlarmManager mAlarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);//设置时区
+//        mAlarmManager.setTimeZone("Asia/Shanghai");// Asia/Taipei//GMT+08:00
         TimePicker timePicker = (TimePicker)findViewById(R.id.set_time);
         timePicker.setIs24HourView(true);
         final Time t = new Time();

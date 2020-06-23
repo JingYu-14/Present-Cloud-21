@@ -82,7 +82,6 @@ public class ActivityCreateTask extends AppCompatActivity {
 
                     addTask(title_name,detail_content,deadline,id);
                     Intent intent=new Intent(ActivityCreateTask.this,ActivityHome.class);
-//                    intent
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("classes", c);
                     bundle.putSerializable("user",u);
@@ -98,7 +97,7 @@ public class ActivityCreateTask extends AppCompatActivity {
 //        String test=stampToDate(deadline);
 //        Log.e("time1",test);
         final OkHttpClient client = new OkHttpClient();
-        String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+        String path="http://129.211.87.192/daoyunapi/public/index.php/";
         path = path + "teacherTasks";
         Gson gson = new Gson();
         Map<Object,Object> map = new HashMap<>();
