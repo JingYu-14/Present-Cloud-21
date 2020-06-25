@@ -115,7 +115,8 @@ public class ReignActivity extends AppCompatActivity {
 //                            //MediaType  设置Content-Type 标头中包含的媒体类型值
 //                            RequestBody requestBody = FormBody.create(MediaType.parse("application/json; charset=utf-8")
 //                                    , json);
-
+                        //http://129.211.87.192/daoyunapi/public/index.php
+                        //http://3r1005r723.wicp.vip/daoyunapi/public/index.php
                             Request request = new Request.Builder()
                                     .url("http://129.211.87.192/daoyunapi/public/index.php/users")//请求的url
                                     .post(requestBody)

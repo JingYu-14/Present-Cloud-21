@@ -139,7 +139,7 @@ public class ContentFragment3 extends ListFragment//extends Fragment
     }
     public void updateUserDialog(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-        dialog.setTitle("修改用户信息:");
+        dialog.setTitle(R.string.updataUserTitle);
         View view=  LayoutInflater.from(getContext()).inflate(R.layout.activity_update_user,null);
         setUser(view);
         dialog.setView(view);
@@ -147,13 +147,13 @@ public class ContentFragment3 extends ListFragment//extends Fragment
         //  dialog.setView(textView);
         dialog.setCancelable(false);
 
-        dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 updateUser();
             }
         });
-        dialog.setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

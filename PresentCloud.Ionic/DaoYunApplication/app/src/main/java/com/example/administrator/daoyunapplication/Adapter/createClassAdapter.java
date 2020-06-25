@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.administrator.daoyunapplication.LoginActivity;
+import com.example.administrator.daoyunapplication.MainActivity;
 import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.Courses;
 import com.example.administrator.daoyunapplication.Model.User;
@@ -150,7 +152,9 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
             bt_QR_code_create_class.setOnClickListener(new CreateClassButton(position));
             Button bt_QR_code_add_class = (Button) view.findViewById(R.id.bt_QR_code_add_class);
             bt_QR_code_add_class.setOnClickListener(new CreateClassButton(position));
-
+            //退出登录
+            Button bt_out = (Button) view.findViewById(R.id.bt_out);
+            bt_out.setOnClickListener(new CreateClassButton(position));
 
         }
         return view;
@@ -258,7 +262,7 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
     }
     public void yesaddClass(){
         final OkHttpClient client = new OkHttpClient();
-        String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+        String path="http://129.211.87.192/daoyunapi/public/index.php/";
         path = path + "studentClasses";
         int id=user.getUserId();//用户id
         Log.e("uid",id+"");
@@ -333,7 +337,7 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
     //二维码创建班级
     public void createQRcordClassDialog(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-        dialog.setTitle("创建班级:(请截图保存二维码)");
+        dialog.setTitle(R.string.codetitle);
         View view=  LayoutInflater.from(getContext()).inflate(R.layout.create_qr_code_class,null);
         classCode=getRandomString(6);
         createQRcodeClass(view,classCode);
@@ -342,13 +346,13 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
         //  dialog.setView(textView);
         dialog.setCancelable(false);
 
-        dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 yescreateClass(true);
             }
         });
-        dialog.setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -362,7 +366,7 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
 
     public void createClassDialog(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-        dialog.setTitle("创建班级:");
+        dialog.setTitle(R.string.title);
         View view=  LayoutInflater.from(getContext()).inflate(R.layout.create_class,null);
         classCode=getRandomString(6);
         createClass(view,classCode);
@@ -371,13 +375,13 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
         //  dialog.setView(textView);
         dialog.setCancelable(false);
 
-        dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 yescreateClass(false);
             }
         });
-        dialog.setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -388,7 +392,7 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
     }
     public void yescreateClass(boolean isQRcode){
         final OkHttpClient client = new OkHttpClient();
-        String path="http://3r1005r723.wicp.vip/daoyunapi/public/index.php/";
+        String path="http://129.211.87.192/daoyunapi/public/index.php/";
         path = path + "teacherClasses";
         int id=user.getUserId();//用户id
         Log.e("uid",id+"");
@@ -456,7 +460,7 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
     }
     public void addClassDialog(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-        dialog.setTitle("加入班级:");
+        dialog.setTitle(R.string.addtitle);
         View view=  LayoutInflater.from(getContext()).inflate(R.layout.add_class,null);
         addClass(view);
         dialog.setView(view);
@@ -464,13 +468,13 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
         //  dialog.setView(textView);
         dialog.setCancelable(false);
 
-        dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 yesaddClass();
             }
         });
-        dialog.setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -510,7 +514,12 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
 //                    Toast.makeText(v.getContext(), mPosition+"dfd", Toast.LENGTH_SHORT).show();
                     addQRcordClassDialog();//二维码加入班级
                     break;
-
+                case R.id.bt_out:
+                    Context currentActivity=v.getContext();
+                    //跳到签到页面
+                    Intent intent = new Intent(currentActivity, MainActivity.class);
+                    currentActivity.startActivity(intent);
+                    break;
             }
         }
 

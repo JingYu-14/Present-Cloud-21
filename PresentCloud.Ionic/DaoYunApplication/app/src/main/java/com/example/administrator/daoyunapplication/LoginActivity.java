@@ -162,7 +162,7 @@ public class LoginActivity extends AppCompatActivity {
                                 .addFormDataPart("username",username)
                                 .addFormDataPart("password",password)
                                 .build();
-
+                     //   http://3r1005r723.wicp.vip/daoyunapi/public/index.php
                             Request request = new Request.Builder()
                                     .url("http://129.211.87.192/daoyunapi/public/index.php/login")//请求的url
                                     .post(requestBody)

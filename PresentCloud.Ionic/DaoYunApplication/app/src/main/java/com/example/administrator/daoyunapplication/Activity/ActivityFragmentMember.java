@@ -173,7 +173,7 @@ public class ActivityFragmentMember extends ListFragment//android.support.v4.app
                                 re.get("id").getAsInt(),
                                 re.get("account").getAsString(),
                                 re.get("name").getAsString(),
-                                re.get("exp").getAsInt(),
+                                re.get("exp").isJsonNull()?0:re.get("exp").getAsInt(),
                                 re.get("state").getAsBoolean());
                         mUserList.add(c);
                     }

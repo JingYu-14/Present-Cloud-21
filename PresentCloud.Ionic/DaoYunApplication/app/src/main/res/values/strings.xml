@@ -52,4 +52,11 @@
     <array name="message_home_video_tab">
         <item>消息@dream@0</item>
     </array>
+
+    <string name="yes">确定</string>
+    <string name="no">关闭</string>
+    <string name="codetitle">创建班级:(请截图保存二维码)</string>
+    <string name="title">创建班级:</string>
+    <string name="addtitle">加入班级:</string>
+    <string name="updataUserTitle">修改用户信息:</string>
 </resources>

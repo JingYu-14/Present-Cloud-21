@@ -398,6 +398,8 @@ public class SignActivity extends AppCompatActivity {
         String params = gson.toJson(map);
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(JSON, params);
+        Log.e("user.getToken()",user.getToken());
+        Log.e("params)",params);
         ///////////////////////////
         Request request = new Request.Builder()
                 .url(path)//请求的url
@@ -409,6 +411,10 @@ public class SignActivity extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
                 Looper.prepare();
                 Toast.makeText(getContext(), "网络连接失败！", Toast.LENGTH_SHORT).show();
+                //跳转回去
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                intent.putExtra("user", user);
+                getContext().startActivity(intent);
                 Looper.loop();
             }
 
