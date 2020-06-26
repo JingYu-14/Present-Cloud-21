@@ -68,7 +68,7 @@ public class ActivityListResourceAdapter extends ArrayAdapter<SignResult> {
         TextView tt=(TextView)view.findViewById(R.id.text_sign_content);
         if(sResult!=null){
             String time= sResult.getTime().replaceAll("-",":");
-            String title=sResult.getDate()+"  "+time+"签到";
+            String title=sResult.getDate()+"  "+time+context.getString(R.string.sign);
             String content = sResult.getSignNum()+"/"+studentsNum;
             textView.setText(title);
             tt.setText(content);

@@ -59,13 +59,13 @@ public class ActivityListSignAdapter extends ArrayAdapter<StudentSign> {
         TextView tt=(TextView)view.findViewById(R.id.text_sign_content);
         if(studentSign!=null){
             String time= studentSign.getTime().replaceAll("-",":");
-            String title=studentSign.getDate()+"  "+time+"签到";
+            String title=studentSign.getDate()+"  "+time+context.getString(R.string.sign);
             String content;
             if (studentSign.getState()){
-                content="已签到";
+                content=context.getString(R.string.have_sign);
                 tt.setText(content);
             }else {
-                content="未签到";
+                content=context.getString(R.string.not_sign);
                 tt.setText(content);
                 tt.setTextColor(0xffff0000);
             }

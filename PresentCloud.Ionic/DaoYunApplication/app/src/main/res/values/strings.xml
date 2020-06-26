@@ -2,7 +2,9 @@
     <string name="app_name">到云</string>
     <string name="new_user">注册</string>
     <string name="signin">登录</string>
-
+    <string name="have_sign">已签到</string>
+    <string name="not_sign">未签到</string>
+    <string name="sign">签到</string>
     <string name="tip_account">请输入账号</string>
     <string name="tip_password">请输入密码</string>
 
