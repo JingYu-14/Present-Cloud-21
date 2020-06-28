@@ -122,19 +122,14 @@ public class ContentFragment extends ListFragment//extends Fragment
            // mClassList.add(new Classes(5,"2222","工程实践","池老标4","2019级专硕"));
             initClass();//重点是没有进来
 
-        }else  if (mType == 2) {//+号
-
-            mClassList = new ArrayList<>();
-            mClassList.add(new Classes(6,"333333","工程实践",1,"池老标5","2019级专硕","hv"));
-            createClassAdapter adapter = new createClassAdapter(getContext(), R.layout.creater_class_button, mClassList,user);
-            this.setListAdapter(adapter);
-//            ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
-//            this.setListAdapter(adapter);
-
         }
-      //  Log.e("ada",mClassList.toString());
-//        ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
-//        this.setListAdapter(adapter);
+//        else  if (mType == 2) {//+号
+//            mClassList = new ArrayList<>();
+//            mClassList.add(new Classes(6,"333333","工程实践",1,"池老标5","2019级专硕","hv"));
+//            createClassAdapter adapter = new createClassAdapter(getContext(), R.layout.creater_class_button, mClassList,user);
+//            this.setListAdapter(adapter);
+//
+//        }
 
         return viewContent;
     }
@@ -222,9 +217,7 @@ public class ContentFragment extends ListFragment//extends Fragment
                                     ListClassAdapter adapter = new ListClassAdapter(getContext(), R.layout.list_item, mClassList);
                                     setListAdapter(adapter);
                                 }});
-//                            Looper.prepare();
-//                            Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
-//                            Looper.loop();
+
                         }else{
                             Looper.prepare();
                             Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();

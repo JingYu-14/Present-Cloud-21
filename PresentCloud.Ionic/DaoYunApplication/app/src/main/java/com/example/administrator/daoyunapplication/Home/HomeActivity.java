@@ -105,6 +105,16 @@ public class HomeActivity extends AppCompatActivity {
                         ArrayList<Fragment>   fragments = new ArrayList<>();
                         fragments.add(new TestFragment1(user));
                     }
+                    if(i==1){//点击第二个页面时，传参数
+                        if(user.getAvatar()==""){
+                            ArrayList<Fragment>   fragments = new ArrayList<>();
+                            fragments.add(new TestFragment2(user));
+                        }else{
+                            //seachImage();
+                            ArrayList<Fragment>   fragments = new ArrayList<>();
+                            fragments.add(new TestFragment2(user));
+                        }
+                    }
                     if(i==2){//点击第三个页面时，传参数
                         if(user.getAvatar()==""){
                             ArrayList<Fragment>   fragments = new ArrayList<>();
@@ -113,9 +123,6 @@ public class HomeActivity extends AppCompatActivity {
                             //seachImage();
                             ArrayList<Fragment>   fragments = new ArrayList<>();
                             fragments.add(new TestFragment3(user));
-
-
-
                         }
 
                         //应该在点第三个Tab时，初始化fragment

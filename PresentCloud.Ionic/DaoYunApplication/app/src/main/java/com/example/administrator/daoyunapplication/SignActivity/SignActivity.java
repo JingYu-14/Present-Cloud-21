@@ -379,7 +379,7 @@ public class SignActivity extends AppCompatActivity {
 
 
     }
-
+    //老师发起签到
     private void setSignCode(String code) {
         final OkHttpClient client = new OkHttpClient();
         String path = "http://129.211.87.192/daoyunapi/public/index.php/";
@@ -434,6 +434,10 @@ public class SignActivity extends AppCompatActivity {
                     // JsonObject result = jsonObject.get("data").getAsJsonObject();//取出用户信息
                     Looper.prepare();
                     Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                    //跳转回去
+                    Intent intent = new Intent(getContext(), HomeActivity.class);
+                    intent.putExtra("user", user);
+                    getContext().startActivity(intent);
                     Looper.loop();
                 } else {
                     Looper.prepare();

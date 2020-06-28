@@ -25,7 +25,7 @@
     <array name="home_video_tab">
         <item>我创建的@dream@0</item>
         <item>我加入的@dream@1</item>
-        <item>+@dream@2</item>
+        <!--<item>+@dream@2</item>-->
     </array>
 
     <array name="newpost_video_tab">
@@ -40,6 +40,9 @@
 
     <array name="own_video_tab">
         <item>我的@dream@0</item>
+    </array>
+    <array name="two_plus">
+        <item>+@dream@0</item>
     </array>
     <string name="main_home_activity_resource">签到</string>
     <string name="main_home_activity_member">成员</string>
