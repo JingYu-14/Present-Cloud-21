@@ -19,7 +19,7 @@
     <string name="enroll">注册</string>
 
     <string name="main_home_text">班课</string>
-    <string name="main_mine_text">发现</string>
+    <string name="main_mine_text">班级</string>
     <string name="main_attention_text">我的</string>
     <string name="exp">当前获得经验值:</string>
     <array name="home_video_tab">

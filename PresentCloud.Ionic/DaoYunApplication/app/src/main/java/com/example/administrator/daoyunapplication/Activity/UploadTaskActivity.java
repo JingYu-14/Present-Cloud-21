@@ -68,28 +68,28 @@ public class UploadTaskActivity extends AppCompatActivity {
         TextView textDetail = (TextView)findViewById(R.id.task_detail);
         disscussDetail = d.getDisscussName()+"\n"+d.getQuestionName();
         textDetail.setText(disscussDetail);
-        Button download = (Button)findViewById(R.id.download_file);
-        if(state!=1){//尚未提交，隐藏下载附件按钮
-            download.setVisibility(View.GONE);
-        }else{
-            //如果点击下载，则...
-        }
-        Button upload = (Button)findViewById(R.id.add_file);
-        upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 打开系统的文件选择器
-                showFileChooser();
-//                   Log.e("path",path);
-            }
-        });
-        Button button = (Button)findViewById(R.id.upload);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadFile();
-            }
-        });
+//        Button download = (Button)findViewById(R.id.download_file);
+//        if(state!=1){//尚未提交，隐藏下载附件按钮
+//            download.setVisibility(View.GONE);
+//        }else{
+//            //如果点击下载，则...
+//        }
+//        Button upload = (Button)findViewById(R.id.add_file);
+//        upload.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // 打开系统的文件选择器
+//                showFileChooser();
+////                   Log.e("path",path);
+//            }
+//        });
+//        Button button = (Button)findViewById(R.id.upload);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                uploadFile();
+//            }
+//        });
 
     }
     private void getTaskDetail(){

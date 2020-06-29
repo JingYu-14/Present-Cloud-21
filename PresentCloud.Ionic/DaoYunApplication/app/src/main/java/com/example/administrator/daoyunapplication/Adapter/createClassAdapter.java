@@ -144,12 +144,17 @@ public class createClassAdapter  extends ArrayAdapter<Classes> {
             view = LayoutInflater.from(context).inflate(resourceId, null);
             //手动的创建班级和加入班级
             Button bt_create_class = (Button) view.findViewById(R.id.bt_create_class);
-            bt_create_class.setOnClickListener(new CreateClassButton(position));
+            Button bt_QR_code_create_class = (Button) view.findViewById(R.id.bt_QR_code_create_class);
+            if(user.getRole()==2){
+                bt_create_class.setOnClickListener(new CreateClassButton(position));
+                bt_QR_code_create_class.setOnClickListener(new CreateClassButton(position));
+            }else{
+                bt_create_class.setVisibility(bt_create_class.GONE);
+                bt_QR_code_create_class.setVisibility(bt_QR_code_create_class.GONE);
+            }
             Button bt_add_class = (Button) view.findViewById(R.id.bt_add_class);
             bt_add_class.setOnClickListener(new CreateClassButton(position));
             //二维码的创建班级和加入班级
-            Button bt_QR_code_create_class = (Button) view.findViewById(R.id.bt_QR_code_create_class);
-            bt_QR_code_create_class.setOnClickListener(new CreateClassButton(position));
             Button bt_QR_code_add_class = (Button) view.findViewById(R.id.bt_QR_code_add_class);
             bt_QR_code_add_class.setOnClickListener(new CreateClassButton(position));
             //退出登录
