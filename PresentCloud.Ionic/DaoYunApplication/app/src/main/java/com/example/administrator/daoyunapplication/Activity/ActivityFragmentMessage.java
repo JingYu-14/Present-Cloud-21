@@ -129,7 +129,7 @@ public class ActivityFragmentMessage extends ListFragment//android.support.v4.ap
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (viewContent == null) {
             viewContent=inflater.inflate(R.layout.fragment_activity_message, null);
-
+            viewContent.setEnabled(false);
         }
         mMessageList = new ArrayList<>();
         initClass();

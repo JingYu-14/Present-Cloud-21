@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     static final String[] LOCATIONGPS = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.CAMERA
     };
 
     private View.OnClickListener onClickListener=new View.OnClickListener() {

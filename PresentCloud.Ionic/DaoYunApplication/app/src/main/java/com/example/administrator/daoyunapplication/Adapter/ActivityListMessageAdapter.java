@@ -76,5 +76,10 @@ public class ActivityListMessageAdapter extends ArrayAdapter<Message> {
     public int getViewTypeCount() {
         return 2;
     }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
+    }
 }
 

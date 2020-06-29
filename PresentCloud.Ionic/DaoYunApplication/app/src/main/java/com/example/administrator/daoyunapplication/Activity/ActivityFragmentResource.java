@@ -73,7 +73,6 @@ public class ActivityFragmentResource extends ListFragment{
         //注意，第一个数据不显示，后面自己补一个初始数据，后台获取的接到初始数据中
 //        mSignList.add(new SignResult());
         if(user.getRole()==2){//如果是老师
-            getStudentesNum();
             getSign();
         }else if (user.getRole()==1){//如果是学生
             getStudentSign();
@@ -105,12 +104,14 @@ public class ActivityFragmentResource extends ListFragment{
                 viewContent=inflater.inflate(R.layout.fragment_activity_resource, null);
             }else if (user.getRole()==1){//学生
                 viewContent=inflater.inflate(R.layout.fragment_activity_sign, null);
+                viewContent.setEnabled(false);
             }
 
 
         }
         mSignList = new ArrayList<>();
         studentList=new ArrayList<>();
+        getStudentesNum();
         initClass();
         Log.e("dafasf",c.toString());
 //        ActivityListMemberAdapter adapter = new ActivityListMemberAdapter(getContext(), R.layout.activity_member_list_item, mUserList);
@@ -135,10 +136,6 @@ public class ActivityFragmentResource extends ListFragment{
             intent.putExtra("user",user);
             startActivity(intent);
         }
-//        else{
-//            //没有权限
-//            Toast.makeText(getActivity(), "您没有权限查看 " , Toast.LENGTH_SHORT).show();
-//        }
 
     }
 
@@ -260,6 +257,7 @@ public class ActivityFragmentResource extends ListFragment{
                         }
                     }
                     Log.e("k",String.valueOf(k));
+//                    studentsNum = result.get("total").getAsInt();//取出用户信息
                     if(k!=0){
                         SignResult sr[]=new SignResult[k];
                        int num = s[0].caculate(s,k,sr);

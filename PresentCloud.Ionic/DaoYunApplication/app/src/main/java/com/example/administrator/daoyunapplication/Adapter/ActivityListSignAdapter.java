@@ -75,6 +75,9 @@ public class ActivityListSignAdapter extends ArrayAdapter<StudentSign> {
         return view;
     }
 
-
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
+    }
 }
 

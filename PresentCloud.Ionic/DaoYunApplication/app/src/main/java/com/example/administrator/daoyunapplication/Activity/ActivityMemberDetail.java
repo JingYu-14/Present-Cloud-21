@@ -26,7 +26,12 @@ public class ActivityMemberDetail extends AppCompatActivity {
         TextView textNick = (TextView)findViewById(R.id.student);
         textNick.setText(u.getName());
         TextView textSchool = (TextView)findViewById(R.id.text_school);
-        textSchool.setText(u.getCollege());
+        if(u.getCollege()!=null){
+            textSchool.setText(u.getCollege());
+        }else{
+            textSchool.setText("暂无学校信息");
+        }
+
         TextView textClass = (TextView)findViewById(R.id.text_class_name);
         textClass.setText(c.getNewsClassName());
         TextView experience = (TextView)findViewById(R.id.experience);

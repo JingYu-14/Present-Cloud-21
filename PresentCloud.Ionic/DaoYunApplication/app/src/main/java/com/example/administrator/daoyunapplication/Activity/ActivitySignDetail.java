@@ -40,7 +40,7 @@ public class ActivitySignDetail extends AppCompatActivity {
     ImageView im;
     View iim;
     TextView t;
-    TextView tt;
+//    TextView tt;
     User u;
     private LinearLayout lt;
     private LinearLayout ll;
@@ -138,7 +138,7 @@ public class ActivitySignDetail extends AppCompatActivity {
                                 lt=new LinearLayout(ActivitySignDetail.this);
                                 lm=new LinearLayout(ActivitySignDetail.this);
                                 t=new TextView(ActivitySignDetail.this);
-                                tt=new TextView(ActivitySignDetail.this);
+//                                tt=new TextView(ActivitySignDetail.this);
                                 im=new ImageView(ActivitySignDetail.this);
                                 iim=new View(ActivitySignDetail.this);
                                 im.setImageResource(R.drawable.avatar);
@@ -147,11 +147,11 @@ public class ActivitySignDetail extends AppCompatActivity {
                                 iim.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,10));
                                 t.setText(ss[i].getSname());
                                 t.setTextSize(30);
-                                tt.setText(String.valueOf(ss[i].getSno()));
-                                tt.setTextSize(20);
+//                                tt.setText(String.valueOf(ss[i].getSno()));
+//                                tt.setTextSize(20);
                                 lm.setOrientation(LinearLayout.VERTICAL);
                                 lm.addView(t);
-                                lm.addView(tt);
+//                                lm.addView(tt);
                                 lt.setOrientation(LinearLayout.HORIZONTAL);
                                 lt.addView(im);
                                 lt.addView(lm);
