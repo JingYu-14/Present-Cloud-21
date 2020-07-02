@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.daoyunapplication.Home.HomeActivity;
 import com.example.administrator.daoyunapplication.Model.Classes;
 import com.example.administrator.daoyunapplication.Model.User;
 import com.example.administrator.daoyunapplication.R;
@@ -76,12 +77,12 @@ public class ActivityCreateTask extends AppCompatActivity {
                 String title_name=title.getText().toString();
                 String detail_content=detail.getText().toString();
                 String deadline=getIntent().getStringExtra("time");
-                if(title_name==null||detail_content==null||deadLine==null){
+                if((title_name.equals(""))||(detail_content.equals(""))||(deadline==null)){
                     Toast.makeText(ActivityCreateTask.this,"任务标题、详情以及截止日期均不能为空", Toast.LENGTH_SHORT).show();
                 }else{
 
                     addTask(title_name,detail_content,deadline,id);
-                    Intent intent=new Intent(ActivityCreateTask.this,ActivityHome.class);
+                    Intent intent=new Intent(ActivityCreateTask.this,HomeActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("classes", c);
                     bundle.putSerializable("user",u);
