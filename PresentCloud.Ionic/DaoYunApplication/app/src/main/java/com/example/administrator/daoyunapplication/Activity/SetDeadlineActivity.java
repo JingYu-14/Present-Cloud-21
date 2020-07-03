@@ -86,7 +86,7 @@ public class SetDeadlineActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if((sYear==t.year)&&(sMonth==t.month+1)&&(sDay==t.monthDay)&&((sHour<t.hour)||((sHour==t.hour)&&(sMinute<=t.minute)))){
-                        Toast.makeText(SetDeadlineActivity.this,"截止日期应该大于当前时间", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SetDeadlineActivity.this,getResources().getString(R.string.error_set_deadline), Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(SetDeadlineActivity.this,sYear+"年"+sMonth+"月"+sDay+"日"+sHour+"时"+sMinute+"分", Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(SetDeadlineActivity.this,ActivityCreateTask.class);

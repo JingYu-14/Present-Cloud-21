@@ -46,6 +46,7 @@ public class ActivityCreateTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_task);
         final LinearLayout deadLine = (LinearLayout)findViewById(R.id.LL_deadline);
+        TextView select_time=(TextView)findViewById(R.id.select_time);
         final EditText title=(EditText) findViewById(R.id.edit_title);
         final EditText detail=(EditText)findViewById(R.id.edit_detail);
         c=(Classes)getIntent().getSerializableExtra("classes");
@@ -54,6 +55,8 @@ public class ActivityCreateTask extends AppCompatActivity {
         con=getIntent().getStringExtra("content");
         title.setText(ti);
         detail.setText(con);
+        String deadline=getIntent().getStringExtra("time");
+        select_time.setText(deadline);
         id =c.getNewsClassId();
         deadLine.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +81,7 @@ public class ActivityCreateTask extends AppCompatActivity {
                 String detail_content=detail.getText().toString();
                 String deadline=getIntent().getStringExtra("time");
                 if((title_name.equals(""))||(detail_content.equals(""))||(deadline==null)){
-                    Toast.makeText(ActivityCreateTask.this,"任务标题、详情以及截止日期均不能为空", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityCreateTask.this,getResources().getString(R.string.error_create_task), Toast.LENGTH_SHORT).show();
                 }else{
 
                     addTask(title_name,detail_content,deadline,id);

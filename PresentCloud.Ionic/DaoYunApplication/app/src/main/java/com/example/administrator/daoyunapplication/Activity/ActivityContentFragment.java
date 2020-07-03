@@ -87,7 +87,7 @@ public class ActivityContentFragment extends ListFragment//extends Fragment
         if(u.getRole()==2){
             //老师，可以创建班课
             Button buttonTask = (Button)viewContent.findViewById(R.id.create_task);
-            buttonTask.setText("创建任务");
+            buttonTask.setText(getResources().getString(R.string.create_task));
             buttonTask.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
