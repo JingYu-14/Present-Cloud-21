@@ -57,7 +57,7 @@ public class ReignActivity extends AppCompatActivity {
         name_input = (EditText)findViewById(R.id.name_input);
 //        nick_input = (EditText)findViewById(R.id.nick_input);
         email_input = (EditText)findViewById(R.id.email_input);
-//        telephone_input = (EditText)findViewById(R.id.telephone_input);
+        telephone_input = (EditText)findViewById(R.id.mobile_input);
 
         radioGroup_role = (RadioGroup) this.findViewById(R.id.radioButton_role);
         student=(RadioButton)findViewById(R.id.student);//1
@@ -76,12 +76,12 @@ public class ReignActivity extends AppCompatActivity {
             String name = name_input.getText().toString().trim();
 //            String nick = nick_input.getText().toString().trim();
             String email = email_input.getText().toString().trim();
-//            String telephone = telephone_input.getText().toString().trim();
+            String telephone = telephone_input.getText().toString().trim();
 
             switch (v.getId()) {
                 //注册开始，判断注册条件
                 case R.id.btn_enroll:
-                    if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(email) || TextUtils.isEmpty(name)) {
+                    if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(email) || TextUtils.isEmpty(name)|| TextUtils.isEmpty(telephone)) {
                         Toast.makeText(ReignActivity.this, "各项均不能为空", Toast.LENGTH_SHORT).show();
                     } else {
 //                        if(isMobileNO(telephone)){
@@ -96,6 +96,7 @@ public class ReignActivity extends AppCompatActivity {
                         map.put("pwd",password);
                         map.put("email",email);
                         map.put("name",name);
+                        map.put("mobile",telephone);
                         map.put("type",role);
                         String params = gson.toJson(map);
                         MediaType JSON= MediaType.parse("application/json; charset=utf-8");
