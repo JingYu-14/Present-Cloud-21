@@ -15,12 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawSelectorOnTop="false"/>
-    <Button
-        android:id="@+id/out"
-        android:layout_below="@+id/android:list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white"/>
+    <!--<Button-->
+        <!--android:id="@+id/out"-->
+        <!--android:layout_below="@+id/android:list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:textColor="@color/white"/>-->
 
 </RelativeLayout>

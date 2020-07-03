@@ -99,9 +99,9 @@ public class ActivityFragmentDetail extends ListFragment//android.support.v4.app
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (viewContent == null) {
             viewContent=inflater.inflate(R.layout.fragment_activity_detail, null);
-            if(u.getRole()==2){//老师结束班课
-                Button button=(Button)viewContent.findViewById(R.id.out);
-                if(u.getUserId()==c.tno){//看这个老师是不是这门课的授课老师
+//            if(u.getRole()==2){//老师结束班课
+//                Button button=(Button)viewContent.findViewById(R.id.out);
+//                if(u.getUserId()==c.tno){//看这个老师是不是这门课的授课老师
 //                    button.setText("结束班课");
 //                    button.setOnClickListener(new View.OnClickListener() {
 //                        @Override
@@ -112,34 +112,34 @@ public class ActivityFragmentDetail extends ListFragment//android.support.v4.app
 //                            startActivity(intent);
 //                        }
 //                    });
-                    button.setVisibility(View.GONE);
-                }else{//不是授课老师的话也是学生角色
-                    button.setText("退出班课");
-                    button.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dropout();
-                            Intent intent = new Intent(getActivity(),HomeActivity.class);
-                            intent.putExtra("user",u);
-                            startActivity(intent);
-                        }
-                    });
-                }
-
-            }else if(u.getRole()==1){//学生退出班课
-                Button button=(Button)viewContent.findViewById(R.id.out);
-                button.setText("退出班课");
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dropout();
-                        Intent intent = new Intent(getActivity(),HomeActivity.class);
-                        intent.putExtra("user",u);
-                        startActivity(intent);
-                    }
-                });
-
-            }
+//                    button.setVisibility(View.GONE);
+//                }else{//不是授课老师的话也是学生角色
+//                    button.setText("退出班课");
+//                    button.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            dropout();
+//                            Intent intent = new Intent(getActivity(),HomeActivity.class);
+//                            intent.putExtra("user",u);
+//                            startActivity(intent);
+//                        }
+//                    });
+//                }
+//
+//            }else if(u.getRole()==1){//学生退出班课
+//                Button button=(Button)viewContent.findViewById(R.id.out);
+//                button.setText("退出班课");
+//                button.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dropout();
+//                        Intent intent = new Intent(getActivity(),HomeActivity.class);
+//                        intent.putExtra("user",u);
+//                        startActivity(intent);
+//                    }
+//                });
+//
+//            }
         }
         mDetailList = new ArrayList<>();
         initClass();
