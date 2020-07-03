@@ -172,13 +172,13 @@ public class ContentFragment3 extends ListFragment//extends Fragment
 //        update_account_input=(EditText) view.findViewById(R.id.update_account_input);
 //        update_nick_input=(EditText)view.findViewById(R.id.update_nick_input);
         update_password_input=(EditText)view.findViewById(R.id.update_password_input);
-        update_name_input=(EditText)view.findViewById(R.id.update_name_input);
+       // update_name_input=(EditText)view.findViewById(R.id.update_name_input);
 //        update_email_input=(EditText)view.findViewById(R.id.update_email_input);
 //        update_telephone_input=(EditText)view.findViewById(R.id.update_telephone_input);
 //        update_account_input.setText(user.getUsername());
 //        update_nick_input.setText(user.getNick());//user是null
         update_password_input.setText(user.getPassword());
-        update_name_input.setText(user.getName());
+       // update_name_input.setText(user.getName());
 //        update_email_input.setText(user.getEmail());
 //        update_telephone_input.setText(user.getTelephone());
     }
@@ -188,7 +188,8 @@ public class ContentFragment3 extends ListFragment//extends Fragment
 //        update_account_input.getText().toString();
 //        update_nick_input.getText().toString();
         password= update_password_input.getText().toString();
-        name = update_name_input .getText().toString();
+       // name = update_name_input .getText().toString();
+        name =user.getName();
 //        update_email_input.getText().toString();
 //        update_telephone_input.getText().toString();
         yesUpdataUser(name,password);

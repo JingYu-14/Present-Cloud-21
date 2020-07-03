@@ -153,7 +153,7 @@ public class ReignActivity extends AppCompatActivity {
 
                                                     }
                                                     Toast.makeText(ReignActivity.this,msg,Toast.LENGTH_SHORT).show();
-                                                    Intent intent = new Intent(ReignActivity.this, LoginActivity.class);
+                                                    Intent intent = new Intent(ReignActivity.this, MainActivity.class);
                                                     startActivity(intent);
                                                 }
                                             });

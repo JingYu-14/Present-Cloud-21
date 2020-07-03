@@ -61,12 +61,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         btn_login = (Button)findViewById(R.id.btn_login);
-        btn_forget_pass = (Button)findViewById(R.id.btn_forget_pass);
+//        btn_forget_pass = (Button)findViewById(R.id.btn_forget_pass);
         account_input = (EditText)findViewById(R.id.account_input);
         password_input = (EditText)findViewById(R.id.password_input);
 
         btn_login.setOnClickListener(new RegisterButton());
-        btn_forget_pass.setOnClickListener(new RegisterButton());
+//        btn_forget_pass.setOnClickListener(new RegisterButton());
         //GPS定位
         mLocationClient = new LocationClient(getApplicationContext());
         mLocationClient.registerLocationListener(new MyLocationListener());
@@ -235,9 +235,9 @@ public class LoginActivity extends AppCompatActivity {
                     break;
 
 
-                case R.id.btn_forget_pass:
-
-                    break;
+//                case R.id.btn_forget_pass:
+//
+//                    break;
 
 
 

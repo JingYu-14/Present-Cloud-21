@@ -48,18 +48,18 @@
         android:textSize="20sp"/>
 
 
-    <EditText
-        android:id="@+id/update_name_input"
-        android:gravity="center"
-        android:background="@drawable/rounded_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/tip_name"
-        android:textSize="20sp"
-        android:layout_below="@+id/update_password_input"
-        android:layout_alignLeft="@+id/update_password_input"
-        android:layout_alignStart="@+id/update_password_input"
-        android:layout_marginTop="18dp" />
+    <!--<EditText-->
+        <!--android:id="@+id/update_name_input"-->
+        <!--android:gravity="center"-->
+        <!--android:background="@drawable/rounded_edittext"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="@string/tip_name"-->
+        <!--android:textSize="20sp"-->
+        <!--android:layout_below="@+id/update_password_input"-->
+        <!--android:layout_alignLeft="@+id/update_password_input"-->
+        <!--android:layout_alignStart="@+id/update_password_input"-->
+        <!--android:layout_marginTop="18dp" />-->
 
     <!--<EditText-->
         <!--android:id="@+id/update_email_input"-->

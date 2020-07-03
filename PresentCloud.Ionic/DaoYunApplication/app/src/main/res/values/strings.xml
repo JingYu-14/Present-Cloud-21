@@ -66,5 +66,5 @@
     <string name="codetitle">创建班级:(请截图保存二维码)</string>
     <string name="title">创建班级:</string>
     <string name="addtitle">加入班级:</string>
-    <string name="updataUserTitle">修改用户信息:</string>
+    <string name="updataUserTitle">修改密码:</string>
 </resources>
