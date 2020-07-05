@@ -23,6 +23,7 @@ use think\Route;
 
 Route::get('test', 'index/Index/index');
 Route::post('login', 'api/Login/index');
+Route::post('forget', 'api/Admin/changePassword');
 Route::get('menus', 'api/Admin/getMenus');
 Route::get('users', 'api/Admin/getUsers');
 Route::get('users/:id', 'api/Admin/getUser');
@@ -68,3 +69,4 @@ Route::get('studentSigns', 'api/Student/getSign');
 Route::post('upload', 'api/Student/upload');
 
 Route::put('sign', 'api/Student/sign');
+Route::get('courses', 'api/Teacher/getCourses');

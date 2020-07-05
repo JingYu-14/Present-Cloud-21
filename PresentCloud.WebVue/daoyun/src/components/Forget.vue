@@ -1,23 +1,23 @@
 <template>
-  <div class="login-wrap">
+  <div class="forget-wrap">
     <el-form
       label-position="top"
       :rules="rules"
       ref="ruleForm"
       :model="formData"
       label-width="80px">
-      <h2>用户登录</h2>
-      <el-form-item label="账号|手机号" prop="account">
+      <h2>忘记密码</h2>
+      <el-form-item label="账号" prop="account">
         <el-input v-model="formData.account"></el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="password">
+      <el-form-item label="新密码" prop="password">
         <el-input type="password" v-model="formData.password"></el-input>
       </el-form-item>
-      <el-form-item>
-        <el-button class="login-btn" type="primary" @click="login">登录</el-button>
+      <el-form-item label="手机" prop="mobile">
+        <el-input v-model="formData.mobile"></el-input>
       </el-form-item>
       <el-form-item>
-        <div class="Register"><a href="#/Register">注册</a><a href="#/Forget">忘记密码</a></div>
+        <el-button class="forget-btn" type="primary" @click="forget">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -25,48 +25,55 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Forget',
   data() {
+    // var validatorPhone = function (rule, value, callback) {
+    //     if (value === '') {
+    //       callback(new Error('手机号不能为空'));
+    //     } else if (!/^1\d{10}$/.test(value)) {
+    //       callback(new Error('手机号格式错误'));
+    //     } 
+    //   };
     return {
+      content:'发送验证码',
+      isDisable: false,
       formData: {
         account: '',
-        password: ''
+        password: '',
+        mobile:'',
       },
       rules: {
-        account: [
-          { required: true, message: '请输入账号', trigger: 'blur' },
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
           { min: 5, max: 12, message: '长度必须是5到12个字符', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
           { min: 6, max: 11, message: '长度在 6 到 11 个字符', trigger: 'blur' }
+        ],
+        mobile: [
+          { required: true, /*validator: validatorPhone,*/ trigger: 'blur'}
         ]
       }
     };
   },
   methods: {
-    async login() {
+    async forget() {
       // 表单验证
       this.$refs.ruleForm.validate(async (valid) => {
         if (!valid) {
           return;
         }
-        const res = await this.$http.post('/login', this.formData);
+        const res = await this.$http.post('/forget', this.formData);
         const data = res.data;
         // console.log(res);
         if (data.meta.status === 200) {
-          localStorage.setItem('uid', data.data['id']);
-          localStorage.setItem('token', data.data['token']);
           this.$message({
             type: 'success',
-            message: '登录成功!'
+            message: '重置密码成功!'
           });
           this.$router.push({
-            name: data.data['pathName'],
-            params:{
-              'name':data.data['name'],
-              'avatar':data.data['avatar']
-            }
+            name:'Login',
           });
         } else {
           // 登录失败，返回失败的原因
@@ -82,12 +89,12 @@ export default {
 </script>
 
 <style scoped>
-  .login-wrap{
+  .forget-wrap{
     background-image: url('../assets/images/login.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
   }
-  .login-wrap {
+  .forget-wrap {
     background-color: #324152;
     height: 100%;
     display: flex;
@@ -100,13 +107,7 @@ export default {
     border-radius: 5px;
     background-color: #fff;
   }
-  .el-form .login-btn {
+  .el-form .forget-btn {
     width: 100%;
-  }
-  .Register{
-    padding: 10px;
-  }
-  .Register>a{
-    padding: 0 10px;
   }
 </style>

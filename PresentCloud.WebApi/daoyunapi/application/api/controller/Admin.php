@@ -3,8 +3,8 @@
 /**
  * @Author: wujinhan
  * @Date:   2020-03-30 18:42:58
- * @Last Modified by:   wujinhan
- * @Last Modified time: 2020-05-23 08:07:10
+ * @Last Modified by:   Administrator
+ * @Last Modified time: 2020-07-05 13:10:36
  */ 
 namespace app\api\controller;
 use app\api\controller\Base;
@@ -12,9 +12,9 @@ use think\Db;
 
 class Admin extends Base
 {
-    // protected $beforeActionList = [
-    //     'checkToken'
-    // ];
+    protected $beforeActionList = [
+        'checkToken' =>  ['except'=>'addUsers,changePassword'],
+    ];
     
     public function getMenus()
     {
@@ -40,13 +40,13 @@ class Admin extends Base
         $searchValue=input('query');
         if(!$searchValue)
         {
-            $arr = Db::table('user')->field('id,account,name,email,type,state')->select();
+            $arr = Db::table('user')->field('id,account,name,email,type,state')->where('state',1)->select();
         }else
         {
-            $arr = Db::table('user')->field('id,account,name,email,type,state')->where('name','like','%'.$searchValue.'%')->select();
+            $arr = Db::table('user')->field('id,account,name,email,type,state')->where('name','like','%'.$searchValue.'%')->where('state',1)->select();
             if(!$arr)
             {
-                $arr = Db::table('user')->field('id,account,name,email,type,state')->where('account','like','%'.$searchValue.'%')->select();
+                $arr = Db::table('user')->field('id,account,name,email,type,state')->where('account','like','%'.$searchValue.'%')->where('state',1)->select();
             }
         }
 
@@ -85,7 +85,7 @@ class Admin extends Base
 
     public function getUser($id)
     {
-        $arr = Db::table('user')->where('id',$id)->field('id,name,account,pwd,type')->select();
+        $arr = Db::table('user')->where('id',$id)->field('id,name,account,pwd,type')->where('state',1)->select();
         switch ($arr[0]['type']) 
         {
            case '0':
@@ -129,6 +129,7 @@ class Admin extends Base
         $pwd=md5(input('pwd'));
         $email=input('email');
         $name=input('name');
+        $mobile=input('mobile');
         if(input('type'))
         {
         	$type=input('type');
@@ -136,8 +137,18 @@ class Admin extends Base
         {
         	$type=1;
         }
+
+        if(Db::table('user')->where('account',$account)->find())
+        {
+            return $this->returnMsg([],'账号已注册',404);
+        }
+
+        if(Db::table('user')->where('mobile',$mobile)->find())
+        {
+            return $this->returnMsg([],'手机号已注册',404);
+        }
         
-        $data = ['account' => $account, 'pwd' => $pwd,'email'=>$email,'name'=>$name,'state'=>1,'type'=>$type];
+        $data = ['account' => $account, 'pwd' => $pwd,'email'=>$email,'name'=>$name,'state'=>true,'type'=>$type,'exp'=>0,'mobile'=>$mobile];
         if(Db::table('user')->insert($data)==1)
         {
             return $this->returnMsg([],'添加用户成功',201);
@@ -145,9 +156,33 @@ class Admin extends Base
         return $this->returnMsg([],'添加用户失败',404);
     }
 
+    public function changePassword()
+    {
+        $account=input('account');
+        $password=md5(input('password'));
+        $mobile=input('mobile');
+        if(Db::table('user')->where('account',$account)->find())
+        {
+            if($mobile==Db::table('user')->where('account',$account)->value('mobile'))
+            {
+                if(Db::table('user')->where('account',$account)->update(['pwd'=>$password]))
+                {
+                    return $this->returnMsg([],'重置密码成功',200);
+                }else{
+                    return $this->returnMsg([],'重置密码失败',400);
+                }
+
+            }else{
+                return $this->returnMsg([],'手机号错误',400);
+            }
+        }else{
+            return $this->returnMsg([],'账号不存在',400);
+        }
+    }
+
     public function deleteUsers($id)
     {
-        if(Db::table('user')->where('id',$id)->delete()==0)
+        if(Db::table('user')->where('id', $id)->update(['state' => 0])==0)
         {
             return $this->returnMsg([],'删除失败',404);
         }
@@ -270,10 +305,26 @@ class Admin extends Base
     {
         $id=input('id');
         $state=input('state');
+        if($state)
+        {
+            $state=true;
+        }else{
+            $state=false;
+        }
         if(Db::table('sign')->where('id', $id)->update(['state' => $state])==0)
         {
             return $this->returnMsg([],'修改签到状态失败',400);
         }
+
+        $sno=Db::table('sign')->where('id', $id)->value('sno');
+        if($state)
+        {
+            $exp=Db::table('user')->where('id',$sno)->value('exp')+Db::table('system')->where('state',1)->value('sign_exp');
+        }else{
+            $exp=Db::table('user')->where('id',$sno)->value('exp')-Db::table('system')->where('state',1)->value('sign_exp');
+        }
+        Db::table('user')->where('id',$sno)->update(['exp'=>$exp]);
+
         return $this->returnMsg([],'修改签到状态成功',200);
     }
 
@@ -355,7 +406,7 @@ class Admin extends Base
         $college=input('college');
         $profession=input('profession');
         
-        $data = ['school' => $school, 'college' => $college,'profession'=>$profession,'state'=>1];
+        $data = ['school' => $school, 'college' => $college,'profession'=>$profession,'state'=>true];
         if(Db::table('school')->insert($data)==1)
         {
             return $this->returnMsg([],'添加组织成功',201);

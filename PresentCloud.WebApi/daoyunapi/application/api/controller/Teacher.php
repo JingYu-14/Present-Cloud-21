@@ -3,8 +3,8 @@
 /**
  * @Author: wujinhan
  * @Date:   2020-04-10 17:42:58
- * @Last Modified by:   wujinhan
- * @Last Modified time: 2020-05-23 08:07:17
+ * @Last Modified by:   Administrator
+ * @Last Modified time: 2020-06-25 22:09:57
  */ 
 namespace app\api\controller;
 use app\api\controller\Base;
@@ -12,9 +12,9 @@ use think\Db;
 
 class Teacher extends Base
 {
-    // protected $beforeActionList = [
-    //     'checkToken'
-    // ];
+    protected $beforeActionList = [
+        'checkToken'
+    ];
     
     public function getMenus()
     {
@@ -38,6 +38,23 @@ class Teacher extends Base
         $code=input('code');
         $name=input('name');
         $uid=input('uid');
+        if(Db::table('course')->where('cname',$name)->count()==0)
+        {
+            Db::table('course')->insert(['cname'=>$name]);
+        }
+        else
+        {
+            $res=Db::table('class')->column('class_name');
+            $count=0;
+            foreach($res as $value)
+            {
+                if(strpos($value,$name)!== false)
+                {
+                    $count++;
+                }
+            }
+            $name=$name.(++$count).'班';
+        }
         $data = ['invitation_code' => $code, 'class_name' => $name,'tno'=>$uid];
         if(Db::table('class')->insert($data)==1)
         {
@@ -144,10 +161,13 @@ class Teacher extends Base
         $code=input('code');
         $id=input('id');
         $sno=Db::table('course_select')->where('class_id',$id)->column('sno');
+        // 发起签到的经度
+        $lng=input('lng');
+        $lat=input('lat');
         for($i=0;$i<count($sno);$i++)
         {
             $sname=Db::table('user')->where('id',$sno[$i])->value('name');
-            $data = ['code'=>$code,'sname'=>$sname,'class_id'=>$id,'time'=>$signtime,'sno'=>$sno[$i]];
+            $data = ['code'=>$code,'sname'=>$sname,'class_id'=>$id,'time'=>$signtime,'sno'=>$sno[$i],'lng1'=>$lng,'lat1'=>$lat,'state'=>0];
             Db::table('sign')->insert($data);
         }
         return $this->returnMsg([],'发起签到成功',200);
@@ -195,5 +215,11 @@ class Teacher extends Base
         Db::table('class')->where('id',$id)->update(['task_id'=>$taskId]);
         return $this->returnMsg([],'发布任务成功',201);
         
+    }
+
+    public function getCourses()
+    {
+        $data=Db::table('course')->field('id,cname')->select();
+        return $this->returnMsg($data,'获取课程信息成功',200);
     }
 }

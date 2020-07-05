@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { Message } from 'element-ui';
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
+import Register from '@/components/Register'
+import Forget from '@/components/Forget'
 import AdminHome from '@/components/Admin/AdminHome'
 import Userlist from '@/components/Admin/Userlist/Userlist'
 import Classes from '@/components/Admin/Classes'
+import Schools from '@/components/Admin/Schools'
+import Systems from '@/components/Admin/Systems'
 import Class from '@/components/Admin/Class'
 import SchoolMate from '@/components/Admin/SchoolMate'
 import Sign from '@/components/Admin/Sign'
@@ -32,7 +37,7 @@ import StudentTaskDetails from '@/components/Student/TaskDetails'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -45,6 +50,16 @@ export default new Router({
       component: Login
     },
     {
+      path: '/register',
+      name: 'Register',
+      component: Register
+    },
+    {
+      path: '/forget',
+      name: 'Forget',
+      component: Forget
+    },
+    {
       path: '/adminhome',
       name: 'AdminHome',
       component: AdminHome,
@@ -53,6 +68,16 @@ export default new Router({
           path: '/users',
           name: 'Userlist',
           component: Userlist
+        },
+        {
+          path: '/schools',
+          name: 'Schools',
+          component: Schools
+        },
+        {
+          path: '/systems',
+          name: 'Systems',
+          component: Systems
         },
         {
           path: '/classes',
@@ -182,4 +207,31 @@ export default new Router({
       ]
     },
   ]
-})
+});
+
+// 配置路由的拦截器
+router.beforeEach((to, from, next) => {
+  // 如果访问登录的路由地址，放过
+  if (to.name === 'Login' || to.name === 'Register' || to.name === 'Forget') {
+    next();
+  } else {
+    // 如果请求的不是登录页面，验证token
+    // 1. 获取本地存储中的token
+    const token = localStorage.getItem('token');
+    if (!token) {
+      Message({
+        type: 'warning',
+        message: '请先登录!'
+      });
+      // 2. 如果没有token，跳转到登录
+      next({
+        name: 'Login'
+      });
+    } else {
+      // 3. 如果有token，继续往下执行
+      next();
+    }
+  }
+});
+
+export default router;

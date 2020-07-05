@@ -15,11 +15,18 @@ class ExceptionHandler extends Handle
 
     public function render(Exception $e)
      {
-        $this->data = $e->data;
-        $this->msg = $e->msg;
-        $this->status = $e->status;
-        $meta = ["msg" => $this->msg,"status" => $this->status];
-        return json(["data" => $this->data, "meta" => $meta]);
+        if($e instanceof BaseException)
+        {
+            $this->data = $e->data;
+            $this->msg = $e->msg;
+            $this->status = $e->status;
+            $meta = ["msg" => $this->msg,"status" => $this->status];
+            return json(["data" => $this->data, "meta" => $meta]);
+        }
+        else
+        {
+            return parent::render($e);
+        }
     }
 
 }

@@ -3,8 +3,8 @@
 /**
  * @Author: wujinhan
  * @Date:   2020-04-12 17:08:23
- * @Last Modified by:   wujinhan
- * @Last Modified time: 2020-05-23 08:07:14
+ * @Last Modified by:   Administrator
+ * @Last Modified time: 2020-07-05 13:05:23
  */
 namespace app\api\controller;
 use app\api\controller\Base;
@@ -12,9 +12,9 @@ use think\Db;
 
 class Student extends Base
 {
-    // protected $beforeActionList = [
-    //     'checkToken'
-    // ];
+    protected $beforeActionList = [
+        'checkToken'
+    ];
     
     public function getMenus()
     {
@@ -105,11 +105,15 @@ class Student extends Base
         // 移动到框架应用根目录/public/uploads/ 目录下
         if($file){
             $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
-            // echo $info->getExtension().'<br>';
-            // echo $info->getSaveName().'<br>';
-            // echo $info->getFilename().'<br>'; 
-            Db::table('task_stu')->where('sno',$uid)->where('task_id',$taskId)->update(['presentation'=>str_replace("\\",'/',$info->getSaveName()),'state'=>1]);
-            return $this->returnMsg([],'上传成功',200);
+            if(Db::table('task_stu')->where('sno',$uid)->where('task_id',$taskId)->update(['presentation'=>str_replace("\\",'/',$info->getSaveName()),'state'=>1])!=0)
+            {
+                 $exp=Db::table('user')->where('id',$uid)->value('exp')+Db::table('system')->where('state',1)->value('task_exp');
+                Db::table('user')->where('id',$uid)->update(['exp'=>$exp]);
+                return $this->returnMsg([],'上传成功',200);
+            }else{
+                // return Db::table('task_stu')->getLastSql();
+                return $this->returnMsg([],'上传失败',404);
+            }
         }else{
             return $this->returnMsg([],'上传失败',404);
         }
@@ -120,12 +124,34 @@ class Student extends Base
         $uid=input('uid');
         $code=input('code');
         $res=Db::table('sign')->where('code',$code)->find();
+        // 签到的经度
+        $lng2=input('lng');
+        $lat2=input('lat');
         if(!$res)
         {
             return $this->returnMsg([],'签到失败，签到码不存在',404);
         }else
         {
-            Db::table('sign')->where('sno',$uid)->where('code',$code)->update(['state'=>1]);
+            $lng1=Db::table('sign')->where('sno',$uid)->where('code',$code)->value('lng1');
+            $lat1=Db::table('sign')->where('sno',$uid)->where('code',$code)->value('lat1');
+            $radLat1 = deg2rad($lat1); //deg2rad()函数将角度转换为弧度
+            $radLat2 = deg2rad($lat2);
+            $radLng1 = deg2rad($lng1);
+            $radLng2 = deg2rad($lng2);
+            $a = $radLat1 - $radLat2;
+            $b = $radLng1 - $radLng2;
+            $distance = 2 * asin(sqrt(pow(sin($a / 2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b / 2), 2))) * 6378.137 * 1000;
+
+            $signDist=Db::table('system')->where('state',1)->value('sign_dist');
+            exit;
+            if($distance>$signDist)
+            {
+                return $this->returnMsg([],'不在签到范围',404);
+            }
+
+            $exp=Db::table('user')->where('id',$uid)->value('exp')+Db::table('system')->where('state',1)->value('sign_exp');
+            Db::table('user')->where('id',$uid)->update(['exp'=>$exp]);
+            Db::table('sign')->where('sno',$uid)->where('code',$code)->update(['state'=>1,'lng2'=>$lng2,'lat2'=>$lat2,'distance'=>$distance]);
             return $this->returnMsg([],'签到成功',200);
         }
     }

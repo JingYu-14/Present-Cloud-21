@@ -13,9 +13,7 @@ class Index extends Base
 {
     public function index()
     {
-        var_dump($_SERVER['HTTP_POSTMAN_TOKEN']);exit;
-        // var_dump(date("Y/m/d",1592740569));
-    	// return $this->fetch();
+        echo time()+3600;
     }
 
     public function upload(){

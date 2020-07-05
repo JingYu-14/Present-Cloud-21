@@ -1,71 +1,160 @@
 <template>
-   <div class="main0"> 
-    <div class="main_left"> 
-     <img src="../assets/images/zhuce-image-3.png" class="theimg" /> 
-     <img src="../assets/images/zhuce-image-2.png" class="secimg" /> 
-     <img src="../assets/images/zhuce-image-1.png" class="firimg" /> 
-    </div> 
-    <div class="main_right"> 
-     <div class="main_r_up"> 
-      <img src="../assets/images/user.png" /> 
-      <div class="pp">
-       注册
-      </div> 
-     </div> 
-     <div class="sub">
-      <p>已经注册？<a href="/#/login"><span class="blue">请登录</span></a></p>
-     </div> 
-     <div class="txt txt0"> 
-      <span style="letter-spacing:8px;">用户名:</span> 
-      <input name="" type="text" class="txtphone" placeholder="请输入用户名" /> 
-     </div> 
-     <div class="txt txt0"> 
-      <span style="letter-spacing:4px;">登录密码:</span> 
-      <input name="" type="text" class="txtphone" placeholder="请输入密码" /> 
-     </div> 
-     <div class="txt txt0"> 
-      <span style="letter-spacing:4px;">重复密码:</span> 
-      <input name="" type="text" class="txtphone" placeholder="请再次输入密码" /> 
-     </div> 
-     <div class="txt txt0"> 
-      <a href="/#/login">
-       <div class="zhucebtn">
-        确认注册
-       </div></a> 
-     </div> 
-    </div> 
-   </div> 
+  <div class="register-wrap">
+    <el-form
+      label-position="top"
+      :rules="rules"
+      ref="ruleForm"
+      :model="formData"
+      label-width="80px">
+      <h2>用户注册</h2>
+      <el-form-item label="账号" prop="account">
+        <el-input v-model="formData.account"></el-input>
+      </el-form-item>
+      <el-form-item label="密码" prop="password">
+        <el-input type="password" v-model="formData.password"></el-input>
+      </el-form-item>
+       <el-form-item
+        prop="email"
+        label="邮箱"
+        :rules="[
+          { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+          { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+        ]"
+      >
+        <el-input v-model="formData.email"></el-input>
+      </el-form-item>
+      <el-form-item label="名字" prop="name">
+        <el-input v-model="formData.name"></el-input>
+      </el-form-item>
+      <el-form-item label="手机" prop="mobile">
+        <el-input v-model="formData.mobile"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-select v-model="value" placeholder="角色选择" style="width: 100%;">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item>
+        <el-button class="register-btn" type="primary" @click="register">注册</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Register',
-  data () {
+  data() {
+    /*var validatorPhone = function (rule, value, callback) {
+        if (value === '') {
+          callback(new Error('手机号不能为空'));
+        } else if (!/^1\d{10}$/.test(value)) {
+          callback(new Error('手机号格式错误'));
+        } 
+      };*/
     return {
-     
-    }
+      value: '',
+      options: [{
+          value: '0',
+          label: '管理员'
+        }, {
+          value: '2',
+          label: '教师'
+        }, {
+          value: '1',
+          label: '学生'
+        }],
+      formData: {
+        account: '',
+        password: '',
+        email:'',
+        name:'',
+        type:1,
+        mobile:''
+      },
+      rules: {
+        account: [
+          { required: true, message: '请输入账号', trigger: 'blur' },
+          { min: 5, max: 12, message: '长度必须是5到12个字符', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 11, message: '长度在 6 到 11 个字符', trigger: 'blur' }
+        ],
+        name: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 2, max: 8, message: '长度必须是2到8个字符', trigger: 'blur' }
+        ],
+        mobile: [
+          { required: true, /*validator: validatorPhone,*/ trigger: 'blur'}
+        ]
+      }
+    };
   },
-  created(){
-  	this.$nextTick(()=>{
-  		document.getElementById('main').style.height = document.documentElement.clientHeight + 'px'
-  	})
+  methods: {
+    async register() {
+      this.formData.type=this.value
+      // 表单验证
+      this.$refs.ruleForm.validate(async (valid) => {
+        if (!valid) {
+          return;
+        }
+        const res = await this.$http.post('/users', this.formData);
+        const data = res.data;
+        // console.log(res);
+        if (data.meta.status === 201) {
+          this.$message({
+            type: 'success',
+            message: '注册成功!'
+          });
+          this.$router.push({
+            name: 'Login'
+          });
+        } else {
+          // 登录失败，返回失败的原因
+          this.$message({
+            type: 'error',
+            message: data.meta.msg
+          });
+        }
+      });
+    }
   }
-}
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
-<style scoped src="../assets/css/zhuce.css">
-.main{
-	position: relative;
-}
-.main0{
-	position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: 0;
-    margin-left: -450px;
-    margin-top: -250px;
-}
+<style scoped>
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
+  .register-wrap{
+    background-image: url('../assets/images/login.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  .register-wrap {
+    background-color: #324152;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .el-form.el-form--label-top {
+    padding: 40px;
+    width: 500px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  .el-form .register-btn {
+    width: 100%;
+  }
 </style>
